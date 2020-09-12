@@ -1,0 +1,9 @@
+# Config file which is created when compiling
+config.h
+
+# Executables
+dwm
+dwm-msg
+
+# Object files
+*.o
