@@ -145,7 +145,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-i", "-F", NULL };
 static const char *wificmd[] = { "networkmanager_dmenu", "-m", dmenumon, "-i", "-F", NULL };
 
-static const char *termcmd[]         = { TERM, NULL };
+static const char *termcmd[]         = { TERM, "-g", "120x34", NULL };
 static const char *rangercmd[]       = { TERM, "-e", "ranger", NULL };
 static const char *browsercmd[]      = { BROWSER, NULL };
 static const char *imageeditorcmd[]  = { "gimp", NULL };
