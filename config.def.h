@@ -67,10 +67,11 @@ static const Inset alt_inset = {
 };
 
 #define TERM "st"
+#define TERMSIZE "120x34"
 #define BROWSER "brave"
 
 static const char *const autostart[] = {
-    TERM, "-t", "hidden", "-g", "120x34", "-e", "vit", NULL,
+    TERM, "-t", "hidden", "-g", TERMSIZE, "-e", "vit", NULL,
 	NULL /* terminate */
 };
 
@@ -145,8 +146,8 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-i", "-F", NULL };
 static const char *wificmd[] = { "networkmanager_dmenu", "-m", dmenumon, "-i", "-F", NULL };
 
-static const char *termcmd[]         = { TERM, "-g", "120x34", NULL };
-static const char *rangercmd[]       = { TERM, "-e", "ranger", NULL };
+static const char *termcmd[]         = { TERM, "-g", TERMSIZE, NULL };
+static const char *rangercmd[]       = { TERM, "-g", TERMSIZE, "-e", "ranger", NULL };
 static const char *browsercmd[]      = { BROWSER, NULL };
 static const char *imageeditorcmd[]  = { "gimp", NULL };
 static const char *idecmd[]          = { "idea", NULL };
