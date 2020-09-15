@@ -259,6 +259,9 @@ static Key keys[] = {
     // ...
 	{ MODKEY|ShiftMask,             XK_space,  setlayout,      {.v = &layouts[7]} }, // Floating
 
+    // Next floating
+    { MODKEY,                       XK_space,  togglenextfloating, {0} },
+
     // Cycle layouts
    	{ MODKEY|ShiftMask,		        XK_comma,  cyclelayout,    {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, cyclelayout,    {.i = +1 } },

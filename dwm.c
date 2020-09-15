@@ -323,6 +323,7 @@ static void resource_load(XrmDatabase db, char *name, enum resource_type rtype, 
 static void keyrelease(XEvent *e);
 static void combotag(const Arg *arg);
 static void comboview(const Arg *arg);
+static void togglenextfloating(const Arg *arg);
 
 static pid_t getparentprocess(pid_t p);
 static int isdescprocess(pid_t p, pid_t c);
@@ -426,6 +427,7 @@ autostart_exec() {
 
 /* function implementations */
 static int combo = 0;
+static int nextfloating = 0;
 
 void
 keyrelease(XEvent *e) {
@@ -462,6 +464,11 @@ comboview(const Arg *arg) {
 }
 
 void
+togglenextfloating(const Arg *arg) {
+    nextfloating = !nextfloating;    
+}
+
+void
 applyrules(Client *c)
 {
 	const char *class, *instance;
@@ -487,11 +494,13 @@ applyrules(Client *c)
 			c->isterminal = r->isterminal;
 			c->noswallow  = r->noswallow;
             c->iscentered = r->iscentered;
-			c->isfloating = r->isfloating;
+			c->isfloating = r->isfloating || nextfloating;
 			c->tags |= r->tags;
 			for (m = mons; m && m->num != r->monitor; m = m->next);
 			if (m)
 				c->mon = m;
+
+            nextfloating = 0;
 		}
 	}
 	if (ch.res_class)
@@ -2537,7 +2546,6 @@ unfocus(Client *c, int setfocus)
 		XDeleteProperty(dpy, root, netatom[NetActiveWindow]);
 	}
 
-    //PATCH: exit fullscreen when a window is unfocused
     //TODO: issue, fullscreen lost on workspace change
     if(c->isfullscreen) 
         togglefullscr(NULL);
