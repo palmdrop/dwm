@@ -95,6 +95,7 @@ static const Rule rules[] = {
     { "Spotify",           NULL,          NULL,           1 << 8,          0,          0,          0,          0,        -1 },
     { "jetbrains-idea-ce", NULL,          NULL,           1 << 1,          0,          0,          0,          0,        -1 },
     { "game.App",          NULL,          NULL,           1 << 1,          1,          1,          0,          0,        -1 },
+    { "application.App",   NULL,          NULL,           1 << 1,          1,          1,          0,          0,        -1 },
     { NULL,                "libreoffice", NULL,           1 << 2,          0,          0,          0,          0,        -1 },
 	{ NULL,                NULL,          "hidden",       SCRATCHPAD_MASK, 1,          1,          0,          0,        -1 },
 	{ NULL,                NULL,          "floating",     0,               1,          1,          0,          0,        -1 },
