@@ -224,10 +224,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_u,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+	//{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
+	//{ MODKEY,                       XK_u,      incnmaster,     {.i = -1 } },
+	//{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
+	//{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
@@ -241,30 +241,30 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
 
     // Attach below/above
-    { MODKEY|ShiftMask,             XK_Tab,    toggleAttachBelow,       {0} },
+    //{ MODKEY|ShiftMask,             XK_Tab,    toggleAttachBelow,       {0} },
 
     // cfacts
-    { MODKEY|ShiftMask,             XK_h,      setcfact,       {.f = -0.25} },
-	{ MODKEY|ShiftMask,             XK_l,      setcfact,       {.f = +0.25} },
-	{ MODKEY|ShiftMask,             XK_o,      setcfact,       {.f =  0.00} },
+    //{ MODKEY|ShiftMask,             XK_h,      setcfact,       {.f = -0.25} },
+	//{ MODKEY|ShiftMask,             XK_l,      setcfact,       {.f = +0.25} },
+	//{ MODKEY|ShiftMask,             XK_o,      setcfact,       {.f =  0.00} },
 
     // Vanity gaps
-	{ MODKEY|Mod4Mask,              XK_comma,  incrgaps,       {.i = -1 } },
+	/*{ MODKEY|Mod4Mask,              XK_comma,  incrgaps,       {.i = -1 } },
 	{ MODKEY|Mod4Mask,              XK_period, incrgaps,       {.i = +1 } },
 	{ MODKEY|Mod4Mask,              XK_0,      togglegaps,     {0} },
-    { MODKEY|Mod4Mask|ShiftMask,    XK_0,      defaultgaps,    {0} },
+    { MODKEY|Mod4Mask|ShiftMask,    XK_0,      defaultgaps,    {0} },*/
 
     // Fullscreen 
-	{ MODKEY,                       XK_f,      togglefullscr,  {0} },
+	{ MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
 
     // Layouts
 	{ MODKEY|ShiftMask,             XK_t,      setlayout,      {.v = &layouts[0]} }, // Tile
-	{ MODKEY|ShiftMask,             XK_m,      setlayout,      {.v = &layouts[1]} }, // Monicle
+	/*{ MODKEY|ShiftMask,             XK_m,      setlayout,      {.v = &layouts[1]} }, // Monicle
 	{ MODKEY|ShiftMask,             XK_u,      setlayout,      {.v = &layouts[2]} }, // Dwindle
 	{ MODKEY|ShiftMask,             XK_g,      setlayout,      {.v = &layouts[3]} }, // Grid
 	{ MODKEY|ShiftMask,             XK_c,      setlayout,      {.v = &layouts[4]} }, // Centered master
 	{ MODKEY|ShiftMask,             XK_f,      setlayout,      {.v = &layouts[5]} }, // Spiral
-	{ MODKEY|ShiftMask,             XK_s,      setlayout,      {.v = &layouts[6]} }, // Bottomstack
+	{ MODKEY|ShiftMask,             XK_s,      setlayout,      {.v = &layouts[6]} }, // Bottomstack*/
     // ...
 	{ MODKEY|ShiftMask,             XK_space,  setlayout,      {.v = &layouts[7]} }, // Floating
 
@@ -272,8 +272,8 @@ static Key keys[] = {
     { MODKEY,                       XK_space,  togglenextfloating, {0} },
 
     // Cycle layouts
-   	{ MODKEY|ShiftMask,		        XK_comma,  cyclelayout,    {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_period, cyclelayout,    {.i = +1 } },
+   	//{ MODKEY|ShiftMask,		        XK_comma,  cyclelayout,    {.i = -1 } },
+	//{ MODKEY|ShiftMask,             XK_period, cyclelayout,    {.i = +1 } },
 
     // Scratchpad
     { MODKEY,                       XK_minus,  scratchpad_show,  {0} },
@@ -281,7 +281,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_comma,  scratchpad_remove,{0} },
 
     // Floating
-	{ MODKEY|ControlMask,           XK_space,  togglefloating, {0} },
+	/*{ MODKEY|ControlMask,           XK_space,  togglefloating, {0} },
     { MODKEY|ControlMask,           XK_j,      moveresize,     {.v = "0x 25y 0w 0h" } },
 	{ MODKEY|ControlMask,           XK_k,      moveresize,     {.v = "0x -25y 0w 0h" } },
 	{ MODKEY|ControlMask,           XK_l,      moveresize,     {.v = "25x 0y 0w 0h" } },
@@ -290,7 +290,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask|ShiftMask, XK_j,      moveresize,     {.v = "0x -15y 0w 30h" } },
 	{ MODKEY|ControlMask|ShiftMask, XK_k,      moveresize,     {.v = "0x 15y 0w -30h" } },
 	{ MODKEY|ControlMask|ShiftMask, XK_l,      moveresize,     {.v = "-15x 0y 30w 0h" } },
-	{ MODKEY|ControlMask|ShiftMask, XK_h,      moveresize,     {.v = "15x 0y -30w 0h" } },
+	{ MODKEY|ControlMask|ShiftMask, XK_h,      moveresize,     {.v = "15x 0y -30w 0h" } },*/
 
     // Volume control
 	{ 0,                            XF86XK_AudioRaiseVolume,   spawn,   {.v = upvol   } },
@@ -344,6 +344,12 @@ static Key cmdkeys[] = {
 	{ ControlMask,                 XK_c,                    clearcmd,        {0} },
 	{ 0,                           XK_i,                    setkeymode,      {.ui = INSERTMODE} },
 };
+
+
+#define TAGKEYSCMD(KEY,TAG) \
+	{ {0, 0, 0, 0},                       {KEY, 0, 0, 0},      comboview,      {.ui = 1 << TAG} }, \
+	{ {ShiftMask, 0, 0, 0},               {KEY, 0, 0, 0},      combotag,       {.ui = 1 << TAG} }  \
+
 static Command commands[] = {
 	/* modifier (4 keys)                          keysyms (4 keys)                                function         argument */
     
@@ -368,24 +374,51 @@ static Command commands[] = {
 	{ {ShiftMask, 0, 0, 0},               {XK_o, 0, 0, 0},     setcfact,       {.f =  0.00} },
 
     // Layouts
-	{ {0, 0, 0, 0},                       {XK_1, 0, 0, 0},     setlayout,      {.v = &layouts[0]} }, // Tile
-	{ {0, 0, 0, 0},                       {XK_2, 0, 0, 0},     setlayout,      {.v = &layouts[1]} }, // Monicle
-	{ {0, 0, 0, 0},                       {XK_3, 0, 0, 0},     setlayout,      {.v = &layouts[2]} }, // Dwindle
-	{ {0, 0, 0, 0},                       {XK_4, 0, 0, 0},     setlayout,      {.v = &layouts[3]} }, // Grid
-	{ {0, 0, 0, 0},                       {XK_5, 0, 0, 0},     setlayout,      {.v = &layouts[4]} }, // Centered master
-	{ {0, 0, 0, 0},                       {XK_6, 0, 0, 0},     setlayout,      {.v = &layouts[5]} }, // Spiral
-	{ {0, 0, 0, 0},                       {XK_7, 0, 0, 0},     setlayout,      {.v = &layouts[6]} }, // Bottomstack
+	{ {ControlMask, 0, 0, 0},             {XK_1, 0, 0, 0},     setlayout,      {.v = &layouts[0]} }, // Tile
+	{ {ControlMask, 0, 0, 0},             {XK_2, 0, 0, 0},     setlayout,      {.v = &layouts[1]} }, // Monicle
+	{ {ControlMask, 0, 0, 0},             {XK_3, 0, 0, 0},     setlayout,      {.v = &layouts[2]} }, // Dwindle
+	{ {ControlMask, 0, 0, 0},             {XK_4, 0, 0, 0},     setlayout,      {.v = &layouts[3]} }, // Grid
+	{ {ControlMask, 0, 0, 0},             {XK_5, 0, 0, 0},     setlayout,      {.v = &layouts[4]} }, // Centered master
+	{ {ControlMask, 0, 0, 0},             {XK_6, 0, 0, 0},     setlayout,      {.v = &layouts[5]} }, // Spiral
+	{ {ControlMask, 0, 0, 0},             {XK_7, 0, 0, 0},     setlayout,      {.v = &layouts[6]} }, // Bottomstack
     // ...
-	{ {0, 0, 0, 0},                       {XK_space, 0, 0, 0}, setlayout,      {.v = &layouts[7]} }, // Floating
+	{ {ControlMask, 0, 0, 0},             {XK_space, 0, 0, 0}, setlayout,      {.v = &layouts[7]} }, // Floating
+
+    // Tags
+    TAGKEYSCMD(                           XK_1,                0),
+    TAGKEYSCMD(                           XK_2,                1),
+    TAGKEYSCMD(                           XK_3,                2),
+    TAGKEYSCMD(                           XK_4,                3),
+    TAGKEYSCMD(                           XK_5,                4),
+    TAGKEYSCMD(                           XK_6,                5),
+    TAGKEYSCMD(                           XK_7,                6),
+    TAGKEYSCMD(                           XK_8,                7),
+    TAGKEYSCMD(                           XK_9,                8),
 
     // Clients
-	{ {0, 0, 0, 0},                        {XK_d, XK_d, 0, 0}, killclient,     {0} },
+    { {0, 0, 0, 0},                       {XK_d, XK_d, 0, 0},  killclient,     {0} },
+	{ {ShiftMask, 0, 0, 0},               {XK_d, 0, 0, 0},     killclient,     {0} },
 
     // Vanity gaps
-	/*{ MODKEY|Mod4Mask,              XK_comma,  incrgaps,       {.i = -1 } },
-	{ MODKEY|Mod4Mask,              XK_period, incrgaps,       {.i = +1 } },
-	{ MODKEY|Mod4Mask,              XK_0,      togglegaps,     {0} },
-    { MODKEY|Mod4Mask|ShiftMask,    XK_0,      defaultgaps,    {0} },*/
+	{ {0, 0, 0, 0},                       {XK_0, 0, 0, 0},     togglegaps,     {0} },
+	{ {0, 0, 0, 0},                       {XK_comma,0, 0, 0},  incrgaps,       {.i = -1 } },
+	{ {0, 0, 0, 0},                       {XK_period,0, 0, 0}, incrgaps,       {.i = +1 } },
+    { {0, 0, 0, 0},                       {XK_minus, 0, 0, 0}, defaultgaps,    {0} },
+
+    // Floating control
+	{ {0, 0, 0, 0},                       {XK_space, 0, 0, 0}, togglefloating, {0} },
+    { {ControlMask, 0, 0, 0},             {XK_j, 0, 0, 0},     moveresize,     {.v = "0x 25y 0w 0h" } },
+	{ {ControlMask, 0, 0, 0},             {XK_k, 0, 0, 0},     moveresize,     {.v = "0x -25y 0w 0h" } },
+	{ {ControlMask, 0, 0, 0},             {XK_l, 0, 0, 0},     moveresize,     {.v = "25x 0y 0w 0h" } },
+	{ {ControlMask, 0, 0, 0},             {XK_h, 0, 0, 0},     moveresize,     {.v = "-25x 0y 0w 0h" } },
+
+	{ {ControlMask|ShiftMask, 0, 0, 0},   {XK_j, 0, 0, 0},     moveresize,     {.v = "0x -15y 0w 30h" } },
+	{ {ControlMask|ShiftMask, 0, 0, 0},   {XK_k, 0, 0, 0},     moveresize,     {.v = "0x 15y 0w -30h" } },
+	{ {ControlMask|ShiftMask, 0, 0, 0},   {XK_l, 0, 0, 0},     moveresize,     {.v = "-15x 0y 30w 0h" } },
+	{ {ControlMask|ShiftMask, 0, 0, 0},   {XK_h, 0, 0, 0},     moveresize,     {.v = "15x 0y -30w 0h" } },
+
+    // Fullscreen
+	{ {0, 0, 0, 0},                       {XK_f, 0, 0, 0},    togglefullscr,  {0} },
 
 	{ {ControlMask, ShiftMask,  0,         0},    {XK_w,      XK_o,     0,         0},            onlyclient,      {0} },
 
