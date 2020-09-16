@@ -67,7 +67,7 @@ static const Inset alt_inset = {
 };
 
 #define TERM "st"
-#define TERMSIZE "120x34"
+#define TERMSIZE "100x34"
 #define BROWSER "brave"
 
 static const char *const autostart[] = {
