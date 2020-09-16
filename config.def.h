@@ -78,6 +78,9 @@ static const char *const autostart[] = {
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
+/* include(s) defining functions */
+#include "keymodes.pre.h"
+
 static Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
@@ -153,6 +156,8 @@ static const char *browsercmd[]      = { BROWSER, NULL };
 static const char *imageeditorcmd[]  = { "gimp", NULL };
 static const char *idecmd[]          = { "idea", NULL };
 
+static const char *helpcmd[]  = { TERM, "-e", "man", "dwm", NULL };
+
 static const char *prntscrncmd[] = { "flameshot", "full", "-p", "/home/xan/Pictures/screenshots/", NULL };
 static const char *capturecmd[]  = { "flameshot", "gui", NULL };
 
@@ -204,6 +209,10 @@ ResourcePref resources[] = {
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
+
+    // Command mode
+    { MODKEY,                       XK_Escape, setkeymode,     {.ui = COMMANDMODE} },
+
     // Standard settings
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
@@ -328,6 +337,30 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_e,      spawn,          {.v = shutdownmenucmd } },
 };
 
+static Key cmdkeys[] = {
+	/* modifier                    keys                     function         argument */
+	{ 0,                           XK_Escape,               clearcmd,        {0} },
+	{ ControlMask,                 XK_c,                    clearcmd,        {0} },
+	{ 0,                           XK_i,                    setkeymode,      {.ui = INSERTMODE} },
+};
+static Command commands[] = {
+	/* modifier (4 keys)                          keysyms (4 keys)                                function         argument */
+	{ {ControlMask, ShiftMask,  0,         0},    {XK_w,      XK_h,     0,         0},            setlayout,       {.v = &layouts[0]} },
+	{ {ControlMask, 0,          0,         0},    {XK_w,      XK_o,     0,         0},            setlayout,       {.v = &layouts[2]} },
+	{ {ControlMask, ShiftMask,  0,         0},    {XK_w,      XK_o,     0,         0},            onlyclient,      {0} },
+	{ {ControlMask, 0,          0,         0},    {XK_w,      XK_v,     0,         0},            setlayout,       {.v = &layouts[0]} },
+	{ {ControlMask, 0,          0,         0},    {XK_w,      XK_less,  0,         0},            setmfact,        {.f = -0.05} },
+	{ {ControlMask, ShiftMask,  0,         0},    {XK_w,      XK_less,  0,         0},            setmfact,        {.f = +0.05} },
+	{ {ControlMask, ShiftMask,  0,         0},    {XK_w,      XK_0,     0,         0},            setmfact,        {.f = +1.50} },
+	{ {ShiftMask,   0,          0,         0},    {XK_period, XK_e,     0,         0},            spawn,           {.v = dmenucmd} },
+	{ {ShiftMask,   0,          0,         0},    {XK_period, XK_o,     0,         0},            spawn,           {.v = dmenucmd} },
+	{ {ShiftMask,   0,          0,         0},    {XK_period, XK_h,     XK_Return, 0},            spawn,           {.v = helpcmd} },
+	{ {ShiftMask,   0,          0,         0},    {XK_period, XK_q,     XK_Return, 0},            quit,            {0} },
+	{ {ShiftMask,   0,          0,         0},    {XK_period, XK_b,     XK_d,      XK_Return},    killclient,      {0} },
+	{ {ShiftMask,   0,          0,         0},    {XK_period, XK_b,     XK_n,      XK_Return},    focusstack,      {.i = +1} },
+	{ {ShiftMask,   0,          ShiftMask, 0},    {XK_period, XK_b,     XK_n,      XK_Return},    focusstack,      {.i = -1} },
+};
+
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static Button buttons[] = {
@@ -364,3 +397,5 @@ static IPCCommand ipccommands[] = {
   IPCCOMMAND(  quit,                1,      {ARG_TYPE_NONE}   )
 };
 
+/* include(s) depending on the configuration variables */
+#include "keymodes.post.h"

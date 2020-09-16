@@ -235,6 +235,10 @@ static long getstate(Window w);
 static int gettextprop(Window w, Atom atom, char *text, unsigned int size);
 static void grabbuttons(Client *c, int focused);
 static void grabkeys(void);
+
+// Legacy method for keymodes patch
+static Bool isprotodel(Client *c);
+
 static int handlexevent(struct epoll_event *ev);
 static void incnmaster(const Arg *arg);
 static void keypress(XEvent *e);
@@ -1268,7 +1272,7 @@ grabbuttons(Client *c, int focused)
 }
 
 void
-grabkeys(void)
+grabdefkeys(void)
 {
 	updatenumlockmask();
 	{
@@ -1283,6 +1287,22 @@ grabkeys(void)
 					XGrabKey(dpy, code, keys[i].mod | modifiers[j], root,
 						True, GrabModeAsync, GrabModeAsync);
 	}
+}
+
+/* Required for keymodes patch */
+Bool
+isprotodel(Client *c) {
+	int i, n;
+	Atom *protocols;
+	Bool ret = False;
+
+	if(XGetWMProtocols(dpy, c->win, &protocols, &n)) {
+		for(i = 0; !ret && i < n; i++)
+			if(protocols[i] == wmatom[WMDelete])
+				ret = True;
+		XFree(protocols);
+	}
+	return ret;
 }
 
 int
@@ -1324,7 +1344,7 @@ isuniquegeom(XineramaScreenInfo *unique, size_t n, XineramaScreenInfo *info)
 #endif /* XINERAMA */
 
 void
-keypress(XEvent *e)
+defkeypress(XEvent *e)
 {
 	unsigned int i;
 	KeySym keysym;
