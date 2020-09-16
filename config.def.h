@@ -286,10 +286,11 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_k,      moveresize,     {.v = "0x -25y 0w 0h" } },
 	{ MODKEY|ControlMask,           XK_l,      moveresize,     {.v = "25x 0y 0w 0h" } },
 	{ MODKEY|ControlMask,           XK_h,      moveresize,     {.v = "-25x 0y 0w 0h" } },
-	{ MODKEY|ControlMask|ShiftMask, XK_j,      moveresize,     {.v = "0x 0y 0w 25h" } },
-	{ MODKEY|ControlMask|ShiftMask, XK_k,      moveresize,     {.v = "0x 0y 0w -25h" } },
-	{ MODKEY|ControlMask|ShiftMask, XK_l,      moveresize,     {.v = "0x 0y 25w 0h" } },
-	{ MODKEY|ControlMask|ShiftMask, XK_h,      moveresize,     {.v = "0x 0y -25w 0h" } },
+
+	{ MODKEY|ControlMask|ShiftMask, XK_j,      moveresize,     {.v = "0x -15y 0w 30h" } },
+	{ MODKEY|ControlMask|ShiftMask, XK_k,      moveresize,     {.v = "0x 15y 0w -30h" } },
+	{ MODKEY|ControlMask|ShiftMask, XK_l,      moveresize,     {.v = "-15x 0y 30w 0h" } },
+	{ MODKEY|ControlMask|ShiftMask, XK_h,      moveresize,     {.v = "15x 0y -30w 0h" } },
 
     // Volume control
 	{ 0,                            XF86XK_AudioRaiseVolume,   spawn,   {.v = upvol   } },
@@ -345,20 +346,53 @@ static Key cmdkeys[] = {
 };
 static Command commands[] = {
 	/* modifier (4 keys)                          keysyms (4 keys)                                function         argument */
-	{ {ControlMask, ShiftMask,  0,         0},    {XK_w,      XK_h,     0,         0},            setlayout,       {.v = &layouts[0]} },
-	{ {ControlMask, 0,          0,         0},    {XK_w,      XK_o,     0,         0},            setlayout,       {.v = &layouts[2]} },
+    
+    // Stack control
+	{ {0, 0, 0, 0},                       {XK_j, 0, 0, 0},     focusstack,     {.i = +1 } },
+	{ {0, 0, 0, 0},                       {XK_k, 0, 0, 0},     focusstack,     {.i = -1 } },
+	{ {ShiftMask, 0, 0, 0},               {XK_j, 0, 0, 0},     movestack,      {.i = +1 } },
+	{ {ShiftMask, 0, 0, 0},               {XK_k, 0, 0, 0},     movestack,      {.i = -1 } },
+
+	{ {0, 0, 0, 0},                       {XK_Return, 0, 0, 0}, zoom,           {0} },
+	{ {0, 0, 0, 0},                       {XK_Tab, 0, 0, 0},    view,           {0} },
+
+    // Layout 
+	{ {ShiftMask, 0, 0, 0},               {XK_i, 0, 0, 0},     incnmaster,     {.i = +1 } },
+	{ {ShiftMask, 0, 0, 0},               {XK_u, 0, 0, 0},     incnmaster,     {.i = -1 } },
+	{ {0, 0, 0, 0},                       {XK_h, 0, 0, 0},     setmfact,       {.f = -0.05} },
+	{ {0, 0, 0, 0},                       {XK_l, 0, 0, 0},     setmfact,       {.f = +0.05} },
+
+    // cfact
+    { {ShiftMask, 0, 0, 0},               {XK_h, 0, 0, 0},     setcfact,       {.f = -0.25} },
+	{ {ShiftMask, 0, 0, 0},               {XK_l, 0, 0, 0},     setcfact,       {.f = +0.25} },
+	{ {ShiftMask, 0, 0, 0},               {XK_o, 0, 0, 0},     setcfact,       {.f =  0.00} },
+
+    // Layouts
+	{ {0, 0, 0, 0},                       {XK_1, 0, 0, 0},     setlayout,      {.v = &layouts[0]} }, // Tile
+	{ {0, 0, 0, 0},                       {XK_2, 0, 0, 0},     setlayout,      {.v = &layouts[1]} }, // Monicle
+	{ {0, 0, 0, 0},                       {XK_3, 0, 0, 0},     setlayout,      {.v = &layouts[2]} }, // Dwindle
+	{ {0, 0, 0, 0},                       {XK_4, 0, 0, 0},     setlayout,      {.v = &layouts[3]} }, // Grid
+	{ {0, 0, 0, 0},                       {XK_5, 0, 0, 0},     setlayout,      {.v = &layouts[4]} }, // Centered master
+	{ {0, 0, 0, 0},                       {XK_6, 0, 0, 0},     setlayout,      {.v = &layouts[5]} }, // Spiral
+	{ {0, 0, 0, 0},                       {XK_7, 0, 0, 0},     setlayout,      {.v = &layouts[6]} }, // Bottomstack
+    // ...
+	{ {0, 0, 0, 0},                       {XK_space, 0, 0, 0}, setlayout,      {.v = &layouts[7]} }, // Floating
+
+    // Clients
+	{ {0, 0, 0, 0},                        {XK_d, XK_d, 0, 0}, killclient,     {0} },
+
+    // Vanity gaps
+	/*{ MODKEY|Mod4Mask,              XK_comma,  incrgaps,       {.i = -1 } },
+	{ MODKEY|Mod4Mask,              XK_period, incrgaps,       {.i = +1 } },
+	{ MODKEY|Mod4Mask,              XK_0,      togglegaps,     {0} },
+    { MODKEY|Mod4Mask|ShiftMask,    XK_0,      defaultgaps,    {0} },*/
+
 	{ {ControlMask, ShiftMask,  0,         0},    {XK_w,      XK_o,     0,         0},            onlyclient,      {0} },
-	{ {ControlMask, 0,          0,         0},    {XK_w,      XK_v,     0,         0},            setlayout,       {.v = &layouts[0]} },
-	{ {ControlMask, 0,          0,         0},    {XK_w,      XK_less,  0,         0},            setmfact,        {.f = -0.05} },
-	{ {ControlMask, ShiftMask,  0,         0},    {XK_w,      XK_less,  0,         0},            setmfact,        {.f = +0.05} },
-	{ {ControlMask, ShiftMask,  0,         0},    {XK_w,      XK_0,     0,         0},            setmfact,        {.f = +1.50} },
+
+    // Style of vim commands
 	{ {ShiftMask,   0,          0,         0},    {XK_period, XK_e,     0,         0},            spawn,           {.v = dmenucmd} },
 	{ {ShiftMask,   0,          0,         0},    {XK_period, XK_o,     0,         0},            spawn,           {.v = dmenucmd} },
-	{ {ShiftMask,   0,          0,         0},    {XK_period, XK_h,     XK_Return, 0},            spawn,           {.v = helpcmd} },
 	{ {ShiftMask,   0,          0,         0},    {XK_period, XK_q,     XK_Return, 0},            quit,            {0} },
-	{ {ShiftMask,   0,          0,         0},    {XK_period, XK_b,     XK_d,      XK_Return},    killclient,      {0} },
-	{ {ShiftMask,   0,          0,         0},    {XK_period, XK_b,     XK_n,      XK_Return},    focusstack,      {.i = +1} },
-	{ {ShiftMask,   0,          ShiftMask, 0},    {XK_period, XK_b,     XK_n,      XK_Return},    focusstack,      {.i = -1} },
 };
 
 /* button definitions */
