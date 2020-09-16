@@ -131,7 +131,7 @@ static const Layout layouts[] = {
 	//{ "",      gaplessgrid },
 	//{ ">M>",      centeredfloatingmaster },
 	{ "",      NULL },    /* no layout function means floating behavior */
-	{ NULL,       NULL },
+	//{ NULL,       NULL },
 };
 
 /* key definitions */
@@ -270,10 +270,6 @@ static Key keys[] = {
 
     // Next floating
     { MODKEY,                       XK_space,  togglenextfloating, {0} },
-
-    // Cycle layouts
-   	//{ MODKEY|ShiftMask,		        XK_comma,  cyclelayout,    {.i = -1 } },
-	//{ MODKEY|ShiftMask,             XK_period, cyclelayout,    {.i = +1 } },
 
     // Scratchpad
     { MODKEY,                       XK_minus,  scratchpad_show,  {0} },
