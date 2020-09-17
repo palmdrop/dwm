@@ -249,8 +249,11 @@ static void mappingnotify(XEvent *e);
 static void maprequest(XEvent *e);
 static void monocle(Monitor *m);
 static void motionnotify(XEvent *e);
+
 static void moveresize(const Arg *arg);
 static void moveresizeedge(const Arg *arg);
+static void moveresizecorner(const Arg *arg);
+
 static void movemouse(const Arg *arg);
 static Client *nexttiled(Client *c);
 static void pop(Client *);
@@ -1850,6 +1853,40 @@ moveresizeedge(const Arg *arg) {
 	}
 }
 
+void
+moveresizecorner(const Arg *arg) {
+	/* move or resize floating window to corner of screen */
+	Client *c;
+	c = selmon->sel;
+    char e;
+
+	if (!c || !arg)
+		return;
+	if (selmon->lt[selmon->sellt]->arrange && !c->isfloating)
+		return;
+	if(sscanf((char *)arg->v, "%c", &e) != 1)
+		return;
+
+	if(e == 'y') {
+        moveresizeedge(&((Arg){.v = "t"}));
+        moveresizeedge(&((Arg){.v = "l"}));
+    }
+
+	if(e == 'u') {
+        moveresizeedge(&((Arg){.v = "t"}));
+        moveresizeedge(&((Arg){.v = "r"}));
+    }
+
+	if(e == 'b') {
+        moveresizeedge(&((Arg){.v = "b"}));
+        moveresizeedge(&((Arg){.v = "l"}));
+    }
+
+	if(e == 'n') {
+        moveresizeedge(&((Arg){.v = "b"}));
+        moveresizeedge(&((Arg){.v = "r"}));
+    }
+}
 
 Client *
 nexttiled(Client *c)
