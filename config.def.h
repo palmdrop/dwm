@@ -370,15 +370,15 @@ static Command commands[] = {
 	{ {ShiftMask, 0, 0, 0},               {XK_o, 0, 0, 0},     setcfact,       {.f =  0.00} },
 
     // Layouts
-	{ {0, 0, 0, 0},             {XK_F1, 0, 0, 0},     setlayout,      {.v = &layouts[0]} }, // Tile
-	{ {0, 0, 0, 0},             {XK_F2, 0, 0, 0},     setlayout,      {.v = &layouts[1]} }, // Monicle
-	{ {0, 0, 0, 0},             {XK_F3, 0, 0, 0},     setlayout,      {.v = &layouts[2]} }, // Dwindle
-	{ {0, 0, 0, 0},             {XK_F4, 0, 0, 0},     setlayout,      {.v = &layouts[3]} }, // Grid
-	{ {0, 0, 0, 0},             {XK_F5, 0, 0, 0},     setlayout,      {.v = &layouts[4]} }, // Centered master
-	{ {0, 0, 0, 0},             {XK_F6, 0, 0, 0},     setlayout,      {.v = &layouts[5]} }, // Spiral
-	{ {0, 0, 0, 0},             {XK_F7, 0, 0, 0},     setlayout,      {.v = &layouts[6]} }, // Bottomstack
+	{ {0, 0, 0, 0},                       {XK_F1, 0, 0, 0},     setlayout,      {.v = &layouts[0]} }, // Tile
+	{ {0, 0, 0, 0},                       {XK_F2, 0, 0, 0},     setlayout,      {.v = &layouts[1]} }, // Monicle
+	{ {0, 0, 0, 0},                       {XK_F3, 0, 0, 0},     setlayout,      {.v = &layouts[2]} }, // Dwindle
+	{ {0, 0, 0, 0},                       {XK_F4, 0, 0, 0},     setlayout,      {.v = &layouts[3]} }, // Grid
+	{ {0, 0, 0, 0},                       {XK_F5, 0, 0, 0},     setlayout,      {.v = &layouts[4]} }, // Centered master
+	{ {0, 0, 0, 0},                       {XK_F6, 0, 0, 0},     setlayout,      {.v = &layouts[5]} }, // Spiral
+	{ {0, 0, 0, 0},                       {XK_F7, 0, 0, 0},     setlayout,      {.v = &layouts[6]} }, // Bottomstack
     // ...
-	{ {0, 0, 0, 0},             {XK_space, 0, 0, 0},  setlayout,      {.v = &layouts[7]} }, // Floating
+	{ {ShiftMask, 0, 0, 0},               {XK_space, 0, 0, 0},  setlayout,      {.v = &layouts[7]} }, // Floating
 
     // Tags
     TAGKEYSCMD(                           XK_1,                0),
@@ -412,6 +412,16 @@ static Command commands[] = {
 	{ {ControlMask|ShiftMask, 0, 0, 0},   {XK_k, 0, 0, 0},     moveresize,     {.v = "0x 15y 0w -30h" } },
 	{ {ControlMask|ShiftMask, 0, 0, 0},   {XK_l, 0, 0, 0},     moveresize,     {.v = "-15x 0y 30w 0h" } },
 	{ {ControlMask|ShiftMask, 0, 0, 0},   {XK_h, 0, 0, 0},     moveresize,     {.v = "15x 0y -30w 0h" } },
+
+ 	{ {0, 0, 0, 0},                       {XK_u, 0, 0, 0},     moveresizeedge, {.v = "t"} },
+ 	{ {0, 0, 0, 0},                       {XK_y, 0, 0, 0},     moveresizeedge, {.v = "b"} },
+ 	{ {0, 0, 0, 0},                       {XK_b, 0, 0, 0},     moveresizeedge, {.v = "l"} },
+ 	{ {0, 0, 0, 0},                       {XK_n, 0, 0, 0},     moveresizeedge, {.v = "r"} },
+ 	/*{ {ControlMask|ShiftMask, 0, 0, 0},   {XK_Up, 0, 0, 0},    moveresizeedge, {.v = "T"} },
+ 	{ {ControlMask|ShiftMask, 0, 0, 0},   {XK_Down, 0, 0, 0},  moveresizeedge, {.v = "B"} },
+ 	{ {ControlMask|ShiftMask, 0, 0, 0},   {XK_Left, 0, 0, 0},  moveresizeedge, {.v = "L"} },
+ 	{ {ControlMask|ShiftMask, 0, 0, 0},   {XK_Right, 0, 0, 0}, moveresizeedge, {.v = "R"} },*/
+
 
     // Fullscreen
 	{ {0, 0, 0, 0},                       {XK_f, 0, 0, 0},    togglefullscr,  {0} },
