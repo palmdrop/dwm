@@ -370,15 +370,15 @@ static Command commands[] = {
 	{ {ShiftMask, 0, 0, 0},               {XK_o, 0, 0, 0},     setcfact,       {.f =  0.00} },
 
     // Layouts
-	{ {ControlMask, 0, 0, 0},             {XK_1, 0, 0, 0},     setlayout,      {.v = &layouts[0]} }, // Tile
-	{ {ControlMask, 0, 0, 0},             {XK_2, 0, 0, 0},     setlayout,      {.v = &layouts[1]} }, // Monicle
-	{ {ControlMask, 0, 0, 0},             {XK_3, 0, 0, 0},     setlayout,      {.v = &layouts[2]} }, // Dwindle
-	{ {ControlMask, 0, 0, 0},             {XK_4, 0, 0, 0},     setlayout,      {.v = &layouts[3]} }, // Grid
-	{ {ControlMask, 0, 0, 0},             {XK_5, 0, 0, 0},     setlayout,      {.v = &layouts[4]} }, // Centered master
-	{ {ControlMask, 0, 0, 0},             {XK_6, 0, 0, 0},     setlayout,      {.v = &layouts[5]} }, // Spiral
-	{ {ControlMask, 0, 0, 0},             {XK_7, 0, 0, 0},     setlayout,      {.v = &layouts[6]} }, // Bottomstack
+	{ {0, 0, 0, 0},             {XK_F1, 0, 0, 0},     setlayout,      {.v = &layouts[0]} }, // Tile
+	{ {0, 0, 0, 0},             {XK_F2, 0, 0, 0},     setlayout,      {.v = &layouts[1]} }, // Monicle
+	{ {0, 0, 0, 0},             {XK_F3, 0, 0, 0},     setlayout,      {.v = &layouts[2]} }, // Dwindle
+	{ {0, 0, 0, 0},             {XK_F4, 0, 0, 0},     setlayout,      {.v = &layouts[3]} }, // Grid
+	{ {0, 0, 0, 0},             {XK_F5, 0, 0, 0},     setlayout,      {.v = &layouts[4]} }, // Centered master
+	{ {0, 0, 0, 0},             {XK_F6, 0, 0, 0},     setlayout,      {.v = &layouts[5]} }, // Spiral
+	{ {0, 0, 0, 0},             {XK_F7, 0, 0, 0},     setlayout,      {.v = &layouts[6]} }, // Bottomstack
     // ...
-	{ {ControlMask, 0, 0, 0},             {XK_space, 0, 0, 0}, setlayout,      {.v = &layouts[7]} }, // Floating
+	{ {0, 0, 0, 0},             {XK_space, 0, 0, 0},  setlayout,      {.v = &layouts[7]} }, // Floating
 
     // Tags
     TAGKEYSCMD(                           XK_1,                0),
