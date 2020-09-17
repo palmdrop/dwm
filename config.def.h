@@ -232,7 +232,7 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_x,      spawn,          {.v = lockcmd } },
 
     // Sticky
-    { MODKEY,                       XK_s,      togglesticky,   {0} },
+    //{ MODKEY,                       XK_s,      togglesticky,   {0} },
 
     // Move stack
 	{ MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } },
@@ -256,7 +256,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
 
     // Layouts
-	{ MODKEY|ShiftMask,             XK_t,      setlayout,      {.v = &layouts[0]} }, // Tile
+	//{ MODKEY|ShiftMask,             XK_t,      setlayout,      {.v = &layouts[0]} }, // Tile
 	/*{ MODKEY|ShiftMask,             XK_m,      setlayout,      {.v = &layouts[1]} }, // Monicle
 	{ MODKEY|ShiftMask,             XK_u,      setlayout,      {.v = &layouts[2]} }, // Dwindle
 	{ MODKEY|ShiftMask,             XK_g,      setlayout,      {.v = &layouts[3]} }, // Grid
@@ -264,15 +264,15 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_f,      setlayout,      {.v = &layouts[5]} }, // Spiral
 	{ MODKEY|ShiftMask,             XK_s,      setlayout,      {.v = &layouts[6]} }, // Bottomstack*/
     // ...
-	{ MODKEY|ShiftMask,             XK_space,  setlayout,      {.v = &layouts[7]} }, // Floating
+	//{ MODKEY|ShiftMask,             XK_space,  setlayout,      {.v = &layouts[7]} }, // Floating
 
     // Next floating
     { MODKEY,                       XK_space,  togglenextfloating, {0} },
 
     // Scratchpad
-    { MODKEY,                       XK_minus,  scratchpad_show,  {0} },
-	{ MODKEY|ShiftMask,             XK_minus,  scratchpad_hide,  {0} },
-	{ MODKEY,                       XK_comma,  scratchpad_remove,{0} },
+    { MODKEY,                       XK_s,      scratchpad_show,  {0} },
+	{ MODKEY|ShiftMask,             XK_s,      scratchpad_hide,  {0} },
+	{ MODKEY|ControlMask,           XK_s,      scratchpad_remove,{0} },
 
     // Floating
 	/*{ MODKEY|ControlMask,           XK_space,  togglefloating, {0} },
@@ -307,12 +307,12 @@ static Key keys[] = {
 
     // Mount control
 	{ MODKEY,                       XK_m,       spawn,         {.v = mountcmd  } },
-	{ MODKEY|ControlMask,           XK_m,       spawn,         {.v = umountcmd  } },
+	{ MODKEY,                       XK_u,       spawn,         {.v = umountcmd  } },
 
     // Program shortcuts
-	{ MODKEY|ShiftMask,             XK_w,       spawn,         {.v = wificmd    } },
+	{ MODKEY,                       XK_w,       spawn,         {.v = wificmd    } },
 	{ MODKEY,                       XK_e,       spawn,         {.v = rangercmd  } },
-	{ MODKEY,                       XK_w,       spawn,         {.v = browsercmd } },
+	{ MODKEY,                       XK_b,       spawn,         {.v = browsercmd } },
 	{ MODKEY,                       XK_g,       spawn,         {.v = imageeditorcmd } },
 	{ MODKEY,                       XK_c,       spawn,         {.v = idecmd } },
 
@@ -394,6 +394,8 @@ static Command commands[] = {
     { {0, 0, 0, 0},                       {XK_d, XK_d, 0, 0},  killclient,     {0} },
 	{ {ShiftMask, 0, 0, 0},               {XK_d, 0, 0, 0},     killclient,     {0} },
 
+    { {0, 0, 0, 0},                       {XK_s, 0, 0, 0},     togglesticky,   {0} },
+
     // Vanity gaps
 	{ {0, 0, 0, 0},                       {XK_minus, 0, 0, 0}, togglegaps,     {0} },
 	{ {0, 0, 0, 0},                       {XK_comma,0, 0, 0},  incrgaps,       {.i = -1 } },
@@ -430,6 +432,7 @@ static Command commands[] = {
 	{ {ShiftMask,   0,          0,         0},    {XK_period, XK_e,     0,         0},            spawn,           {.v = dmenucmd} },
 	{ {ShiftMask,   0,          0,         0},    {XK_period, XK_o,     0,         0},            spawn,           {.v = dmenucmd} },
 	{ {ShiftMask,   0,          0,         0},    {XK_period, XK_q,     XK_Return, 0},            quit,            {0} },
+	{ {ShiftMask,   0,          ShiftMask, 0},    {XK_period, XK_q,     XK_1, XK_Return},         spawn,           {.v = shutdownmenucmd } },
 };
 
 /* button definitions */
