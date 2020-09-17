@@ -1794,7 +1794,7 @@ moveresizeedge(const Arg *arg) {
 	if (!c || !arg)
 		return;
 	if (selmon->lt[selmon->sellt]->arrange && !c->isfloating)
-		return;
+	    togglefloating(NULL);
 	if(sscanf((char *)arg->v, "%c", &e) != 1)
 		return;
 
@@ -1865,7 +1865,7 @@ movecorner(const Arg *arg) {
 	if (!c || !arg)
 		return;
 	if (selmon->lt[selmon->sellt]->arrange && !c->isfloating)
-		return;
+        togglefloating(NULL);
 	if(sscanf((char *)arg->v, "%c", &e) != 1)
 		return;
 
@@ -1912,7 +1912,7 @@ movecenter(const Arg *arg) {
 	if (!c || !arg)
 		return;
 	if (selmon->lt[selmon->sellt]->arrange && !c->isfloating)
-		return;
+        togglefloating(NULL);
 
 	//if(sscanf((char *)arg->v, "%c", &e) != 1)
 		//return;

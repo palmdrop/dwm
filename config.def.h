@@ -420,9 +420,11 @@ static Command commands[] = {
  	{ {0, 0, 0, 0},                       {XK_z, XK_z, 0, 0},  movecenter,     {0} },
 
     // Fullscreen
-	{ {0, 0, 0, 0},                       {XK_f, 0, 0, 0},    togglefullscr,  {0} },
+	{ {0, 0, 0, 0},                       {XK_f, 0, 0, 0},    togglefullscr,   {0} },
 
-	{ {ControlMask, ShiftMask,  0,         0},    {XK_w,      XK_o,     0,         0},            onlyclient,      {0} },
+    // Other
+	{ {0, 0, 0, 0},                       {XK_p, XK_p, 0, 0}, spawn,           {.v = termcmd} },
+	{ {ControlMask, ShiftMask, 0, 0},     {XK_w, XK_o, 0, 0}, onlyclient,      {0} },
 
     // Style of vim commands
 	{ {ShiftMask,   0,          0,         0},    {XK_period, XK_e,     0,         0},            spawn,           {.v = dmenucmd} },
