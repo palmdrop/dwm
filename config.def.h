@@ -156,8 +156,6 @@ static const char *browsercmd[]      = { BROWSER, NULL };
 static const char *imageeditorcmd[]  = { "gimp", NULL };
 static const char *idecmd[]          = { "idea", NULL };
 
-static const char *helpcmd[]  = { TERM, "-e", "man", "dwm", NULL };
-
 static const char *prntscrncmd[] = { "flameshot", "full", "-p", "/home/xan/Pictures/screenshots/", NULL };
 static const char *capturecmd[]  = { "flameshot", "gui", NULL };
 
@@ -343,8 +341,9 @@ static Key cmdkeys[] = {
 
 
 #define TAGKEYSCMD(KEY,TAG) \
-	{ {0, 0, 0, 0},                       {KEY, 0, 0, 0},      comboview,      {.ui = 1 << TAG} }, \
-	{ {ShiftMask, 0, 0, 0},               {KEY, 0, 0, 0},      combotag,       {.ui = 1 << TAG} }  \
+	{ {0, 0, 0, 0},                       {KEY,  0, 0, 0},      comboview,      {.ui = 1 << TAG} }, \
+	{ {ShiftMask, 0, 0, 0},               {KEY,  0, 0, 0},      combotag,       {.ui = 1 << TAG} }, \
+	{ {0, 0, 0, 0},                       {XK_w, KEY, 0, 0},    combotag,       {.ui = 1 << TAG} }  \
 
 static Command commands[] = {
 	/* modifier (4 keys)                          keysyms (4 keys)                                function         argument */
@@ -396,10 +395,10 @@ static Command commands[] = {
 	{ {ShiftMask, 0, 0, 0},               {XK_d, 0, 0, 0},     killclient,     {0} },
 
     // Vanity gaps
-	{ {0, 0, 0, 0},                       {XK_0, 0, 0, 0},     togglegaps,     {0} },
+	{ {0, 0, 0, 0},                       {XK_minus, 0, 0, 0}, togglegaps,     {0} },
 	{ {0, 0, 0, 0},                       {XK_comma,0, 0, 0},  incrgaps,       {.i = -1 } },
 	{ {0, 0, 0, 0},                       {XK_period,0, 0, 0}, incrgaps,       {.i = +1 } },
-    { {0, 0, 0, 0},                       {XK_minus, 0, 0, 0}, defaultgaps,    {0} },
+    { {ShiftMask, 0, 0, 0},               {XK_minus, 0, 0, 0}, defaultgaps,    {0} },
 
     // Floating control
 	{ {0, 0, 0, 0},                       {XK_space, 0, 0, 0}, togglefloating, {0} },
@@ -413,15 +412,12 @@ static Command commands[] = {
 	{ {ControlMask|ShiftMask, 0, 0, 0},   {XK_l, 0, 0, 0},     moveresize,     {.v = "-15x 0y 30w 0h" } },
 	{ {ControlMask|ShiftMask, 0, 0, 0},   {XK_h, 0, 0, 0},     moveresize,     {.v = "15x 0y -30w 0h" } },
 
- 	{ {0, 0, 0, 0},                       {XK_y, 0, 0, 0},     moveresizecorner, {.v = "y"} },
- 	{ {0, 0, 0, 0},                       {XK_u, 0, 0, 0},     moveresizecorner, {.v = "u"} },
- 	{ {0, 0, 0, 0},                       {XK_b, 0, 0, 0},     moveresizecorner, {.v = "b"} },
- 	{ {0, 0, 0, 0},                       {XK_n, 0, 0, 0},     moveresizecorner, {.v = "n"} },
- 	/*{ {ControlMask|ShiftMask, 0, 0, 0},   {XK_Up, 0, 0, 0},    moveresizeedge, {.v = "T"} },
- 	{ {ControlMask|ShiftMask, 0, 0, 0},   {XK_Down, 0, 0, 0},  moveresizeedge, {.v = "B"} },
- 	{ {ControlMask|ShiftMask, 0, 0, 0},   {XK_Left, 0, 0, 0},  moveresizeedge, {.v = "L"} },
- 	{ {ControlMask|ShiftMask, 0, 0, 0},   {XK_Right, 0, 0, 0}, moveresizeedge, {.v = "R"} },*/
+ 	{ {0, 0, 0, 0},                       {XK_y, 0, 0, 0},     movecorner,     {.v = "y"} },
+ 	{ {0, 0, 0, 0},                       {XK_u, 0, 0, 0},     movecorner,     {.v = "u"} },
+ 	{ {0, 0, 0, 0},                       {XK_b, 0, 0, 0},     movecorner,     {.v = "b"} },
+ 	{ {0, 0, 0, 0},                       {XK_n, 0, 0, 0},     movecorner,     {.v = "n"} },
 
+ 	{ {0, 0, 0, 0},                       {XK_z, XK_z, 0, 0},  movecenter,     {0} },
 
     // Fullscreen
 	{ {0, 0, 0, 0},                       {XK_f, 0, 0, 0},    togglefullscr,  {0} },

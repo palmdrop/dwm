@@ -252,7 +252,8 @@ static void motionnotify(XEvent *e);
 
 static void moveresize(const Arg *arg);
 static void moveresizeedge(const Arg *arg);
-static void moveresizecorner(const Arg *arg);
+static void movecorner(const Arg *arg);
+static void movecenter(const Arg *arg); 
 
 static void movemouse(const Arg *arg);
 static Client *nexttiled(Client *c);
@@ -1853,8 +1854,9 @@ moveresizeedge(const Arg *arg) {
 	}
 }
 
+/* Custom floating movement methods */
 void
-moveresizecorner(const Arg *arg) {
+movecorner(const Arg *arg) {
 	/* move or resize floating window to corner of screen */
 	Client *c;
 	c = selmon->sel;
@@ -1887,6 +1889,57 @@ moveresizecorner(const Arg *arg) {
         moveresizeedge(&((Arg){.v = "r"}));
     }
 }
+
+void
+movecenter(const Arg *arg) {
+	/* move or resize floating window to edge of screen */
+	Client *c;
+	c = selmon->sel;
+	//char e;
+    //int starty;
+	int nx, ny, nw, nh, ox, oy, ow, oh;
+	int msx, msy, dx, dy, nmx, nmy;
+	unsigned int dui;
+	Window dummy;
+
+	nx = c->x;
+	ny = c->y;
+	nw = c->w;
+	nh = c->h;
+
+	//starty = selmon->showbar ? bh : 0;
+
+	if (!c || !arg)
+		return;
+	if (selmon->lt[selmon->sellt]->arrange && !c->isfloating)
+		return;
+
+	//if(sscanf((char *)arg->v, "%c", &e) != 1)
+		//return;
+    
+    // Calculate center
+    nx = selmon->mw / 2 - nw / 2;
+    ny = selmon->mh / 2 - nh / 2;
+
+    // Old values
+	ox = c->x;
+	oy = c->y;
+	ow = c->w;
+	oh = c->h;
+
+	XRaiseWindow(dpy, c->win);
+	Bool xqp = XQueryPointer(dpy, root, &dummy, &dummy, &msx, &msy, &dx, &dy, &dui);
+	resize(c, nx, ny, nw, nh, True);
+
+	/* move cursor along with the window to avoid problems caused by the sloppy focus */
+	if (xqp && ox <= msx && (ox + ow) >= msx && oy <= msy && (oy + oh) >= msy) {
+		nmx = c->x - ox + c->w - ow;
+		nmy = c->y - oy + c->h - oh;
+		XWarpPointer(dpy, None, None, 0, 0, 0, 0, nmx, nmy);
+	}
+}
+
+
 
 Client *
 nexttiled(Client *c)
