@@ -179,6 +179,8 @@ static const char *togglebarcmd[]    = { "togglebardwm", NULL };
 static const char *mountcmd[]    = { TERM, "-t", "floating", "-g", "60x25", "-e", "sh", "-c", "sudo dmount", NULL };
 static const char *umountcmd[]   = { TERM, "-t", "floating", "-g", "60x25", "-e", "sh", "-c", "sudo dumount", NULL };
 
+static const char *windowswitchcmd[] = { "dswitcher", NULL };
+
 /*
  * Xresources preferences to load at startup
  */
@@ -273,6 +275,9 @@ static Key keys[] = {
     { MODKEY,                       XK_s,      scratchpad_show,  {0} },
 	{ MODKEY|ShiftMask,             XK_s,      scratchpad_hide,  {0} },
 	{ MODKEY|ControlMask,           XK_s,      scratchpad_remove,{0} },
+
+    // Window switcher
+	{ MODKEY,                       XK_f,      spawn,            {.v = windowswitchcmd } },
 
     // Floating
 	/*{ MODKEY|ControlMask,           XK_space,  togglefloating, {0} },
