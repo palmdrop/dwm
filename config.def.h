@@ -359,6 +359,9 @@ static Command commands[] = {
 	{ {ShiftMask, 0, 0, 0},               {XK_j, 0, 0, 0},     movestack,      {.i = +1 } },
 	{ {ShiftMask, 0, 0, 0},               {XK_k, 0, 0, 0},     movestack,      {.i = -1 } },
 
+	{ {0, 0, 0, 0},                       {XK_m, XK_j, 0, 0},  movestack,      {.i = +1 } },
+	{ {0, 0, 0, 0},                       {XK_m, XK_k, 0, 0},  movestack,      {.i = -1 } },
+
 	{ {0, 0, 0, 0},                       {XK_Return, 0, 0, 0}, zoom,           {0} },
 	{ {0, 0, 0, 0},                       {XK_Tab, 0, 0, 0},    view,           {0} },
 
