@@ -2052,6 +2052,8 @@ resizeclient(Client *c, int x, int y, int w, int h)
            if (selmon->lt[selmon->sellt]->arrange == monocle || n == 1) {
                wc.width  = c->w + c->bw * 2;
                wc.height = c->h + c->bw * 2;
+               c->w += c->bw * 2;
+               c->h += c->bw * 2;
                wc.border_width = 0;
            }
     }
