@@ -184,6 +184,8 @@ static const char *windowswitchcmd[] = { "dswitcher", NULL };
 
 static const char *xkillcmd[] = { "xkill", NULL };
 
+static const char *rsscmd[] = { TERM, "-g", TERMSIZE, "-e", "newsboat", NULL };
+
 /*
  * Xresources preferences to load at startup
  */
@@ -234,9 +236,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
-    { MODKEY|ShiftMask,             XK_x,      spawn,          {.v = lockcmd } },
+    { MODKEY,                       XK_x,      spawn,          {.v = lockcmd } },
 
-    { MODKEY,                       XK_x,      spawn,          {.v = xkillcmd } },
+    { MODKEY|ShiftMask,             XK_x,      spawn,          {.v = xkillcmd } },
 
     // Sticky
     //{ MODKEY,                       XK_s,      togglesticky,   {0} },
@@ -325,6 +327,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_b,       spawn,         {.v = browsercmd } },
 	{ MODKEY,                       XK_g,       spawn,         {.v = imageeditorcmd } },
 	{ MODKEY,                       XK_c,       spawn,         {.v = idecmd } },
+	{ MODKEY,                       XK_n,       spawn,         {.v = rsscmd } },
 
     // Tags
 	TAGKEYS(                        XK_1,                      0)
