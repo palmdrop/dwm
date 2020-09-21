@@ -131,7 +131,6 @@ static const Layout layouts[] = {
 	//{ "",      gaplessgrid },
 	//{ ">M>",      centeredfloatingmaster },
 	{ "",      NULL },    /* no layout function means floating behavior */
-	//{ NULL,       NULL },
 };
 
 /* key definitions */
