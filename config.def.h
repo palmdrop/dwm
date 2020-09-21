@@ -182,6 +182,8 @@ static const char *umountcmd[]   = { TERM, "-t", "floating", "-g", "60x25", "-e"
 
 static const char *windowswitchcmd[] = { "dswitcher", NULL };
 
+static const char *xkillcmd[] = { "xkill", NULL };
+
 /*
  * Xresources preferences to load at startup
  */
@@ -233,6 +235,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
     { MODKEY|ShiftMask,             XK_x,      spawn,          {.v = lockcmd } },
+
+    { MODKEY,                       XK_x,      spawn,          {.v = xkillcmd } },
 
     // Sticky
     //{ MODKEY,                       XK_s,      togglesticky,   {0} },
