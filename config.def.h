@@ -152,36 +152,12 @@ static const char *wificmd[] = { "networkmanager_dmenu", "-m", dmenumon, "-i", "
 
 static const char *termcmd[]         = { TERM, "-g", TERMSIZE, NULL };
 static const char *rangercmd[]       = { TERM, "-g", TERMSIZE, "-e", "ranger", NULL };
-static const char *browsercmd[]      = { BROWSER, NULL };
-static const char *imageeditorcmd[]  = { "gimp", NULL };
-static const char *idecmd[]          = { "idea", NULL };
 
 static const char *prntscrncmd[] = { "flameshot", "full", "-p", "/home/xan/Pictures/screenshots/", NULL };
 static const char *capturecmd[]  = { "flameshot", "gui", NULL };
 
-static const char *lockcmd[] = { "lock", NULL };
-
-static const char *upvol[]    = { "pactl", "set-sink-volume", "0", "+10%",     NULL };
-static const char *downvol[]  = { "pactl", "set-sink-volume", "0", "-10%",     NULL };
-static const char *mutevol[]  = { "pactl", "set-sink-mute",   "0", "toggle",   NULL };
-
-static const char *upbri[]    = { "light", "-A", "10", NULL };
-static const char *downbri[]  = { "light", "-U", "10", NULL };
-
-static const char *spotify_play[] = {"dbus-send", "--print-reply", "--dest=org.mpris.MediaPlayer2.spotify", "/org/mpris/MediaPlayer2", "org.mpris.MediaPlayer2.Player.PlayPause", NULL};
-static const char *spotify_stop[] = {"dbus-send", "--print-reply", "--dest=org.mpris.MediaPlayer2.spotify", "/org/mpris/MediaPlayer2", "org.mpris.MediaPlayer2.Player.Stop", NULL};
-static const char *spotify_prev[] = {"dbus-send", "--print-reply", "--dest=org.mpris.MediaPlayer2.spotify", "/org/mpris/MediaPlayer2", "org.mpris.MediaPlayer2.Player.Previous", NULL};
-static const char *spotify_next[] = {"dbus-send", "--print-reply", "--dest=org.mpris.MediaPlayer2.spotify", "/org/mpris/MediaPlayer2", "org.mpris.MediaPlayer2.Player.Next", NULL};
-
-static const char *shutdownmenucmd[] = { "shutdownmenu", NULL };
-static const char *togglebarcmd[]    = { "togglebardwm", NULL };
-
 static const char *mountcmd[]    = { TERM, "-t", "floating", "-g", "60x25", "-e", "sh", "-c", "sudo dmount", NULL };
 static const char *umountcmd[]   = { TERM, "-t", "floating", "-g", "60x25", "-e", "sh", "-c", "sudo dumount", NULL };
-
-static const char *windowswitchcmd[] = { "dswitcher", NULL };
-
-static const char *xkillcmd[] = { "xkill", NULL };
 
 static const char *rsscmd[] = { TERM, "-g", TERMSIZE, "-e", "newsboat", NULL };
 
@@ -220,7 +196,7 @@ static Key keys[] = {
     // Standard settings
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY|ShiftMask,             XK_b,      spawn,          {.v = togglebarcmd } },
+	{ MODKEY|ShiftMask,             XK_b,      spawn,          SHCMD("togglebardwm") },
 	{ MODKEY|ShiftMask,             XK_b,      toggleinset,    {0} },
 
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -235,9 +211,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
-    { MODKEY,                       XK_x,      spawn,          {.v = lockcmd } },
+    { MODKEY,                       XK_x,      spawn,          SHCMD("slock") },
 
-    { MODKEY|ShiftMask,             XK_x,      spawn,          {.v = xkillcmd } },
+    { MODKEY|ShiftMask,             XK_x,      spawn,          SHCMD("xkill") },
 
     // Sticky
     //{ MODKEY,                       XK_s,      togglesticky,   {0} },
@@ -283,7 +259,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_s,      scratchpad_remove,{0} },
 
     // Window switcher
-	{ MODKEY,                       XK_f,      spawn,            {.v = windowswitchcmd } },
+	{ MODKEY,                       XK_f,      spawn,            SHCMD("dswitcher") },
 
     // Floating
 	/*{ MODKEY|ControlMask,           XK_space,  togglefloating, {0} },
@@ -298,19 +274,19 @@ static Key keys[] = {
 	{ MODKEY|ControlMask|ShiftMask, XK_h,      moveresize,     {.v = "15x 0y -30w 0h" } },*/
 
     // Volume control
-	{ 0,                            XF86XK_AudioRaiseVolume,   spawn,   {.v = upvol   } },
-    { 0,                            XF86XK_AudioLowerVolume,   spawn,   {.v = downvol } },
-	{ 0,                            XF86XK_AudioMute,          spawn,   {.v = mutevol } },
+	{ 0,                            XF86XK_AudioRaiseVolume,   spawn,   SHCMD("pactl set-sink-volume 0 +10%") },
+    { 0,                            XF86XK_AudioLowerVolume,   spawn,   SHCMD("pactl set-sink-volume 0 -10%") },
+	{ 0,                            XF86XK_AudioMute,          spawn,   SHCMD("pactl set-sink-mute   0 toggle") },
 
     // Spotify control
-	{ 0,                            XF86XK_AudioPlay,          spawn,   {.v = spotify_play } },
-    { 0,                            XF86XK_AudioStop,          spawn,   {.v = spotify_stop } },
-	{ 0,                            XF86XK_AudioPrev,          spawn,   {.v = spotify_prev } },
-    { 0,                            XF86XK_AudioNext,          spawn,   {.v = spotify_next } },
+	{ 0,                            XF86XK_AudioPlay,          spawn,   SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause") },
+    { 0,                            XF86XK_AudioStop,          spawn,   SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop") },
+	{ 0,                            XF86XK_AudioPrev,          spawn,   SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous") },
+    { 0,                            XF86XK_AudioNext,          spawn,   SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next") },
 
     // Brightness control
-	{ 0,                            XF86XK_MonBrightnessUp,    spawn,   {.v = upbri   } },
-	{ 0,                            XF86XK_MonBrightnessDown,  spawn,   {.v = downbri } },
+	{ 0,                            XF86XK_MonBrightnessUp,    spawn,   SHCMD("light -A 10") },
+	{ 0,                            XF86XK_MonBrightnessDown,  spawn,   SHCMD("light -U 10") },
 
     // Screen capture
 	{ 0,                            XK_Print,   spawn,         {.v = prntscrncmd } },
@@ -323,9 +299,9 @@ static Key keys[] = {
     // Program shortcuts
 	{ MODKEY,                       XK_w,       spawn,         {.v = wificmd    } },
 	{ MODKEY,                       XK_e,       spawn,         {.v = rangercmd  } },
-	{ MODKEY,                       XK_b,       spawn,         {.v = browsercmd } },
-	{ MODKEY,                       XK_g,       spawn,         {.v = imageeditorcmd } },
-	{ MODKEY,                       XK_c,       spawn,         {.v = idecmd } },
+	{ MODKEY,                       XK_b,       spawn,         SHCMD(BROWSER) },
+	{ MODKEY,                       XK_g,       spawn,         SHCMD("gimp") },
+	{ MODKEY,                       XK_c,       spawn,         SHCMD("idea") },
 	{ MODKEY,                       XK_n,       spawn,         {.v = rsscmd } },
 
     // Tags
@@ -341,7 +317,7 @@ static Key keys[] = {
 
     // Quit
 	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} }, // Reload
-	{ MODKEY|ControlMask,           XK_e,      spawn,          {.v = shutdownmenucmd } },
+	{ MODKEY|ControlMask,           XK_e,      spawn,          SHCMD("shutdownmenu") },
 };
 
 static Key cmdkeys[] = {
@@ -447,7 +423,7 @@ static Command commands[] = {
 	{ {ShiftMask,   0,          0,         0},    {XK_period, XK_e,     0,         0},            spawn,           {.v = dmenucmd} },
 	{ {ShiftMask,   0,          0,         0},    {XK_period, XK_o,     0,         0},            spawn,           {.v = dmenucmd} },
 	{ {ShiftMask,   0,          0,         0},    {XK_period, XK_q,     XK_Return, 0},            quit,            {0} },
-	{ {ShiftMask,   0,          ShiftMask, 0},    {XK_period, XK_q,     XK_1, XK_Return},         spawn,           {.v = shutdownmenucmd } },
+	{ {ShiftMask,   0,          ShiftMask, 0},    {XK_period, XK_q,     XK_1, XK_Return},         spawn,           SHCMD("shutdownmenu") },
 };
 
 /* button definitions */
