@@ -260,6 +260,10 @@ static Key keys[] = {
     // Window switcher
 	{ MODKEY,                       XK_f,      spawn,            SHCMD("dswitcher") },
 
+    // System info shortcuts
+    { MODKEY,                       XK_i,      spawn,           SHCMD("herbe-info") },
+    { MODKEY,                       XK_p,      spawn,           SHCMD("playing") },
+
     // Floating
 	/*{ MODKEY|ControlMask,           XK_space,  togglefloating, {0} },
     { MODKEY|ControlMask,           XK_j,      moveresize,     {.v = "0x 25y 0w 0h" } },
