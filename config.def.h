@@ -261,7 +261,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_f,      spawn,            SHCMD("dswitcher") },
 
     // System info shortcuts
-    { MODKEY,                       XK_i,      spawn,           SHCMD("herbe-info") },
+    { MODKEY,                       XK_o,      spawn,           SHCMD("herbe-info") },
     { MODKEY,                       XK_p,      spawn,           SHCMD("playing") },
 
     // Floating
@@ -421,6 +421,9 @@ static Command commands[] = {
     // Other
 	{ {0, 0, 0, 0},                       {XK_p, XK_p, 0, 0}, spawn,           {.v = termcmd} },
 	{ {ControlMask, ShiftMask, 0, 0},     {XK_w, XK_o, 0, 0}, onlyclient,      {0} },
+
+    // System info
+	{ {0, 0, 0, 0},                       {XK_o, 0, 0, 0},    spawn,           SHCMD("herbe-info") },
 
     // Style of vim commands
 	{ {ShiftMask,   0,          0,         0},    {XK_period, XK_e,     0,         0},            spawn,           {.v = dmenucmd} },
