@@ -109,7 +109,7 @@ static Rule rules[] = {
 /* layout(s) */
 static float mfact      = 0.55; /* factor of master area size [0.05..0.95] */
 static int  nmaster     = 1;    /* number of clients in master area */
-static int  resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static int  resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 static int  attachbelow = 1;    /* 1 means attach after the currently active window */
 
 #define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
