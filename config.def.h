@@ -145,7 +145,7 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
+static char dmenumon[2] = "0";
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-i", "-F", NULL };
 //static const char *dmenucmd[] = { "dmenu_run_dunst", NULL };
 static const char *wificmd[] = { "networkmanager_dmenu", "-m", dmenumon, "-i", "-F", NULL };
@@ -188,8 +188,6 @@ ResourcePref resources[] = {
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-
-    // Command mode
     { MODKEY,                       XK_Escape, setkeymode,     {.ui = COMMANDMODE} },
 
     // Standard settings
@@ -203,10 +201,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 
-	//{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	//{ MODKEY,                       XK_u,      incnmaster,     {.i = -1 } },
-	//{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	//{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
@@ -214,40 +208,12 @@ static Key keys[] = {
 
     { MODKEY|ShiftMask,             XK_x,      spawn,          SHCMD("xkill") },
 
-    // Sticky
-    //{ MODKEY,                       XK_s,      togglesticky,   {0} },
-
     // Move stack
 	{ MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
 
-    // Attach below/above
-    //{ MODKEY|ShiftMask,             XK_Tab,    toggleAttachBelow,       {0} },
-
-    // cfacts
-    //{ MODKEY|ShiftMask,             XK_h,      setcfact,       {.f = -0.25} },
-	//{ MODKEY|ShiftMask,             XK_l,      setcfact,       {.f = +0.25} },
-	//{ MODKEY|ShiftMask,             XK_o,      setcfact,       {.f =  0.00} },
-
-    // Vanity gaps
-	/*{ MODKEY|Mod4Mask,              XK_comma,  incrgaps,       {.i = -1 } },
-	{ MODKEY|Mod4Mask,              XK_period, incrgaps,       {.i = +1 } },
-	{ MODKEY|Mod4Mask,              XK_0,      togglegaps,     {0} },
-    { MODKEY|Mod4Mask|ShiftMask,    XK_0,      defaultgaps,    {0} },*/
-
     // Fullscreen 
 	{ MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
-
-    // Layouts
-	//{ MODKEY|ShiftMask,             XK_t,      setlayout,      {.v = &layouts[0]} }, // Tile
-	/*{ MODKEY|ShiftMask,             XK_m,      setlayout,      {.v = &layouts[1]} }, // Monicle
-	{ MODKEY|ShiftMask,             XK_u,      setlayout,      {.v = &layouts[2]} }, // Dwindle
-	{ MODKEY|ShiftMask,             XK_g,      setlayout,      {.v = &layouts[3]} }, // Grid
-	{ MODKEY|ShiftMask,             XK_c,      setlayout,      {.v = &layouts[4]} }, // Centered master
-	{ MODKEY|ShiftMask,             XK_f,      setlayout,      {.v = &layouts[5]} }, // Spiral
-	{ MODKEY|ShiftMask,             XK_s,      setlayout,      {.v = &layouts[6]} }, // Bottomstack*/
-    // ...
-	//{ MODKEY|ShiftMask,             XK_space,  setlayout,      {.v = &layouts[7]} }, // Floating
 
     // Next floating
     { MODKEY,                       XK_space,  togglenextfloating, {0} },
@@ -263,18 +229,6 @@ static Key keys[] = {
     // System info shortcuts
     { MODKEY,                       XK_o,      spawn,           SHCMD("herbe-info") },
     { MODKEY,                       XK_p,      spawn,           SHCMD("playing") },
-
-    // Floating
-	/*{ MODKEY|ControlMask,           XK_space,  togglefloating, {0} },
-    { MODKEY|ControlMask,           XK_j,      moveresize,     {.v = "0x 25y 0w 0h" } },
-	{ MODKEY|ControlMask,           XK_k,      moveresize,     {.v = "0x -25y 0w 0h" } },
-	{ MODKEY|ControlMask,           XK_l,      moveresize,     {.v = "25x 0y 0w 0h" } },
-	{ MODKEY|ControlMask,           XK_h,      moveresize,     {.v = "-25x 0y 0w 0h" } },
-
-	{ MODKEY|ControlMask|ShiftMask, XK_j,      moveresize,     {.v = "0x -15y 0w 30h" } },
-	{ MODKEY|ControlMask|ShiftMask, XK_k,      moveresize,     {.v = "0x 15y 0w -30h" } },
-	{ MODKEY|ControlMask|ShiftMask, XK_l,      moveresize,     {.v = "-15x 0y 30w 0h" } },
-	{ MODKEY|ControlMask|ShiftMask, XK_h,      moveresize,     {.v = "15x 0y -30w 0h" } },*/
 
     // Volume control
 	{ 0,                            XF86XK_AudioRaiseVolume,   spawn,   SHCMD("pactl set-sink-volume 0 +10%") },
@@ -426,10 +380,26 @@ static Command commands[] = {
 	{ {0, 0, 0, 0},                       {XK_o, 0, 0, 0},    spawn,           SHCMD("herbe-info") },
 
     // Style of vim commands
-	{ {ShiftMask,   0,          0,         0},    {XK_period, XK_e,     0,         0},            spawn,           {.v = dmenucmd} },
-	{ {ShiftMask,   0,          0,         0},    {XK_period, XK_o,     0,         0},            spawn,           {.v = dmenucmd} },
-	{ {ShiftMask,   0,          0,         0},    {XK_period, XK_q,     XK_Return, 0},            quit,            {0} },
-	{ {ShiftMask,   0,          ShiftMask, 0},    {XK_period, XK_q,     XK_1, XK_Return},         spawn,           SHCMD("shutdownmenu") },
+	{ {ShiftMask, 0, 0, 0},               {XK_period, XK_e, 0, 0}, spawn,      {.v = dmenucmd} },
+	{ {ShiftMask, 0, 0, 0},               {XK_period, XK_o, 0, 0}, spawn,      {.v = dmenucmd} },
+	{ {ShiftMask, 0, 0, 0},               {XK_period, XK_q, XK_Return, 0},     quit,            {0} },
+	{ {ShiftMask, 0, ShiftMask, 0},       {XK_period, XK_q, XK_1, XK_Return},  spawn,           SHCMD("shutdownmenu") },
+
+
+    // Volume control
+	{ {0, 0, 0, 0},                       {XF86XK_AudioRaiseVolume, 0, 0, 0},   spawn,   SHCMD("pactl set-sink-volume 0 +10%") },
+    { {0, 0, 0, 0},                       {XF86XK_AudioLowerVolume, 0, 0, 0},   spawn,   SHCMD("pactl set-sink-volume 0 -10%") },
+	{ {0, 0, 0, 0},                       {XF86XK_AudioMute, 0, 0, 0},          spawn,   SHCMD("pactl set-sink-mute   0 toggle") },
+
+    // Spotify control
+	{ {0, 0, 0, 0},                       {XF86XK_AudioPlay, 0, 0, 0},          spawn,   SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause") },
+    { {0, 0, 0, 0},                       {XF86XK_AudioStop, 0, 0, 0},          spawn,   SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop") },
+	{ {0, 0, 0, 0},                       {XF86XK_AudioPrev, 0, 0, 0},          spawn,   SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous") },
+    { {0, 0, 0, 0},                       {XF86XK_AudioNext, 0, 0, 0},          spawn,   SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next") },
+
+    // Brightness control
+	{ {0, 0, 0, 0},                       {XF86XK_MonBrightnessUp, 0, 0, 0},    spawn,   SHCMD("light -A 10") },
+	{ {0, 0, 0, 0},                       {XF86XK_MonBrightnessDown, 0, 0, 0},  spawn,   SHCMD("light -U 10") },
 };
 
 /* button definitions */
