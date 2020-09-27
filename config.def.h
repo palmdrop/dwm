@@ -146,8 +146,8 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0";
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-i", "-F", NULL };
-//static const char *dmenucmd[] = { "dmenu_run_dunst", NULL };
+//static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-i", "-F", NULL };
+static const char *dmenucmd[] = { "dmenu_run_notify", NULL };
 static const char *wificmd[] = { "networkmanager_dmenu", "-m", dmenumon, "-i", "-F", NULL };
 
 static const char *prntscrncmd[] = { "flameshot", "full", "-p", "/home/xan/Pictures/screenshots/", NULL };
@@ -156,9 +156,10 @@ static const char *capturecmd[]  = { "flameshot", "gui", NULL };
 static const char *termcmd[]     = { TERM, "-g", TERMSIZE, NULL };
 static const char *rangercmd[]   = { TERM, "-g", TERMSIZE, "-e", "ranger", NULL };
 
-static const char *mountcmd[]    = { TERM, "-t", "floating", "-g", "60x25", "-e", "sh", "-c", "sudo dmount", NULL };
-static const char *umountcmd[]   = { TERM, "-t", "floating", "-g", "60x25", "-e", "sh", "-c", "sudo dumount", NULL };
+static const char *mountcmd[]    = { TERM, "-t", "floating", "-g", TERMSIZE, "-e", "sh", "-c", "sudo dmount", NULL };
+static const char *umountcmd[]   = { TERM, "-t", "floating", "-g", TERMSIZE, "-e", "sh", "-c", "sudo dumount", NULL };
 static const char *rsscmd[]      = { TERM, "-g", TERMSIZE, "-e", "newsboat", NULL };
+static const char *taskcmd[]     = { TERM, "-t", "floating", "-g", TERMSIZE, "-e", "sh", "-c", "vit", NULL };
 
 /*
  * Xresources preferences to load at startup
@@ -260,6 +261,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_g,       spawn,         SHCMD("gimp") },
 	{ MODKEY,                       XK_c,       spawn,         SHCMD("idea") },
 	{ MODKEY,                       XK_n,       spawn,         {.v = rsscmd } },
+    { MODKEY,                       XK_t,       spawn,         {.v = taskcmd } },
 
     // Tags
 	TAGKEYS(                        XK_1,                      0)
