@@ -67,7 +67,7 @@ static const Inset alt_inset = {
 };
 
 #define TERM "st"
-#define TERMSIZE "100x34"
+#define TERMSIZE "100x28"
 #define BROWSER "brave"
 
 static const char *const autostart[] = {
@@ -339,6 +339,8 @@ static Command commands[] = {
     TAGKEYSCMD(                           XK_7,                6),
     TAGKEYSCMD(                           XK_8,                7),
     TAGKEYSCMD(                           XK_9,                8),
+
+	//{ {0, 0, 0, 0},                       XK_0,                view,           {.ui = ~0 } },
 
     // Clients
     { {0, 0, 0, 0},                       {XK_d, XK_d, 0, 0},  killclient,     {0} },
