@@ -1789,7 +1789,7 @@ moveresizeedge(const Arg *arg) {
 	nw = c->w;
 	nh = c->h;
 
-	starty = selmon->showbar ? bh : 0;
+	starty = selmon->wy;
 
 	if (!c || !arg)
 		return;
@@ -1799,16 +1799,16 @@ moveresizeedge(const Arg *arg) {
 		return;
 
 	if(e == 't')
-		ny = starty;
+		ny = starty + selmon->gappoh;
 
 	if(e == 'b')
-		ny = c->h > selmon->mh - 2 * c->bw ? c->h : selmon->mh - c->h - 2 * c->bw;
+		ny = (c->h > selmon->mh - 2 * c->bw ? c->h : selmon->mh - c->h - 2 * c->bw) - selmon->gappoh;
 
 	if(e == 'l')
-		nx = 0;
+		nx = selmon->wx + selmon->gappov;
 
 	if(e == 'r')
-		nx = c->w > selmon->mw - 2 * c->bw ? c->w : selmon->mw - c->w - 2 * c->bw;
+		nx = (c->w > selmon->mw - 2 * c->bw ? c->w : selmon->mw - c->w - 2 * c->bw) - selmon->gappov;
 
 	if(e == 'T') {
 		/* if you click to resize again, it will return to old size/position */
