@@ -1098,6 +1098,7 @@ focus(Client *c)
 	if (selmon->sel && selmon->sel != c)
 		unfocus(selmon->sel, 0);
 	if (c) {
+        if (selonlyborders) c->bw = borderpx;
 		if (c->mon != selmon)
 			selmon = c->mon;
 		if (c->isurgent)
@@ -1110,6 +1111,7 @@ focus(Client *c)
 		else
 			XSetWindowBorder(dpy, c->win, scheme[SchemeSel][ColBorder].pixel);
 		setfocus(c);
+        if (selonlyborders) arrange(c->mon);
 	} else {
 		XSetInputFocus(dpy, root, RevertToPointerRoot, CurrentTime);
 		XDeleteProperty(dpy, root, netatom[NetActiveWindow]);
@@ -2730,6 +2732,10 @@ unfocus(Client *c, int setfocus)
     if(c->isfullscreen) 
         togglefullscr(NULL);
 
+    if (selonlyborders) {
+        c->bw = 0;
+        arrange(c->mon);
+    }
 }
 
 void
