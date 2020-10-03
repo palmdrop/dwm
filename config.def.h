@@ -89,8 +89,6 @@ static Rule rules[] = {
 	 */
     /* class               instance       title           tags mask        iscentered  isfloating  isterminal  noswallow  monitor */
 	{ "St",                NULL,          NULL,           0,               1,          0,          1,          0,        -1 },
-	{ "URxvt",             NULL,          NULL,           0,               1,          0,          1,          0,        -1 },
-	{ "Alacritty",         NULL,          NULL,           0,               1,          0,          1,          0,        -1 },
 	{ "Brave-browser",     NULL,          NULL,           0,               1,          0,          0,          0,        -1 },
 	{ "Darktable",         NULL,          NULL,           1 << 2,          0,          0,          0,          0,        -1 },
     { "Signal",            NULL,          NULL,           1 << 3,          0,          0,          0,          0,        -1 },
@@ -98,13 +96,23 @@ static Rule rules[] = {
     { "Slack",             NULL,          NULL,           1 << 3,          0,          0,          0,          0,        -1 },
     { "Spotify",           NULL,          NULL,           1 << 8,          0,          0,          0,          0,        -1 },
     { "jetbrains-idea-ce", NULL,          NULL,           1 << 1,          0,          0,          0,          0,        -1 },
-    { "game.App",          NULL,          NULL,           1 << 1,          1,          1,          0,          0,        -1 },
-    { "application.App",   NULL,          NULL,           1 << 1,          1,          1,          0,          0,        -1 },
     { NULL,                "libreoffice", NULL,           1 << 2,          0,          0,          0,          0,        -1 },
-	{ NULL,                NULL,          "hidden",       SCRATCHPAD_MASK, 1,          1,          0,          0,        -1 },
-	{ NULL,                NULL,          "floating",     0,               1,          1,          0,          0,        -1 },
-	{ NULL,                NULL,          "Event Tester", 0,               0,          0,          0,          1,        -1 }, /* xev */
 
+    // Windows with "hidden" title are automatically crated as scratchpads
+	{ NULL,                NULL,          "hidden",       SCRATCHPAD_MASK, 1,          1,          0,          0,        -1 },
+    // Windows with "flaoting" title are automatically opened in flaoting mode
+	{ NULL,                NULL,          "floating",     0,               1,          1,          0,          0,        -1 },
+
+    // Temporary rules
+    { "game.App",          NULL,          NULL,           0,               1,          1,          0,          0,        -1 },
+    { "application.App",   NULL,          NULL,           0,               1,          1,          0,          0,        -1 },
+
+    // Unused rules
+	//{ "URxvt",             NULL,          NULL,           0,               1,          0,          1,          0,        -1 },
+	//{ "Alacritty",         NULL,          NULL,           0,               1,          0,          1,          0,        -1 },
+    
+    // Event tester 
+	{ NULL,                NULL,          "Event Tester", 0,               0,          0,          0,          1,        -1 }, /* xev */
 };
 
 /* layout(s) */
