@@ -34,8 +34,8 @@ static char inactivefgcolor[]       = "#777777";
 static char selbordercolor[]        = "#005577";
 static char selbgcolor[]            = "#005577";
 
-static char selfloatbordercolor[]      = "#005577";
-static char normfloatbordercolor[]      = "#005577";
+static char selfloatbordercolor[]   = "#005577";
+static char normfloatbordercolor[]  = "#005577";
 
 static const unsigned int baralpha = 0x00;
 static const unsigned int normborderalpha = OPAQUE;
@@ -165,10 +165,11 @@ static const char *capturecmd[]  = { "flameshot", "gui", NULL };
 static const char *termcmd[]     = { TERM, "-g", TERMSIZE, NULL };
 static const char *rangercmd[]   = { TERM, "-g", TERMSIZE, "-e", "ranger", NULL };
 
-static const char *mountcmd[]    = { TERM, "-t", "floating", "-g", TERMSIZE, "-e", "sh", "-c", "sudo dmount", NULL };
-static const char *umountcmd[]   = { TERM, "-t", "floating", "-g", TERMSIZE, "-e", "sh", "-c", "sudo dumount", NULL };
+static const char *mountcmd[]    = { TERM, "-t", "floating", "-g", TERMSIZE, "-e", "sh", "-c", "dmount", NULL };
+static const char *umountcmd[]   = { TERM, "-t", "floating", "-g", TERMSIZE, "-e", "sh", "-c", "dumount", NULL };
 static const char *rsscmd[]      = { TERM, "-g", TERMSIZE, "-e", "newsboat", NULL };
 static const char *taskcmd[]     = { TERM, "-t", "floating", "-g", TERMSIZE, "-e", "sh", "-c", "vit", NULL };
+static const char *mpvcmd[]     = { "mpvplay", NULL };
 
 /*
  * Xresources preferences to load at startup
@@ -272,6 +273,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_c,       spawn,         SHCMD("idea") },
 	{ MODKEY,                       XK_n,       spawn,         {.v = rsscmd } },
     { MODKEY,                       XK_t,       spawn,         {.v = taskcmd } },
+    { MODKEY,                       XK_y,       spawn,         {.v = mpvcmd } },
 
     // Tags
 	TAGKEYS(                        XK_1,                      0)
