@@ -112,6 +112,15 @@ onlyclient(const Arg *arg) {
 		}
 }
 
+void 
+writekeymode() {
+    FILE *fp;
+    fp = fopen("/tmp/dwm.keymode","w");
+    fprintf(fp, "%d", keymode);
+    fclose(fp);
+}
+
+
 void
 setkeymode(const Arg *arg) {
 	Arg a = {0};
@@ -121,4 +130,6 @@ setkeymode(const Arg *arg) {
 	keymode = arg->ui;
 	clearcmd(&a);
 	grabkeys();
+
+    writekeymode();
 }
