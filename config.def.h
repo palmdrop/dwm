@@ -319,6 +319,9 @@ static Command commands[] = {
 	{ {0, 0, 0, 0},                       {XK_Return, 0, 0, 0}, zoom,           {0} },
 	{ {0, 0, 0, 0},                       {XK_Tab, 0, 0, 0},    view,           {0} },
 
+    // Bar
+	{ {ShiftMask, 0, 0, 0},               {XK_b, 0, 0, 0},     spawn,           SHCMD("togglebardwm") },
+
     // Layout 
 	{ {ShiftMask, 0, 0, 0},               {XK_i, 0, 0, 0},     incnmaster,     {.i = +1 } },
 	{ {ShiftMask, 0, 0, 0},               {XK_u, 0, 0, 0},     incnmaster,     {.i = -1 } },
