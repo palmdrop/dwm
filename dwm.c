@@ -332,9 +332,11 @@ static void keyrelease(XEvent *e);
 static void combotag(const Arg *arg);
 static void comboview(const Arg *arg);
 
+static void tagandview(const Arg *arg);
+
 static void nexttag(const Arg *arg);
 static void nextview(const Arg *arg);
-static void movenext(const Arg *arg);
+static void nexttagandview(const Arg *arg);
 
 static void togglenextfloating(const Arg *arg);
 
@@ -476,6 +478,13 @@ comboview(const Arg *arg) {
 	arrange(selmon);
 }
 
+// PATCH for tagging focused client and moving to same tag
+void 
+tagandview(const Arg *arg) {
+    tag(arg);
+    view(arg);
+}
+
 // PATCH for finding next empty tag
 unsigned
 nextemptytag() {
@@ -504,10 +513,9 @@ nextview(const Arg *arg) {
 
 
 void 
-movenext(const Arg *arg) {
+nexttagandview(const Arg *arg) {
     Arg a = {.ui = nextemptytag()};
-    tag(&a);
-    view(&a);
+    tagandview(&a);
 }
 
 void

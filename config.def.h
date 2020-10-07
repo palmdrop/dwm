@@ -146,7 +146,9 @@ static const Layout layouts[] = {
 #define MODKEY Mod1Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      comboview,      {.ui = 1 << TAG} }, \
-	{ MODKEY|ShiftMask,             KEY,      combotag,       {.ui = 1 << TAG} }, 
+	{ MODKEY|ShiftMask,             KEY,      combotag,       {.ui = 1 << TAG} }, \
+    { MODKEY|ControlMask,           KEY,      tagandview,     {.ui = 1 << TAG} }
+
 	//{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 	//{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
@@ -276,19 +278,19 @@ static Key keys[] = {
     { MODKEY,                       XK_y,       spawn,         {.v = mpvcmd } },
 
     // Tags
-	TAGKEYS(                        XK_1,                      0)
-	TAGKEYS(                        XK_2,                      1)
-	TAGKEYS(                        XK_3,                      2)
-	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
+	TAGKEYS(                        XK_1,                      0),
+	TAGKEYS(                        XK_2,                      1),
+	TAGKEYS(                        XK_3,                      2),
+	TAGKEYS(                        XK_4,                      3),
+	TAGKEYS(                        XK_5,                      4),
+	TAGKEYS(                        XK_6,                      5),
+	TAGKEYS(                        XK_7,                      6),
+	TAGKEYS(                        XK_8,                      7),
+	TAGKEYS(                        XK_9,                      8),
 
     { MODKEY,                       XK_plus,  nextview,        {0} },
     { MODKEY|ShiftMask,             XK_plus,  nexttag,         {0} },
-    { MODKEY|ControlMask,           XK_plus,  movenext,        {0} },
+    { MODKEY|ControlMask,           XK_plus,  nexttagandview,  {0} },
 
     // Quit
 	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} }, // Reload
@@ -306,7 +308,9 @@ static Key cmdkeys[] = {
 #define TAGKEYSCMD(KEY,TAG) \
 	{ {0, 0, 0, 0},                       {KEY,  0, 0, 0},      comboview,      {.ui = 1 << TAG} }, \
 	{ {ShiftMask, 0, 0, 0},               {KEY,  0, 0, 0},      combotag,       {.ui = 1 << TAG} }, \
-	{ {0, 0, 0, 0},                       {XK_w, KEY, 0, 0},    combotag,       {.ui = 1 << TAG} }  \
+	{ {0, 0, 0, 0},                       {XK_w, KEY, 0, 0},    combotag,       {.ui = 1 << TAG} }, \
+    { {ControlMask, 0, 0, 0},             {KEY, 0, 0, 0},       tagandview,     {.ui = 1 << TAG} }, \
+    { {ShiftMask, 0, 0, 0},               {XK_m, KEY, 0, 0},    tagandview,     {.ui = 1 << TAG} }
 
 static Command commands[] = {
 	/* modifier (4 keys)                          keysyms (4 keys)                                function         argument */
@@ -361,7 +365,7 @@ static Command commands[] = {
 
     { {0, 0, 0, 0},                       {XK_plus, 0, 0, 0},  nextview,        {0} },
     { {ShiftMask, 0, 0, 0},               {XK_plus, 0, 0, 0},  nexttag,         {0} },
-    { {ControlMask, 0, 0, 0},             {XK_plus, 0, 0, 0},  movenext,        {0} },
+    { {ControlMask, 0, 0, 0},             {XK_plus, 0, 0, 0},  nexttagandview,  {0} },
 
 	//{ {0, 0, 0, 0},                       XK_0,                view,           {.ui = ~0 } },
 
