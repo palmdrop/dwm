@@ -494,22 +494,20 @@ nextemptytag() {
 
 void 
 nexttag(const Arg *arg) {
-    combotag(&((Arg){.ui = nextemptytag()}));
+    tag(&((Arg){.ui = nextemptytag()}));
 }
 
 void 
 nextview(const Arg *arg) {
-    comboview(&((Arg){.ui = nextemptytag()}));
+    view(&((Arg){.ui = nextemptytag()}));
 }
 
 
 void 
 movenext(const Arg *arg) {
-    unsigned tag = nextemptytag();    
-    Arg a = (Arg){.ui = tag};
-    combotag(&a);
-    combo = 0;
-    comboview(&a);
+    Arg a = {.ui = nextemptytag()};
+    tag(&a);
+    view(&a);
 }
 
 void
