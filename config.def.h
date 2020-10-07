@@ -242,22 +242,22 @@ static Key keys[] = {
 
     // System info shortcuts
     { MODKEY,                       XK_o,      spawn,           SHCMD("herbe-info") },
-    { MODKEY,                       XK_p,      spawn,           SHCMD("playing") },
+    { MODKEY,                       XK_p,      spawn,           SHCMD("play") },
 
     // Volume control
-	{ 0,                            XF86XK_AudioRaiseVolume,   spawn,   SHCMD("pactl set-sink-volume 0 +10%") },
-    { 0,                            XF86XK_AudioLowerVolume,   spawn,   SHCMD("pactl set-sink-volume 0 -10%") },
-	{ 0,                            XF86XK_AudioMute,          spawn,   SHCMD("pactl set-sink-mute   0 toggle") },
+	{ 0,                            XF86XK_AudioRaiseVolume,   spawn,   SHCMD("vol up") },
+    { 0,                            XF86XK_AudioLowerVolume,   spawn,   SHCMD("vol down") },
+	{ 0,                            XF86XK_AudioMute,          spawn,   SHCMD("vol mute") },
 
     // Spotify control
-	{ 0,                            XF86XK_AudioPlay,          spawn,   SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause") },
-    { 0,                            XF86XK_AudioStop,          spawn,   SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop") },
-	{ 0,                            XF86XK_AudioPrev,          spawn,   SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous") },
-    { 0,                            XF86XK_AudioNext,          spawn,   SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next") },
+	{ 0,                            XF86XK_AudioPlay,          spawn,   SHCMD("play pause") },
+    { 0,                            XF86XK_AudioStop,          spawn,   SHCMD("play stop") },
+	{ 0,                            XF86XK_AudioPrev,          spawn,   SHCMD("play prev") },
+    { 0,                            XF86XK_AudioNext,          spawn,   SHCMD("play next") },
 
     // Brightness control
-	{ 0,                            XF86XK_MonBrightnessUp,    spawn,   SHCMD("light -A 10") },
-	{ 0,                            XF86XK_MonBrightnessDown,  spawn,   SHCMD("light -U 10") },
+	{ 0,                            XF86XK_MonBrightnessUp,    spawn,   SHCMD("bri up") },
+	{ 0,                            XF86XK_MonBrightnessDown,  spawn,   SHCMD("bri down") },
 
     // Screen capture
 	{ 0,                            XK_Print,   spawn,         {.v = prntscrncmd } },
@@ -419,19 +419,19 @@ static Command commands[] = {
 
 
     // Volume control
-	{ {0, 0, 0, 0},                       {XF86XK_AudioRaiseVolume, 0, 0, 0},   spawn,   SHCMD("pactl set-sink-volume 0 +10%") },
-    { {0, 0, 0, 0},                       {XF86XK_AudioLowerVolume, 0, 0, 0},   spawn,   SHCMD("pactl set-sink-volume 0 -10%") },
-	{ {0, 0, 0, 0},                       {XF86XK_AudioMute, 0, 0, 0},          spawn,   SHCMD("pactl set-sink-mute   0 toggle") },
+	{ {0, 0, 0, 0},                       {XF86XK_AudioRaiseVolume, 0, 0, 0},   spawn,   SHCMD("vol up") },
+    { {0, 0, 0, 0},                       {XF86XK_AudioLowerVolume, 0, 0, 0},   spawn,   SHCMD("vol down") },
+	{ {0, 0, 0, 0},                       {XF86XK_AudioMute, 0, 0, 0},          spawn,   SHCMD("vol mute") },
 
     // Spotify control
-	{ {0, 0, 0, 0},                       {XF86XK_AudioPlay, 0, 0, 0},          spawn,   SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause") },
-    { {0, 0, 0, 0},                       {XF86XK_AudioStop, 0, 0, 0},          spawn,   SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop") },
-	{ {0, 0, 0, 0},                       {XF86XK_AudioPrev, 0, 0, 0},          spawn,   SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous") },
-    { {0, 0, 0, 0},                       {XF86XK_AudioNext, 0, 0, 0},          spawn,   SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next") },
+	{ {0, 0, 0, 0},                       {XF86XK_AudioPlay, 0, 0, 0},          spawn,   SHCMD("play pause") },
+    { {0, 0, 0, 0},                       {XF86XK_AudioStop, 0, 0, 0},          spawn,   SHCMD("play stop") },
+	{ {0, 0, 0, 0},                       {XF86XK_AudioPrev, 0, 0, 0},          spawn,   SHCMD("play prev") },
+    { {0, 0, 0, 0},                       {XF86XK_AudioNext, 0, 0, 0},          spawn,   SHCMD("play next") },
 
     // Brightness control
-	{ {0, 0, 0, 0},                       {XF86XK_MonBrightnessUp, 0, 0, 0},    spawn,   SHCMD("light -A 10") },
-	{ {0, 0, 0, 0},                       {XF86XK_MonBrightnessDown, 0, 0, 0},  spawn,   SHCMD("light -U 10") },
+	{ {0, 0, 0, 0},                       {XF86XK_MonBrightnessUp, 0, 0, 0},    spawn,   SHCMD("bri up") },
+	{ {0, 0, 0, 0},                       {XF86XK_MonBrightnessDown, 0, 0, 0},  spawn,   SHCMD("bri down") },
 };
 
 /* button definitions */
