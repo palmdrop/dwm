@@ -310,7 +310,7 @@ static Key cmdkeys[] = {
 	{ {ShiftMask, 0, 0, 0},               {KEY,  0, 0, 0},      combotag,       {.ui = 1 << TAG} }, \
 	{ {0, 0, 0, 0},                       {XK_w, KEY, 0, 0},    combotag,       {.ui = 1 << TAG} }, \
     { {ControlMask, 0, 0, 0},             {KEY, 0, 0, 0},       tagandview,     {.ui = 1 << TAG} }, \
-    { {ShiftMask, 0, 0, 0},               {XK_m, KEY, 0, 0},    tagandview,     {.ui = 1 << TAG} }
+    { {0, 0, 0, 0},                       {XK_m, KEY, 0, 0},    tagandview,     {.ui = 1 << TAG} }
 
 static Command commands[] = {
 	/* modifier (4 keys)                          keysyms (4 keys)                                function         argument */
@@ -365,6 +365,7 @@ static Command commands[] = {
 
     { {0, 0, 0, 0},                       {XK_plus, 0, 0, 0},  nextview,        {0} },
     { {ShiftMask, 0, 0, 0},               {XK_plus, 0, 0, 0},  nexttag,         {0} },
+    { {0, 0, 0, 0},                       {XK_m, XK_plus, 0, 0},  nexttagandview,  {0} },
     { {ControlMask, 0, 0, 0},             {XK_plus, 0, 0, 0},  nexttagandview,  {0} },
 
 	//{ {0, 0, 0, 0},                       XK_0,                view,           {.ui = ~0 } },

@@ -3462,6 +3462,9 @@ main(int argc, char *argv[])
 		die("pledge");
 #endif /* __OpenBSD__ */
 	scan();
+
+    writekeymode();
+
 	run();
 	cleanup();
 	XCloseDisplay(dpy);

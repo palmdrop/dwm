@@ -12,6 +12,7 @@ typedef struct {
 } Command;
 
 /* function declarations */
+static void writekeymode();
 static void clearcmd(const Arg *arg);
 static void defkeypress(XEvent *e);
 static void grabdefkeys(void);
