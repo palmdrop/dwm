@@ -286,6 +286,10 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 
+    { MODKEY,                       XK_plus,  nextview,        {0} },
+    { MODKEY|ShiftMask,             XK_plus,  nexttag,         {0} },
+    { MODKEY|ControlMask,           XK_plus,  movenext,        {0} },
+
     // Quit
 	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} }, // Reload
 	{ MODKEY|ControlMask,           XK_e,      spawn,          SHCMD("shutdownmenu") },
@@ -354,6 +358,10 @@ static Command commands[] = {
     TAGKEYSCMD(                           XK_7,                6),
     TAGKEYSCMD(                           XK_8,                7),
     TAGKEYSCMD(                           XK_9,                8),
+
+    { {0, 0, 0, 0},                       {XK_plus, 0, 0, 0},  nextview,        {0} },
+    { {ShiftMask, 0, 0, 0},               {XK_plus, 0, 0, 0},  nexttag,         {0} },
+    { {ControlMask, 0, 0, 0},             {XK_plus, 0, 0, 0},  movenext,        {0} },
 
 	//{ {0, 0, 0, 0},                       XK_0,                view,           {.ui = ~0 } },
 

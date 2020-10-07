@@ -331,6 +331,11 @@ static void resource_load(XrmDatabase db, char *name, enum resource_type rtype, 
 static void keyrelease(XEvent *e);
 static void combotag(const Arg *arg);
 static void comboview(const Arg *arg);
+
+static void nexttag(const Arg *arg);
+static void nextview(const Arg *arg);
+static void movenext(const Arg *arg);
+
 static void togglenextfloating(const Arg *arg);
 
 static pid_t getparentprocess(pid_t p);
@@ -469,6 +474,42 @@ comboview(const Arg *arg) {
 	}
 	focus(NULL);
 	arrange(selmon);
+}
+
+// PATCH for finding next empty tag
+unsigned
+nextemptytag() {
+    unsigned seltags = 0;
+    Client *c;
+    for(c = selmon->clients; c; c = c->next) {
+        seltags |= c->tags == 255 ? 0 : c->tags;
+    }
+
+    unsigned i;
+    for(i = 0; i < LENGTH(tags); i++) {
+        if(!(seltags & 1 << i)) return 1 << i;
+    }
+    return 0;
+}
+
+void 
+nexttag(const Arg *arg) {
+    combotag(&((Arg){.ui = nextemptytag()}));
+}
+
+void 
+nextview(const Arg *arg) {
+    comboview(&((Arg){.ui = nextemptytag()}));
+}
+
+
+void 
+movenext(const Arg *arg) {
+    unsigned tag = nextemptytag();    
+    Arg a = (Arg){.ui = tag};
+    combotag(&a);
+    combo = 0;
+    comboview(&a);
 }
 
 void
