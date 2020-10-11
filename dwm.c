@@ -681,7 +681,7 @@ aspectresize(const Arg *arg) {
 	Client *c;
 	c = selmon->sel;
 	float ratio;
-	int w, h,nw, nh;
+	int w, h,nw, nh, nx, ny;
 
 	if (!c || !arg)
 		return;
@@ -695,8 +695,11 @@ aspectresize(const Arg *arg) {
 	nw = c->w + w;
 	nh = c->h + h;
 
+    nx = c->x + (c->w - nw) / 2;
+    ny = c->y + (c->h - nh) / 2;
+
 	XRaiseWindow(dpy, c->win);
-	resize(c, c->x, c->y, nw, nh, True);
+	resize(c, nx, ny, nw, nh, True);
 }
 
 void
