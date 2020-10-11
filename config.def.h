@@ -37,11 +37,21 @@ static char selbgcolor[]            = "#005577";
 static char selfloatbordercolor[]   = "#005577";
 static char normfloatbordercolor[]  = "#005577";
 
+static const unsigned int baralpha = 0xFF;
+static const unsigned int borderalpha = OPAQUE;
+
 static char *colors[][4] = {
        /*                   fg               bg           border           float border */
        [SchemeNorm]     = { normfgcolor,     normbgcolor, normbordercolor, normfloatbordercolor  },
        [SchemeSel]      = { selfgcolor,      selbgcolor,  selbordercolor,  selfloatbordercolor },
 };
+
+static const unsigned int alphas[][4]      = {
+	/*               fg      bg        border       float*/
+	[SchemeNorm] = { OPAQUE, baralpha, borderalpha, borderalpha},
+	[SchemeSel]  = { OPAQUE, baralpha, borderalpha, borderalpha},
+};
+
 
 static Inset default_inset = {
 	.x = 0,
