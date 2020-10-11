@@ -692,7 +692,21 @@ aspectresize(const Arg *arg) {
     ny = c->y + (c->h - nh) / 2;
 
 	XRaiseWindow(dpy, c->win);
+
+    Window dummy;
+    Window child;
+
+    int msx, msy, dx, dy;
+    unsigned int dui;
+    Bool xqp = XQueryPointer(dpy, root, &dummy, &child, &msx, &msy, &dx, &dy, &dui);
+
 	resize(c, nx, ny, nw, nh, True);
+
+    // Move cursor to corner of window to avoid focus problems
+    if(xqp && c->oldx <= msx && (c->oldx + c->oldw) >= msx && c->oldy <= msy && (c->oldy + c->oldh) >= msy) {
+        XWarpPointer(dpy, None, child, 0, 0, 0, 0, 0, 0);
+    }
+
 }
 
 void
@@ -2125,6 +2139,7 @@ resizeclient(Client *c, int x, int y, int w, int h)
 	XConfigureWindow(dpy, c->win, CWX|CWY|CWWidth|CWHeight|CWBorderWidth, &wc);
 	configure(c);
 	XSync(dpy, False);
+
 }
 
 void
