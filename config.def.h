@@ -288,9 +288,9 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7),
 	TAGKEYS(                        XK_9,                      8),
 
-    { MODKEY,                       XK_n,      nextview,        {0} },
-    { MODKEY|ShiftMask,             XK_n,      nexttag,         {0} },
-    { MODKEY|ControlMask,           XK_n,      nexttagandview,  {0} },
+    { MODKEY,                       XK_plus,      nextview,        {0} },
+    { MODKEY|ShiftMask,             XK_plus,      nexttag,         {0} },
+    { MODKEY|ControlMask,           XK_plus,      nexttagandview,  {0} },
 
     // Quit
 	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} }, // Reload
