@@ -167,8 +167,8 @@ static const char *capturecmd[]  = { "flameshot", "gui", NULL };
 static const char *termcmd[]     = { TERM, "-g", TERMSIZE, NULL };
 static const char *rangercmd[]   = { TERM, "-g", TERMSIZE, "-e", "ranger", NULL };
 
-static const char *mountcmd[]    = { TERM, "-t", "floating", "-g", TERMSIZE, "-e", "sh", "-c", "dmount", NULL };
-static const char *umountcmd[]   = { TERM, "-t", "floating", "-g", TERMSIZE, "-e", "sh", "-c", "dumount", NULL };
+static const char *mountcmd[]    = { TERM, "-t", "floating", "-g", TERMSIZE, "-e", "sh", "-c", "sudo dmount", NULL };
+static const char *umountcmd[]   = { TERM, "-t", "floating", "-g", TERMSIZE, "-e", "sh", "-c", "sudo dumount", NULL };
 static const char *rsscmd[]      = { TERM, "-g", TERMSIZE, "-e", "newsboat", NULL };
 static const char *taskcmd[]     = { TERM, "-t", "floating", "-g", TERMSIZE, "-e", "sh", "-c", "vit", NULL };
 static const char *mpvcmd[]     = { "mpvplay", NULL };
