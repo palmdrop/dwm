@@ -401,6 +401,11 @@ static Command commands[] = {
 
  	{ {0, 0, 0, 0},                       {XK_z, XK_z, 0, 0},  movecenter,     {0} },
 
+    { {ControlMask, 0, 0, 0},             {XK_u, 0, 0, 0},     aspectresize,   {.i = +25} },
+    { {ControlMask|ShiftMask, 0, 0, 0},   {XK_u, 0, 0, 0},     aspectresize,   {.i = +50} },
+    { {ControlMask, 0, 0, 0},             {XK_d, 0, 0, 0},     aspectresize,   {.i = -25} },
+    { {ControlMask|ShiftMask, 0, 0, 0},   {XK_d, 0, 0, 0},     aspectresize,   {.i = -50} },
+
     // Fullscreen
 	{ {0, 0, 0, 0},                       {XK_f, 0, 0, 0},    togglefullscr,   {0} },
 
