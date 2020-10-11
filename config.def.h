@@ -4,7 +4,8 @@
 #include <X11/XF86keysym.h>
 
 /* appearance */
-static       unsigned int borderpx  = 1;        /* border pixel of windows */
+static       unsigned int borderpx  = 1;        /* border pixel of regular windows */
+static   unsigned int floatborderpx = 1;        /* border pixel of floating windows */
 static       unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const unsigned int gaps      = 25;       /* gaps */
@@ -187,6 +188,7 @@ ResourcePref resources[] = {
         { "normfloatbordercolor", STRING,  &normfloatbordercolor },
         { "selfloatbordercolor",  STRING,  &selfloatbordercolor },
 		{ "borderpx",          	  INTEGER, &borderpx },
+		{ "floatborderpx",     	  INTEGER, &floatborderpx },
 		{ "snap",          		  INTEGER, &snap },
         { "y_inset",              INTEGER, &default_inset.y },
 		{ "nmaster",          	  INTEGER, &nmaster },

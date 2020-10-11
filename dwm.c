@@ -1490,13 +1490,17 @@ manage(Window w, XWindowAttributes *wa)
 	/* only fix client y-offset, if the client center might cover the bar */
 	c->y = MAX(c->y, ((c->mon->by == c->mon->my) && (c->x + (c->w / 2) >= c->mon->wx)
 		&& (c->x + (c->w / 2) < c->mon->wx + c->mon->ww)) ? bh : c->mon->my);
-	c->bw = borderpx;
+    
+    if(c->isfloating)
+	    c->bw = floatborderpx;
+    else 
+	    c->bw = borderpx;
 
 	wc.border_width = c->bw;
 	XConfigureWindow(dpy, w, CWBorderWidth, &wc);
-	if(c->isfloating)
+	if(c->isfloating) {
 		XSetWindowBorder(dpy, w, scheme[SchemeNorm][ColFloat].pixel);
-	else
+    } else
 		XSetWindowBorder(dpy, w, scheme[SchemeNorm][ColBorder].pixel);
 	configure(c); /* propagates border_width, if size doesn't change */
 	updatewindowtype(c);
@@ -2127,11 +2131,16 @@ void
 resizeclient(Client *c, int x, int y, int w, int h)
 {
 	XWindowChanges wc;
-
 	c->oldx = c->x; c->x = wc.x = x;
 	c->oldy = c->y; c->y = wc.y = y;
 	c->oldw = c->w; c->w = wc.width = w;
 	c->oldh = c->h; c->h = wc.height = h;
+
+    if(c->isfloating) 
+        c->bw = floatborderpx;
+    else
+        c->bw = borderpx;
+
  	wc.border_width = c->bw;
 
  	if (smartborders &&
