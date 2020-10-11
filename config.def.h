@@ -353,10 +353,10 @@ static Command commands[] = {
     TAGKEYSCMD(                           XK_8,                7),
     TAGKEYSCMD(                           XK_9,                8),
 
-    { {0, 0, 0, 0},                       {XK_n, 0, 0, 0},     nextview,        {0} },
-    { {ShiftMask, 0, 0, 0},               {XK_n, 0, 0, 0},     nexttag,         {0} },
-    { {0, 0, 0, 0},                       {XK_m, XK_n, 0, 0},  nexttagandview,  {0} },
-    { {ControlMask, 0, 0, 0},             {XK_n, 0, 0, 0},     nexttagandview,  {0} },
+    { {0, 0, 0, 0},                       {XK_plus, 0, 0, 0},     nextview,        {0} },
+    { {ShiftMask, 0, 0, 0},               {XK_plus, 0, 0, 0},     nexttag,         {0} },
+    { {0, 0, 0, 0},                       {XK_m, XK_plus, 0, 0},  nexttagandview,  {0} },
+    { {ControlMask, 0, 0, 0},             {XK_plus, 0, 0, 0},     nexttagandview,  {0} },
 
 	//{ {0, 0, 0, 0},                       XK_0,                view,           {.ui = ~0 } },
 
