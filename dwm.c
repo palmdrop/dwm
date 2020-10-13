@@ -2035,6 +2035,12 @@ movecenter(const Arg *arg) {
 	}
 }
 
+Client *
+next(Client *c) 
+{
+    for (; c && !ISVISIBLE(c); c = c->next);
+    return c;
+}
 
 
 Client *
@@ -2144,12 +2150,16 @@ resizeclient(Client *c, int x, int y, int w, int h)
  	wc.border_width = c->bw;
 
  	if (smartborders &&
-        ((nexttiled(c->mon->clients) == c && !nexttiled(c->next))
+        //((nexttiled(c->mon->clients) == c && !nexttiled(c->next))
+        ((next(c->mon->clients) == c && !next(c->next))
  	    || &monocle == c->mon->lt[c->mon->sellt]->arrange)
- 	    && !c->isfullscreen && !c->isfloating
+ 	    && !c->isfullscreen 
  	    && NULL != c->mon->lt[c->mon->sellt]->arrange) {
- 		c->w = wc.width += c->bw * 2;
- 		c->h = wc.height += c->bw * 2;
+ 		
+        if(!c->isfloating) {
+            c->w = wc.width += c->bw * 2;
+            c->h = wc.height += c->bw * 2;
+        }
  		wc.border_width = 0;
  	}
 
