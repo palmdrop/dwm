@@ -69,7 +69,7 @@ static const Inset alt_inset = {
 };
 
 /* Paths */
-static char *keymodepath = "/tmp/dwm.keymode";
+static char keymodepath[] = "/tmp/dwm.keymode";
 
 /* Standard values */
 #define TERM "st"
@@ -204,7 +204,7 @@ ResourcePref resources[] = {
         { "gaps",                 INTEGER, &gappiv },  
         { "gaps",                 INTEGER, &gappoh },  
         { "gaps",                 INTEGER, &gappov },  
-        //{ "keymodepath",          STRING,  &keymodepath },
+        { "keymodepath",          STRING,  &keymodepath },
 };
 
 static Key keys[] = {
