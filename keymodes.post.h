@@ -115,7 +115,7 @@ onlyclient(const Arg *arg) {
 void 
 writekeymode() {
     FILE *fp;
-    fp = fopen("/tmp/dwm.keymode","w");
+    fp = fopen(keymodepath, "w");
     fprintf(fp, "%d", keymode);
     fclose(fp);
 }

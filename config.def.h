@@ -68,6 +68,10 @@ static const Inset alt_inset = {
 	.h = 0,
 };
 
+/* Paths */
+static char *keymodepath = "/tmp/dwm.keymode";
+
+/* Standard values */
 #define TERM "st"
 #define TERMSIZE "100x28"
 #define BROWSER "brave"
@@ -200,6 +204,7 @@ ResourcePref resources[] = {
         { "gaps",                 INTEGER, &gappiv },  
         { "gaps",                 INTEGER, &gappoh },  
         { "gaps",                 INTEGER, &gappov },  
+        //{ "keymodepath",          STRING,  &keymodepath },
 };
 
 static Key keys[] = {
