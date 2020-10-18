@@ -9,10 +9,11 @@ static   unsigned int floatborderpx = 1;        /* border pixel of floating wind
 static       unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const unsigned int gaps      = 25;       /* gaps */
-static       unsigned int gappih    = gaps;       /* horiz inner gap between windows */
-static       unsigned int gappiv    = gaps;       /* vert inner gap between windows */
-static       unsigned int gappoh    = gaps;       /* horiz outer gap between windows and screen edge */
-static       unsigned int gappov    = gaps;       /* vert outer gap between windows and screen edge */
+static const unsigned int outergaps = 40;
+static       unsigned int gappih    = gaps;     /* horiz inner gap between windows */
+static       unsigned int gappiv    = gaps;     /* vert inner gap between windows */
+static       unsigned int gappoh    = outergaps;/* horiz outer gap between windows and screen edge */
+static       unsigned int gappov    = outergaps;/* vert outer gap between windows and screen edge */
 static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static       int smartborders       = 1;        /* 1 means no borders if only one window is open */
 static       int selonlyborders     = 0;        /* 1 means only borders for focused window */
@@ -202,8 +203,8 @@ ResourcePref resources[] = {
         { "selonlyborders",       INTEGER, &selonlyborders },
         { "gaps",                 INTEGER, &gappih },  
         { "gaps",                 INTEGER, &gappiv },  
-        { "gaps",                 INTEGER, &gappoh },  
-        { "gaps",                 INTEGER, &gappov },  
+        { "outergaps",            INTEGER, &gappoh },  
+        { "outergaps",            INTEGER, &gappov },  
         { "keymodepath",          STRING,  &keymodepath },
 };
 
