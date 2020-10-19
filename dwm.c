@@ -551,16 +551,13 @@ compacttags(const Arg *arg) {
     // Iterate over all clients and shift tags according to offsets
     Client *c;
     for(c = selmon->clients; c; c = c->next) {
-        unsigned t = c->tags;
+        //unsigned t = c->tags;
         for(i = 0; i < LENGTH(tags); i++) {
             // Break at max tag
             if(i >= arg->ui) break;
 
-            // If no offset, do nothing
-            if(!offsets[i]) continue;
-            unsigned state = t & (1 << i);
             // If tag not set, do nothing
-            if(!state) continue;
+            if(!(c->tags & (1 << i))) continue;
             
             // Clear current tag
             c->tags &= ~(1 << i);
