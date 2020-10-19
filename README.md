@@ -23,7 +23,7 @@ Some patches are found elsewhere.
 * focusonnetactive - focuses "urgent" windows
 * insets - adds optional insets around screen. I've modded code to allow for toggling between two different pre-defined insets. This helped me solve an issue with toggling polybar.
 * IPC - interprocess communication for dwm. Required to make dwm polybar-compatible. Can be found here: https://github.com/mihirlad55/dwm-ipc
-* keymodes - old patch for adding different keymodes to dwm. Makes dwm more vim-like. Had to fetch an antient method from an old dwm-version to make this compatible with dwm 6.2.
+* keymodes - old patch for adding different keymodes to dwm. Makes dwm more vim-like. Had to fetch an antient method (`isprotodel(Client *)`) from an old dwm-version to make this compatible with dwm 6.2.
 * monoclesymbol - always display the same symbol for monocle layout
 * moveresize - adds functions for moving and resizing floating clients. Modded slightly to fix focus issues.
 * movestack - adds functions for moving clients up and down the stack
