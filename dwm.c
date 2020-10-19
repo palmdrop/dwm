@@ -340,6 +340,8 @@ static void nexttag(const Arg *arg);
 static void nextview(const Arg *arg);
 static void nexttagandview(const Arg *arg);
 
+static void compacttags(const Arg *arg);
+
 static void togglenextfloating(const Arg *arg);
 
 static pid_t getparentprocess(pid_t p);
@@ -489,16 +491,21 @@ tagandview(const Arg *arg) {
 
 // PATCH for finding next empty tag
 unsigned
-nextemptytag() {
-    unsigned seltags = 0;
+occupiedtags() {
+    unsigned ots = 0;
     Client *c;
     for(c = selmon->clients; c; c = c->next) {
-        seltags |= c->tags == 255 ? 0 : c->tags;
+        ots |= c->tags == 255 ? 0 : c->tags;
     }
+    return ots;
+}
 
-    unsigned i;
+unsigned
+nextemptytag() {
+    unsigned i, ots = occupiedtags();
+
     for(i = 0; i < LENGTH(tags); i++) {
-        if(!(seltags & 1 << i)) return 1 << i;
+        if(!(ots & 1 << i)) return 1 << i;
     }
     return 0;
 }
@@ -519,6 +526,54 @@ nexttagandview(const Arg *arg) {
     Arg a = {.ui = nextemptytag()};
     tagandview(&a);
 }
+
+// PATCH for moving all clients so there's no gap between the tags
+void 
+compacttags(const Arg *arg) {
+    // Get occupied tags
+    unsigned i, ots = occupiedtags();
+    // Allocate array of offsets, these will contain the number of "steps" each tag should be shifted with
+    unsigned *offsets = malloc(sizeof(unsigned) * LENGTH(tags));
+
+    // If allocation failed, return
+    if(offsets == NULL) return;
+
+    // Calculate offsets
+    int offset = 0;
+    for(i = 0; i < LENGTH(tags); i++) {
+        // Increment offset if tag is unoccupied
+        if(!(ots & 1 << i)) offset++;
+
+        // Set offset
+        offsets[i] = offset;
+    }
+
+    // Iterate over all clients and shift tags according to offsets
+    Client *c;
+    for(c = selmon->clients; c; c = c->next) {
+        unsigned t = c->tags;
+        for(i = 0; i < LENGTH(tags); i++) {
+            // Break at max tag
+            if(i >= arg->ui) break;
+
+            // If no offset, do nothing
+            if(!offsets[i]) continue;
+            unsigned state = t & (1 << i);
+            // If tag not set, do nothing
+            if(!state) continue;
+            
+            // Clear current tag
+            c->tags &= ~(1 << i);
+            // Set correct tag
+            c->tags |= 1 << (i - offsets[i]);
+        }
+    }
+    free(offsets);
+
+    focus(NULL);
+    arrange(selmon);
+}
+
 
 void
 togglenextfloating(const Arg *arg) {

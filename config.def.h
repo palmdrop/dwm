@@ -376,6 +376,8 @@ static Command commands[] = {
     { {0, 0, 0, 0},                       {XK_m, XK_a, 0, 0},  nexttagandview,  {0} },
     { {ControlMask, 0, 0, 0},             {XK_a, 0, 0, 0},     nexttagandview,  {0} },
 
+    { {0, 0, 0, 0},                       {XK_BackSpace, 0, 0, 0}, compacttags, {.ui = 7 } }, // Compacting function, but ignore 8 and 9
+
 	//{ {0, 0, 0, 0},                       XK_0,                view,           {.ui = ~0 } },
 
     // Clients
