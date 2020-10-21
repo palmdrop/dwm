@@ -42,6 +42,7 @@ These are tweaks and changes I've done for my own purposes. I haven't made prope
 * different borders for tiled and floating clients - mostly used for having no borders for floating windows.
 * next unoccupied tag - a few functions for viewing and tagging the next unoccupied tag
 * compacttags - function for removing gaps between used tags, i.e, if tag 2 and 4 are occupied, after applying this function, 1 and 2 will be occupied instead.
+* moveresizedouble - function for doubling or halving the width or height of a floating window
 
 # Keybinds
 See config.def.h. Although they are quite personal and probably not sensible to other people. 
