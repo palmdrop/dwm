@@ -24,9 +24,7 @@ static const int usealtbar          = 1;        /* 1 means use non-dwm status ba
 static const char *altbarclass      = "Polybar"; /* Alternate bar class name */
 static const char *alttrayname      = "tray";    /* Polybar tray instance name */
 static const char *altbarcmd        = "$HOME/.config/dwm-polybar/launch.sh"; /* Alternate bar launch command */
-static const char *fonts[]          = { 
-                                        "Cozette:size=15"
-                                      };
+static const char *fonts[]          = { "Cozette:size=15" };
 static const char dmenufont[]       = "Cozette:size=15";
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
