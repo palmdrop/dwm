@@ -399,10 +399,15 @@ static Command commands[] = {
 	{ {ControlMask, 0, 0, 0},             {XK_l, 0, 0, 0},     moveresize,     {.v = "25x 0y 0w 0h" } },
 	{ {ControlMask, 0, 0, 0},             {XK_h, 0, 0, 0},     moveresize,     {.v = "-25x 0y 0w 0h" } },
 
-	{ {ControlMask|ShiftMask, 0, 0, 0},   {XK_j, 0, 0, 0},     moveresize,     {.v = "0x -15y 0w 30h" } },
-	{ {ControlMask|ShiftMask, 0, 0, 0},   {XK_k, 0, 0, 0},     moveresize,     {.v = "0x 15y 0w -30h" } },
-	{ {ControlMask|ShiftMask, 0, 0, 0},   {XK_l, 0, 0, 0},     moveresize,     {.v = "-15x 0y 30w 0h" } },
-	{ {ControlMask|ShiftMask, 0, 0, 0},   {XK_h, 0, 0, 0},     moveresize,     {.v = "15x 0y -30w 0h" } },
+	{ {ShiftMask|ControlMask, 0, 0, 0},   {XK_j, 0, 0, 0},     moveresize,     {.v = "0x -15y 0w 30h" } },
+	{ {ShiftMask|ControlMask, 0, 0, 0},   {XK_k, 0, 0, 0},     moveresize,     {.v = "0x 15y 0w -30h" } },
+	{ {ShiftMask|ControlMask, 0, 0, 0},   {XK_l, 0, 0, 0},     moveresize,     {.v = "-15x 0y 30w 0h" } },
+	{ {ShiftMask|ControlMask, 0, 0, 0},   {XK_h, 0, 0, 0},     moveresize,     {.v = "15x 0y -30w 0h" } },
+
+	{ {0, 0, 0, 0},                       {XK_d, XK_j, 0, 0},  moveresizedouble,{.v = "h" } },
+	{ {0, 0, 0, 0},                       {XK_d, XK_k, 0, 0},  moveresizedouble,{.v = "H" } },
+	{ {0, 0, 0, 0},                       {XK_d, XK_h, 0, 0},  moveresizedouble,{.v = "w" } },
+	{ {0, 0, 0, 0},                       {XK_d, XK_l, 0, 0},  moveresizedouble,{.v = "W" } },
 
  	{ {0, 0, 0, 0},                       {XK_y, 0, 0, 0},     movecorner,     {.v = "y"} },
  	{ {0, 0, 0, 0},                       {XK_u, 0, 0, 0},     movecorner,     {.v = "u"} },

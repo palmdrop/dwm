@@ -256,6 +256,7 @@ static void moveresize(const Arg *arg);
 static void moveresizeedge(const Arg *arg);
 static void movecorner(const Arg *arg);
 static void movecenter(const Arg *arg); 
+static void moveresizedouble(const Arg *arg);
 
 static void movemouse(const Arg *arg);
 static Client *nexttiled(Client *c);
@@ -1941,6 +1942,7 @@ moveresizeedge(const Arg *arg) {
 
 	if (!c || !arg)
 		return;
+
 	if (selmon->lt[selmon->sellt]->arrange && !c->isfloating)
 	    togglefloating(NULL);
 	if(sscanf((char *)arg->v, "%c", &e) != 1)
@@ -2043,8 +2045,10 @@ movecenter(const Arg *arg) {
 	/* move or resize floating window to edge of screen */
 	Client *c;
 	c = selmon->sel;
-	//char e;
-    //int starty;
+
+	if (!c || !arg)
+		return;
+
 	int nx, ny, nw, nh, ox, oy, ow, oh;
 	int msx, msy, dx, dy, nmx, nmy;
 	unsigned int dui;
@@ -2055,16 +2059,9 @@ movecenter(const Arg *arg) {
 	nw = c->w;
 	nh = c->h;
 
-	//starty = selmon->showbar ? bh : 0;
-
-	if (!c || !arg)
-		return;
 	if (selmon->lt[selmon->sellt]->arrange && !c->isfloating)
         togglefloating(NULL);
 
-	//if(sscanf((char *)arg->v, "%c", &e) != 1)
-		//return;
-    
     // Calculate center
     nx = selmon->mw / 2 - nw / 2;
     ny = selmon->mh / 2 - nh / 2;
@@ -2087,6 +2084,79 @@ movecenter(const Arg *arg) {
 	}
 }
 
+void 
+moveresizedouble(const Arg *arg) {
+    Client *c;
+    c = selmon->sel;
+    
+	if (!c || !arg)
+		return;
+
+    char e;
+	if(sscanf((char *)arg->v, "%c", &e) != 1)
+		return;
+
+    int nx, ny, nw, nh, ox, oy, ow, oh;
+	int msx, msy, dx, dy, nmx, nmy;
+	unsigned int dui;
+	Window dummy;
+
+    nx = ox = c->x;
+    ny = oy = c->y;
+    nw = ow = c->w;
+    nh = oh = c->h;
+    
+	if (selmon->lt[selmon->sellt]->arrange && !c->isfloating)
+        togglefloating(NULL);
+    
+    // Calculate new dimensions
+    if(e == 'w') {          // Half the width
+        nx += c->w / 4;
+        nw /= 2;
+    } else if(e == 'W') {   // Double the width
+        nx -= c->w / 2;
+        nw *= 2;
+    } else if(e == 'h') {   // Half the height
+        ny += c->h / 4;
+        nh /= 2;
+    } else if(e == 'H') {   // Double the height
+        ny -= c->h / 2;
+        nh *= 2;
+    } else {
+        return;
+    }
+    
+    //TODO: take borders into account?
+    if(nw > selmon->mw - 2 * selmon->gappov) 
+        nw = selmon->mw - 2 * selmon->gappov;
+    
+    if(nh > selmon->mh - 2 * selmon->gappoh - selmon->wy) 
+        nh = selmon->mh - 2 * selmon->gappoh - selmon->wy;
+
+    if(nx < selmon->mx + selmon->gappov)
+        nx = selmon->wx + selmon->gappov;
+    else if(nx + nw > selmon->mx + selmon->mw - 2 * selmon->gappov) 
+		nx = (nw > selmon->mw - 2 * c->bw ? nw : selmon->mw - nw - 2 * c->bw) - selmon->gappov;
+
+    if(ny < selmon->wy + selmon->gappoh)
+        ny = selmon->wy + selmon->gappoh;
+    else if(ny + nh > selmon->wy + selmon->mh - 2 * selmon->gappoh) 
+		ny = (selmon->mh - nh - 2 * c->bw) - selmon->gappoh;
+
+	XRaiseWindow(dpy, c->win);
+	Bool xqp = XQueryPointer(dpy, root, &dummy, &dummy, &msx, &msy, &dx, &dy, &dui);
+	resize(c, nx, ny, nw, nh, True);
+
+	/* move cursor along with the window to avoid problems caused by the sloppy focus */
+	if (xqp && ox <= msx && (ox + ow) >= msx && oy <= msy && (oy + oh) >= msy) {
+		nmx = c->x - ox + c->w - ow;
+		nmy = c->y - oy + c->h - oh;
+		XWarpPointer(dpy, None, None, 0, 0, 0, 0, nmx, nmy);
+	}
+}
+
+// PATCH function for finding next client (floating or tiled), used to determine if a floating window is 
+// the only window visible.
 Client *
 next(Client *c) 
 {
