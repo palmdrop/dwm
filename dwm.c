@@ -551,25 +551,39 @@ compacttags(const Arg *arg) {
 
     // Iterate over all clients and shift tags according to offsets
     Client *c;
+
+    Arg a;
+    a.ui = selmon->tagset[selmon->seltags];
+
     for(c = selmon->clients; c; c = c->next) {
         //unsigned t = c->tags;
         for(i = 0; i < LENGTH(tags); i++) {
             // Break at max tag
             if(i >= arg->ui) break;
 
-            // If tag not set, do nothing
-            if(!(c->tags & (1 << i))) continue;
-            
-            // Clear current tag
-            c->tags &= ~(1 << i);
-            // Set correct tag
-            c->tags |= 1 << (i - offsets[i]);
+            // If view is set, move
+            if(selmon->tagset[selmon->seltags] & (1 << i)) {
+                // Clear current view 
+                a.ui &= ~(1 << i);
+
+                // Set correct view 
+                a.ui |= 1 << (i - offsets[i]);
+            }
+
+            // If tag set, move
+            if(c->tags & (1 << i)) {
+                // Clear current tag
+                c->tags &= ~(1 << i);
+                // Set correct tag
+                c->tags |= 1 << (i - offsets[i]);
+            }
         }
     }
     free(offsets);
 
-    focus(NULL);
-    arrange(selmon);
+    //focus(NULL);
+    //arrange(selmon);
+    view(&a);
 }
 
 
