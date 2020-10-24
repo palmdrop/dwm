@@ -343,6 +343,9 @@ static void nexttagandview(const Arg *arg);
 
 static void compacttags(const Arg *arg);
 
+static void tagall(const Arg *arg);
+static void tagandviewall(const Arg *arg);
+
 static void togglenextfloating(const Arg *arg);
 
 static pid_t getparentprocess(pid_t p);
@@ -580,13 +583,29 @@ compacttags(const Arg *arg) {
         }
     }
     free(offsets);
-
-    //focus(NULL);
-    //arrange(selmon);
     view(&a);
 }
 
+// PATCH function for moving all visible windows to a specified tag
+void 
+tagall(const Arg *arg) {
+    Client *c;
+    for(c = selmon->clients; c; c = c->next) {
+        if(ISVISIBLE(c)) {
+            c->tags = arg->ui & TAGMASK;
+        }
+    }
+    focus(NULL);
+    arrange(selmon);
+}
 
+void tagandviewall(const Arg *arg) {
+    tagall(arg);
+    view(arg);
+}
+
+
+// PATCH function for opening the next spawned window in floating mode
 void
 togglenextfloating(const Arg *arg) {
     nextfloating = !nextfloating;    
