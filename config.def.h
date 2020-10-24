@@ -214,7 +214,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_b,      spawn,          SHCMD("togglebardwm") },
-	{ MODKEY|ShiftMask,             XK_b,      toggleinset,    {0} },
+	//{ MODKEY|ShiftMask,             XK_b,      toggleinset,    {0} },
 
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
