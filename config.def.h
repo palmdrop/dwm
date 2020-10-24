@@ -19,7 +19,7 @@ static       int smartborders       = 1;        /* 1 means no borders if only on
 static       int selonlyborders     = 0;        /* 1 means only borders for focused window */
 
 static       int showbar            = 1;        /* 0 means no bar */
-static       int topbar             = 1;        /* 0 means bottom bar */
+static       int topbar             = 0;        /* 0 means bottom bar */
 static const int usealtbar          = 1;        /* 1 means use non-dwm status bar */
 static const char *altbarclass      = "Polybar"; /* Alternate bar class name */
 static const char *alttrayname      = "tray";    /* Polybar tray instance name */
