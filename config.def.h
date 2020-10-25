@@ -294,9 +294,14 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7),
 	TAGKEYS(                        XK_9,                      8),
 
-    { MODKEY,                       XK_a,      nextview,        {0} },
-    { MODKEY|ShiftMask,             XK_a,      nexttag,         {0} },
-    { MODKEY|ControlMask,           XK_a,      nexttagandview,  {0} },
+    { MODKEY,                       XK_a,      nextview,       {0} },
+    { MODKEY|ShiftMask,             XK_a,      nexttag,        {0} },
+    { MODKEY|ControlMask,           XK_a,      nexttagandview, {0} },
+
+    { MODKEY,                       XK_h,      viewtoleft,     {0} },
+    { MODKEY,                       XK_l,      viewtoright,    {0} },
+    { MODKEY|ShiftMask,             XK_h,      tagtoleft,      {0} },
+    { MODKEY|ShiftMask,             XK_l,      tagtoright,     {0} },
 
     // Quit
 	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} }, // Reload
@@ -431,7 +436,7 @@ static Command commands[] = {
  	{ {ShiftMask, 0, 0, 0},               {XK_space, 0, 0, 0}, unfloatvisible, {0} },
 
     // Fullscreen
-	{ {0, 0, 0, 0},                       {XK_f, 0, 0, 0},    togglefullscr,   {0} },
+	{ {0, 0, 0, 0},                       {XK_f, 0, 0, 0},     togglefullscr,   {0} },
 
     // Other
 	{ {0, 0, 0, 0},                       {XK_p, XK_p, 0, 0}, spawn,           {.v = termcmd} },

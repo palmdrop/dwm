@@ -21,6 +21,7 @@ Some patches are found elsewhere.
 * cool-autostart - autostart applications using commands placed in autostart array within config.def.h
 * float-border-color - allows for different border colors for floating windows. Source code has been modded slightly a few bugs. However, diff-file is unchaged.
 * focusonnetactive - focuses "urgent" windows
+* focusadjacenttag - view or tags an adjacent tag to the left or right
 * insets - adds optional insets around screen. I've modded code to allow for toggling between two different pre-defined insets. This helped me solve an issue with toggling polybar.
 * IPC - interprocess communication for dwm. Required to make dwm polybar-compatible. Can be found here: https://github.com/mihirlad55/dwm-ipc
 * keymodes - old patch for adding different keymodes to dwm. Makes dwm more vim-like. Had to fetch an antient method (`isprotodel(Client *)`) from an old dwm-version to make this compatible with dwm 6.2.
