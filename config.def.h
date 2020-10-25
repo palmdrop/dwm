@@ -394,6 +394,7 @@ static Command commands[] = {
 
     // Floating control
 	{ {0, 0, 0, 0},                       {XK_space, 0, 0, 0}, togglefloating, {0} },
+
     { {ControlMask, 0, 0, 0},             {XK_j, 0, 0, 0},     moveresize,     {.v = "0x 25y 0w 0h" } },
 	{ {ControlMask, 0, 0, 0},             {XK_k, 0, 0, 0},     moveresize,     {.v = "0x -25y 0w 0h" } },
 	{ {ControlMask, 0, 0, 0},             {XK_l, 0, 0, 0},     moveresize,     {.v = "25x 0y 0w 0h" } },
@@ -408,6 +409,11 @@ static Command commands[] = {
 	{ {0, 0, 0, 0},                       {XK_r, XK_k, 0, 0},  moveresizedouble,{.v = "H" } },
 	{ {0, 0, 0, 0},                       {XK_r, XK_h, 0, 0},  moveresizedouble,{.v = "w" } },
 	{ {0, 0, 0, 0},                       {XK_r, XK_l, 0, 0},  moveresizedouble,{.v = "W" } },
+
+	{ {0, 0, 0, 0},                       {XK_z, XK_j, 0, 0},  moveresizeedge,     {.v = "b" } },
+	{ {0, 0, 0, 0},                       {XK_z, XK_k, 0, 0},  moveresizeedge,     {.v = "t" } },
+	{ {0, 0, 0, 0},                       {XK_z, XK_l, 0, 0},  moveresizeedge,     {.v = "r" } },
+	{ {0, 0, 0, 0},                       {XK_z, XK_h, 0, 0},  moveresizeedge,     {.v = "l" } },
 
  	{ {0, 0, 0, 0},                       {XK_y, 0, 0, 0},     movecorner,     {.v = "y"} },
  	{ {0, 0, 0, 0},                       {XK_u, 0, 0, 0},     movecorner,     {.v = "u"} },
