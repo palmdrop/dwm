@@ -257,6 +257,7 @@ static void moveresizeedge(const Arg *arg);
 static void movecorner(const Arg *arg);
 static void movecenter(const Arg *arg); 
 static void moveresizedouble(const Arg *arg);
+static void unfloatvisible(const Arg *arg);
 
 static void movemouse(const Arg *arg);
 static Client *nexttiled(Client *c);
@@ -342,7 +343,6 @@ static void nextview(const Arg *arg);
 static void nexttagandview(const Arg *arg);
 
 static void compacttags(const Arg *arg);
-
 static void tagall(const Arg *arg);
 static void tagandviewall(const Arg *arg);
 
@@ -2186,6 +2186,21 @@ moveresizedouble(const Arg *arg) {
 		nmy = c->y - oy + c->h - oh;
 		XWarpPointer(dpy, None, None, 0, 0, 0, 0, nmx, nmy);
 	}
+}
+
+void
+unfloatvisible(const Arg *arg)
+{
+    Client *c;
+
+    for (c = selmon->clients; c; c = c->next)
+        if (ISVISIBLE(c) && c->isfloating)
+            c->isfloating = c->isfixed;
+
+    if (arg && arg->v)
+        setlayout(arg);
+    else
+        arrange(selmon);
 }
 
 // PATCH function for finding next client (floating or tiled), used to determine if a floating window is 

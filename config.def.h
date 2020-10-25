@@ -358,7 +358,7 @@ static Command commands[] = {
 	{ {0, 0, 0, 0},                       {XK_F6, 0, 0, 0},     setlayout,      {.v = &layouts[5]} }, // Spiral
 	{ {0, 0, 0, 0},                       {XK_F7, 0, 0, 0},     setlayout,      {.v = &layouts[6]} }, // Bottomstack
     // ...
-	{ {ShiftMask, 0, 0, 0},               {XK_space, 0, 0, 0},  setlayout,      {.v = &layouts[7]} }, // Floating
+	{ {0, 0, 0, 0},                       {XK_F10, 0, 0, 0},    setlayout,      {.v = &layouts[7]} }, // Floating
 
     // Tags
     TAGKEYSCMD(                           XK_1,                0),
@@ -426,6 +426,9 @@ static Command commands[] = {
     { {ControlMask|ShiftMask, 0, 0, 0},   {XK_u, 0, 0, 0},     aspectresize,   {.i = +50} },
     { {ControlMask, 0, 0, 0},             {XK_d, 0, 0, 0},     aspectresize,   {.i = -25} },
     { {ControlMask|ShiftMask, 0, 0, 0},   {XK_d, 0, 0, 0},     aspectresize,   {.i = -50} },
+
+    // Unfloat
+ 	{ {ShiftMask, 0, 0, 0},               {XK_space, 0, 0, 0}, unfloatvisible, {0} },
 
     // Fullscreen
 	{ {0, 0, 0, 0},                       {XK_f, 0, 0, 0},    togglefullscr,   {0} },

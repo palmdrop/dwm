@@ -33,6 +33,7 @@ Some patches are found elsewhere.
 * selonlyborders - disables borders for unfocused clients. I added a variable to toggle this option. Patch found in this reddit thread: https://www.reddit.com/r/suckless/comments/ix2olv/dwm_no_border_for_unselected_clients/
 * sticky - a sticky windows follow you around to every tag
 * swallow - adds option for configuring terminals to "swallow" applications, i.e, the terminal is hidden and the launched application takes up the space.
+* unfloatvisible - unfloats all visible windows (NOTE: I moved the function to dwm.c instead of creating separate file)
 * xresources - adds support for reading from xresources in config.def.h.
 
 # Tweaks and "patches" of my own
