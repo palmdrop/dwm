@@ -282,6 +282,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_r,       spawn,         {.v = rsscmd } },
     { MODKEY,                       XK_t,       spawn,         {.v = taskcmd } },
     { MODKEY,                       XK_y,       spawn,         {.v = mpvcmd } },
+    { MODKEY|ShiftMask,             XK_d,       spawn,         SHCMD("dmenu_dots_edit") },
 
     // Tags
 	TAGKEYS(                        XK_1,                      0),
