@@ -110,6 +110,7 @@ static Rule rules[] = {
     // Temporary rules
     { "game.App",          NULL,          NULL,           0,               1,          1,          0,          0,        -1 },
     { "application.App",   NULL,          NULL,           0,               1,          1,          0,          0,        -1 },
+    { "glfw.main",         NULL,          NULL,           0,               1,          1,          0,          0,        -1 },
 
     // Unused rules
 	//{ "URxvt",             NULL,          NULL,           0,               1,          0,          1,          0,        -1 },
