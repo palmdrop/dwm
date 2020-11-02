@@ -569,7 +569,7 @@ compacttags(const Arg *arg) {
             if(i >= arg->ui) break;
 
             // If view is set, move
-            if(selmon->tagset[selmon->seltags] & (1 << i)) {
+            if((selmon->tagset[selmon->seltags] & (1 << i)) && i != 0) {
                 // Clear current view 
                 a.ui &= ~(1 << i);
 
@@ -587,7 +587,15 @@ compacttags(const Arg *arg) {
         }
     }
     free(offsets);
-    view(&a);
+
+    // If no view change, focus and arrange
+    if((a.ui & TAGMASK) == selmon->tagset[selmon->seltags]) {
+        focus(NULL);
+        arrange(selmon);
+    // If view change, call view
+    } else {
+        view(&a);
+    }
 }
 
 // PATCH function for moving all visible windows to a specified tag
