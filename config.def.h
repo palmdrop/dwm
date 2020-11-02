@@ -315,6 +315,7 @@ static Key cmdkeys[] = {
 	{ 0,                           XK_Escape,               clearcmd,        {0} },
 	{ ControlMask,                 XK_c,                    clearcmd,        {0} },
 	{ 0,                           XK_i,                    setkeymode,      {.ui = INSERTMODE} },
+	{ MODKEY,                      XK_Escape,               setkeymode,      {.ui = INSERTMODE} },
 };
 
 
