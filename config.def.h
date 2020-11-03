@@ -283,7 +283,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_r,       spawn,         {.v = rsscmd } },
     { MODKEY,                       XK_t,       spawn,         {.v = taskcmd } },
     { MODKEY,                       XK_y,       spawn,         {.v = mpvcmd } },
+
     { MODKEY|ShiftMask,             XK_d,       spawn,         SHCMD("dmenu_dots_edit") },
+    { MODKEY|ShiftMask,             XK_e,       spawn,         SHCMD("dmenu_dirs_edit") },
 
     // Tags
 	TAGKEYS(                        XK_1,                      0),
@@ -306,7 +308,7 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_l,      tagtoright,     {0} },
 
     // Quit
-	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} }, // Reload
+	{ MODKEY|ShiftMask,             XK_r,      quit,           {0} }, // Reload
 	{ MODKEY|ControlMask,           XK_e,      spawn,          SHCMD("shutdownmenu") },
 };
 
