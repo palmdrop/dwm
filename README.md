@@ -48,7 +48,7 @@ These are tweaks and changes I've done for my own purposes. I haven't made prope
 * moveresizedouble - function for doubling or halving the width or height of a floating window
 * next floating - function for spawning the next window in floating mode
 * tagall - tag all visible clients with the specified tag. Also added "tagandviewall" for tagging all visible clients and viewing that tag simultaneously.
-* swaptags - swap the currently visible tags with a selected one.
+* swaptags - swap the currently visible tags with a selected one. Also added swapandviewtags, to simultaneously swap and view the target tag.
 
 # Keybinds
 See config.def.h. Although they are quite personal and probably not sensible to other people. 

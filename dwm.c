@@ -353,6 +353,7 @@ static void nexttagandview(const Arg *arg);
 
 static void compacttags(const Arg *arg);
 static void swaptags(const Arg *arg);
+static void swapandviewtags(const Arg *arg);
 static void tagall(const Arg *arg);
 static void tagandviewall(const Arg *arg);
 
@@ -624,6 +625,11 @@ void swaptags(const Arg *arg) {
     // Focus and arrange
     focus(NULL);
     arrange(selmon);
+}
+
+void swapandviewtags(const Arg *arg) {
+    swaptags(arg);
+    view(arg);
 }
 
 
