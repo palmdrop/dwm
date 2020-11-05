@@ -306,6 +306,8 @@ static Key keys[] = {
     { MODKEY,                       XK_l,      viewtoright,    {0} },
     { MODKEY|ShiftMask,             XK_h,      tagtoleft,      {0} },
     { MODKEY|ShiftMask,             XK_l,      tagtoright,     {0} },
+    { MODKEY|ControlMask,           XK_h,      tagandviewtoleft,  {0} },
+    { MODKEY|ControlMask,           XK_l,      tagandviewtoright, {0} },
 
     // Quit
 	{ MODKEY|ShiftMask,             XK_r,      quit,           {0} }, // Reload
@@ -394,7 +396,7 @@ static Command commands[] = {
     { {0, 0, 0, 0},                       {XK_d, XK_d, 0, 0},  killclient,     {0} },
 	{ {ShiftMask, 0, 0, 0},               {XK_d, 0, 0, 0},     killclient,     {0} },
 
-    { {0, 0, 0, 0},                       {XK_s, 0, 0, 0},     togglesticky,   {0} },
+    { {ShiftMask, 0, 0, 0},               {XK_s, 0, 0, 0},     togglesticky,   {0} },
 
     // Vanity gaps
 	{ {0, 0, 0, 0},                       {XK_minus, 0, 0, 0}, togglegaps,     {0} },

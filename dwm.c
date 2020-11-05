@@ -301,6 +301,11 @@ static void tag(const Arg *arg);
 static void tagmon(const Arg *arg);
 static void tagtoleft(const Arg *arg);
 static void tagtoright(const Arg *arg);
+
+// PATCH for tagging and viewing to left/right 
+static void tagandviewtoleft(const Arg *arg);
+static void tagandviewtoright(const Arg *arg);
+
 static void togglebar(const Arg *arg);
 static void togglefloating(const Arg *arg);
 static void togglesticky(const Arg *arg);
@@ -347,6 +352,7 @@ static void nextview(const Arg *arg);
 static void nexttagandview(const Arg *arg);
 
 static void compacttags(const Arg *arg);
+static void swaptags(const Arg *arg);
 static void tagall(const Arg *arg);
 static void tagandviewall(const Arg *arg);
 
@@ -597,6 +603,11 @@ compacttags(const Arg *arg) {
         view(&a);
     }
 }
+
+void swaptags(const Arg *arg) {
+
+}
+
 
 // PATCH function for moving all visible windows to a specified tag
 void 
@@ -1502,6 +1513,17 @@ tagtoright(const Arg *arg) {
 		focus(NULL);
 		arrange(selmon);
 	}
+}
+
+// PATCH
+void tagandviewtoleft(const Arg *arg) {
+    tagtoleft(arg);
+    viewtoleft(arg);
+}
+
+void tagandviewtoright(const Arg *arg) {
+    tagtoright(arg);
+    viewtoright(arg);
 }
 
 int

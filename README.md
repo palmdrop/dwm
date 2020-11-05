@@ -42,7 +42,7 @@ These are tweaks and changes I've done for my own purposes. I haven't made prope
 
 * disable fullscreen on focus loss - mitigates confusion when a new client is opened while another one is in fullscreen
 * different borders for tiled and floating clients - mostly used for having no borders for floating windows.
-* tagandview - method for simultaneously tagging a client and switching the view to same tag
+* tagandview - method for simultaneously tagging a client and switching the view to same tag. Variations of this function has been added for the focusadjacenttag patch (i.e, tagandviewleft() + tagandviewright() has been added).
 * next unoccupied tag - a few functions for viewing and tagging the next unoccupied tag
 * compacttags - function for removing gaps between used tags, i.e, if tag 2 and 4 are occupied, after applying this function, 1 and 2 will be occupied instead. A similar patch exists here: https://dwm.suckless.org/patches/reorganizetags
 * moveresizedouble - function for doubling or halving the width or height of a floating window
