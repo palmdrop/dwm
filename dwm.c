@@ -604,8 +604,26 @@ compacttags(const Arg *arg) {
     }
 }
 
+// PATCH function for swapping the currently selected tag(s) with a chosen tag
 void swaptags(const Arg *arg) {
+    if(!arg || !arg->ui) return;
 
+    // Iterate over all clients
+    Client *c;
+	for (c = selmon->clients; c; c = c->next) {
+        // If client is visible or has target tag set
+        if(c->tags & (selmon->tagset[selmon->seltags] | arg->ui)) {
+            // Toggle visible tags
+            c->tags ^= (selmon->tagset[selmon->seltags]);
+            
+            // Toggle selected tag
+            c->tags ^= arg->ui;
+        }
+    }
+
+    // Focus and arrange
+    focus(NULL);
+    arrange(selmon);
 }
 
 
