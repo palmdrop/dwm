@@ -475,6 +475,9 @@ static Command commands[] = {
     // Brightness control
 	{ {0, 0, 0, 0},                       {XF86XK_MonBrightnessUp, 0, 0, 0},    spawn,   SHCMD("bri up") },
 	{ {0, 0, 0, 0},                       {XF86XK_MonBrightnessDown, 0, 0, 0},  spawn,   SHCMD("bri down") },
+
+    // Testing
+	{ {0, 0, 0, 0}, {XK_t, 0, 0, 0},      CONDITIONAL(isfloating, 1, togglefullscr, togglefloating)},
 };
 
 /* button definitions */

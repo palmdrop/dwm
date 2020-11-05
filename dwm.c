@@ -359,6 +359,19 @@ static void tagandviewall(const Arg *arg);
 
 static void togglenextfloating(const Arg *arg);
 
+// PATCH for executing different functions based on conditions
+// TODO: test if I can just send in variable name and use offsetof in define below
+// TODO: possible extend macro to entire KEY input?
+# define CONDITIONAL(name, state, f1, f2) conditionalfunction, {.v = {offsetof(Client, name), state, f1, f2}}
+static void conditionalfunction(const Arg *arg);
+typedef struct {
+    size_t offset;
+    int state;
+	void (*matchfunc)(const Arg *);
+	void (*nomatchfunc)(const Arg *);
+} ClientConditional;
+
+
 static pid_t getparentprocess(pid_t p);
 static int isdescprocess(pid_t p, pid_t c);
 static Client *swallowingclient(Window w);
@@ -656,6 +669,31 @@ void tagandviewall(const Arg *arg) {
 void
 togglenextfloating(const Arg *arg) {
     nextfloating = !nextfloating;    
+}
+
+// PATCH function for executing one function if focused client has particular state, and another function if state is not true
+int x = 0;
+void 
+conditionalfunction(const Arg *arg) {
+    // Check if there's a client selected
+    Client *c = selmon->sel;
+    if(!c) return; //TODO: default to match if no client?
+
+    // Get the conditional data
+    ClientConditional *cc = (ClientConditional *)(arg->v);
+
+    // Fetch the value at the desired offset
+    int value = *(int *)((char *)c + cc->offset);
+
+    x = value;
+
+    /*if(value == cc->state) {
+        //cc->matchfunc(&(Arg){0});
+        //togglefullscr(&(Arg){0});
+    } else {
+        //cc->nomatchfunc(&(Arg){0});
+        //togglefloating(&(Arg){0});
+    }*/
 }
 
 void
