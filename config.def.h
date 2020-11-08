@@ -87,14 +87,10 @@ static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 #include "keymodes.pre.h"
 
 static Rule rules[] = {
-	/* xprop(1):
-	 *	WM_CLASS(STRING) = instance, class
-	 *	WM_NAME(STRING) = title
-	 */
     /* class               instance       title           tags mask        iscentered  isfloating  isterminal  noswallow  monitor */
-	{ "St",                NULL,          NULL,           0,               1,          0,          1,          0,        -1 },
-	{ "Brave-browser",     NULL,          NULL,           0,               1,          0,          0,          0,        -1 },
-	{ "Darktable",         NULL,          NULL,           1 << 2,          0,          0,          0,          0,        -1 },
+    { "St",                NULL,          NULL,           0,               1,          0,          1,          0,        -1 },
+    { "Brave-browser",     NULL,          NULL,           0,               1,          0,          0,          0,        -1 },
+    { "Darktable",         NULL,          NULL,           1 << 2,          0,          0,          0,          0,        -1 },
     { "Signal",            NULL,          NULL,           1 << 3,          0,          0,          0,          0,        -1 },
     { "discord",           NULL,          NULL,           1 << 3,          0,          0,          0,          0,        -1 },
     { "Slack",             NULL,          NULL,           1 << 3,          0,          0,          0,          0,        -1 },
@@ -103,21 +99,17 @@ static Rule rules[] = {
     { NULL,                "libreoffice", NULL,           1 << 2,          0,          0,          0,          0,        -1 },
 
     // Windows with "hidden" title are automatically crated as scratchpads
-	{ NULL,                NULL,          "hidden",       SCRATCHPAD_MASK, 1,          1,          0,          0,        -1 },
-    // Windows with "flaoting" title are automatically opened in flaoting mode
-	{ NULL,                NULL,          "floating",     0,               1,          1,          0,          0,        -1 },
+    { NULL,                NULL,          "hidden",       SCRATCHPAD_MASK, 1,          1,          0,          0,        -1 },
+    // Windows with "floating" title are automatically opened in flaoting mode
+    { NULL,                NULL,          "floating",     0,               1,          1,          0,          0,        -1 },
 
     // Temporary rules
     { "game.App",          NULL,          NULL,           0,               1,          1,          0,          0,        -1 },
     { "application.App",   NULL,          NULL,           0,               1,          1,          0,          0,        -1 },
     { "glfw.main",         NULL,          NULL,           0,               1,          1,          0,          0,        -1 },
 
-    // Unused rules
-	//{ "URxvt",             NULL,          NULL,           0,               1,          0,          1,          0,        -1 },
-	//{ "Alacritty",         NULL,          NULL,           0,               1,          0,          1,          0,        -1 },
-    
     // Event tester 
-	{ NULL,                NULL,          "Event Tester", 0,               0,          0,          0,          1,        -1 }, /* xev */
+    { NULL,                NULL,          "Event Tester", 0,               0,          0,          0,          1,        -1 }, /* xev */
 };
 
 /* layout(s) */
@@ -150,12 +142,10 @@ static const Layout layouts[] = {
 /* key definitions */
 #define MODKEY Mod1Mask
 #define TAGKEYS(KEY,TAG) \
-	{ MODKEY,                       KEY,      comboview,      {.ui = 1 << TAG} }, \
-	{ MODKEY|ShiftMask,             KEY,      combotag,       {.ui = 1 << TAG} }, \
-    { MODKEY|ControlMask,           KEY,      tagandview,     {.ui = 1 << TAG} }
-	//{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
-	//{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
-
+        { MODKEY,                       KEY,      comboview,      {.ui = 1 << TAG} }, \
+        { MODKEY|ShiftMask,             KEY,      combotag,       {.ui = 1 << TAG} }, \
+        { MODKEY|ControlMask,           KEY,      tagandview,     {.ui = 1 << TAG} }
+	
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
@@ -181,23 +171,23 @@ static const char *mpvcmd[]     = { "mpvplay", NULL };
  * Xresources preferences to load at startup
  */
 ResourcePref resources[] = {
-		{ "normbgcolor",          STRING,  &normbgcolor },
-		{ "normbordercolor",      STRING,  &normbordercolor },
-		{ "normfgcolor",          STRING,  &normfgcolor },
-		{ "inactivefgcolor",      STRING,  &inactivefgcolor },
-		{ "selbgcolor",           STRING,  &selbgcolor },
-		{ "selbordercolor",       STRING,  &selbordercolor },
-		{ "selfgcolor",           STRING,  &selfgcolor },
+        { "normbgcolor",          STRING,  &normbgcolor },
+        { "normbordercolor",      STRING,  &normbordercolor },
+        { "normfgcolor",          STRING,  &normfgcolor },
+        { "inactivefgcolor",      STRING,  &inactivefgcolor },
+        { "selbgcolor",           STRING,  &selbgcolor },
+        { "selbordercolor",       STRING,  &selbordercolor },
+        { "selfgcolor",           STRING,  &selfgcolor },
         { "normfloatbordercolor", STRING,  &normfloatbordercolor },
         { "selfloatbordercolor",  STRING,  &selfloatbordercolor },
-		{ "borderpx",          	  INTEGER, &borderpx },
-		{ "floatborderpx",     	  INTEGER, &floatborderpx },
-		{ "snap",          		  INTEGER, &snap },
+        { "borderpx",          	  INTEGER, &borderpx },
+        { "floatborderpx",     	  INTEGER, &floatborderpx },
+        { "snap",          		  INTEGER, &snap },
         { "y_inset",              INTEGER, &default_inset.y },
-		{ "nmaster",          	  INTEGER, &nmaster },
-		{ "resizehints",       	  INTEGER, &resizehints },
-		{ "mfact",      	 	  FLOAT,   &mfact },
-		{ "smartborders", 	 	  INTEGER, &smartborders },
+        { "nmaster",          	  INTEGER, &nmaster },
+        { "resizehints",       	  INTEGER, &resizehints },
+        { "mfact",      	  FLOAT,   &mfact },
+        { "smartborders", 	  INTEGER, &smartborders },
         { "selonlyborders",       INTEGER, &selonlyborders },
         { "gaps",                 INTEGER, &gappih },  
         { "gaps",                 INTEGER, &gappiv },  
