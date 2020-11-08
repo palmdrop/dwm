@@ -362,7 +362,7 @@ static void togglenextfloating(const Arg *arg);
 // PATCH for executing different functions based on conditions
 // TODO: test if I can just send in variable name and use offsetof in define below
 // TODO: possible extend macro to entire KEY input?
-# define CONDITIONAL(name, state, f1, f2) conditionalfunction, {.v = {offsetof(Client, name), state, f1, f2}}
+# define CONDITIONAL(name, state, f1, f2) conditionalfunction, {.v = &(ClientConditional){offsetof(Client, name), state, f1, f2}}
 static void conditionalfunction(const Arg *arg);
 typedef struct {
     size_t offset;
@@ -685,15 +685,16 @@ conditionalfunction(const Arg *arg) {
     // Fetch the value at the desired offset
     int value = *(int *)((char *)c + cc->offset);
 
+    //x = value;
     x = value;
 
-    /*if(value == cc->state) {
-        //cc->matchfunc(&(Arg){0});
+    if(value == cc->state) {
+        cc->matchfunc(&(Arg){0});
         //togglefullscr(&(Arg){0});
     } else {
-        //cc->nomatchfunc(&(Arg){0});
+        cc->nomatchfunc(&(Arg){0});
         //togglefloating(&(Arg){0});
-    }*/
+    }
 }
 
 void
