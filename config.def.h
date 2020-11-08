@@ -352,17 +352,6 @@ static Command commands[] = {
     // Bar
 	{ {ShiftMask, 0, 0, 0},               {XK_b, 0, 0, 0},     spawn,           SHCMD("togglebardwm") },
 
-    // Layout 
-	{ {ShiftMask, 0, 0, 0},               {XK_i, 0, 0, 0},     incnmaster,     {.i = +1 } },
-	{ {ShiftMask, 0, 0, 0},               {XK_u, 0, 0, 0},     incnmaster,     {.i = -1 } },
-	{ {0, 0, 0, 0},                       {XK_h, 0, 0, 0},     setmfact,       {.f = -0.05} },
-	{ {0, 0, 0, 0},                       {XK_l, 0, 0, 0},     setmfact,       {.f = +0.05} },
-
-    // cfact
-    { {ShiftMask, 0, 0, 0},               {XK_h, 0, 0, 0},     setcfact,       {.f = -0.25} },
-	{ {ShiftMask, 0, 0, 0},               {XK_l, 0, 0, 0},     setcfact,       {.f = +0.25} },
-	{ {ShiftMask, 0, 0, 0},               {XK_o, 0, 0, 0},     setcfact,       {.f =  0.00} },
-
     // Layouts
 	{ {0, 0, 0, 0},                       {XK_F1, 0, 0, 0},     setlayout,      {.v = &layouts[0]} }, // Tile
 	{ {0, 0, 0, 0},                       {XK_F2, 0, 0, 0},     setlayout,      {.v = &layouts[1]} }, // Monicle
@@ -390,9 +379,10 @@ static Command commands[] = {
     { {0, 0, 0, 0},                       {XK_m, XK_a, 0, 0},  nexttagandview,  {0} },
     { {ControlMask, 0, 0, 0},             {XK_a, 0, 0, 0},     nexttagandview,  {0} },
 
-    { {0, 0, 0, 0},                       {XK_BackSpace, 0, 0, 0}, compacttags, {.ui = 7 } }, // Compacting function, but ignore 8 and 9
+	{ {0, 0, 0, 0},                       {XK_h, 0, 0, 0},     viewtoleft,        {0} },
+	{ {0, 0, 0, 0},                       {XK_l, 0, 0, 0},     viewtoright,       {0} },
 
-	//{ {0, 0, 0, 0},                       XK_0,                view,           {.ui = ~0 } },
+    { {0, 0, 0, 0},                       {XK_BackSpace, 0, 0, 0}, compacttags, {.ui = 7 } }, // Compacting function, but ignore 8 and 9
 
     // Clients
     { {0, 0, 0, 0},                       {XK_d, XK_d, 0, 0},  killclient,     {0} },
@@ -406,13 +396,25 @@ static Command commands[] = {
 	{ {0, 0, 0, 0},                       {XK_period,0, 0, 0}, incrgaps,       {.i = +1 } },
     { {ShiftMask, 0, 0, 0},               {XK_minus, 0, 0, 0}, defaultgaps,    {0} },
 
-    // Floating control
+    // Layout 
+	{ {ShiftMask, 0, 0, 0},               {XK_i, 0, 0, 0},     incnmaster,     {.i = +1 } },
+	{ {ShiftMask, 0, 0, 0},               {XK_u, 0, 0, 0},     incnmaster,     {.i = -1 } },
+
+    // cfact
+
+    // Floating control / layout control
 	{ {0, 0, 0, 0},                       {XK_space, 0, 0, 0}, togglefloating, {0} },
 
-    { {ControlMask, 0, 0, 0},             {XK_j, 0, 0, 0},     moveresize,     {.v = "0x 25y 0w 0h" } },
-	{ {ControlMask, 0, 0, 0},             {XK_k, 0, 0, 0},     moveresize,     {.v = "0x -25y 0w 0h" } },
-	{ {ControlMask, 0, 0, 0},             {XK_l, 0, 0, 0},     moveresize,     {.v = "25x 0y 0w 0h" } },
-	{ {ControlMask, 0, 0, 0},             {XK_h, 0, 0, 0},     moveresize,     {.v = "-25x 0y 0w 0h" } },
+    { {ControlMask, 0, 0, 0},             {XK_j, 0, 0, 0},     CONDITIONAL(isfloating, 1, moveresize, {.v = "0x 25y 0w 0h"}, 
+                                                                                          setcfact,   {.f = -0.25}) },
+    { {ControlMask, 0, 0, 0},             {XK_k, 0, 0, 0},     CONDITIONAL(isfloating, 1, moveresize, {.v = "0x -25y 0w 0h"}, 
+                                                                                          setcfact,   {.f = +0.25}) },
+    { {ControlMask, 0, 0, 0},             {XK_l, 0, 0, 0},     CONDITIONAL(isfloating, 1, moveresize, {.v = "25x 0y 0w 0h"}, 
+                                                                                          setmfact, {.f = 0.05}) },
+    { {ControlMask, 0, 0, 0},             {XK_h, 0, 0, 0},     CONDITIONAL(isfloating, 1, moveresize, {.v = "-25x 0y 0w 0h"}, 
+                                                                                          setmfact, {.f = -0.05}) },
+
+	{ {ControlMask, 0, 0, 0},             {XK_o, 0, 0, 0},     setcfact,       {.f =  0.00} },
 
 	{ {ShiftMask|ControlMask, 0, 0, 0},   {XK_j, 0, 0, 0},     moveresize,     {.v = "0x -15y 0w 30h" } },
 	{ {ShiftMask|ControlMask, 0, 0, 0},   {XK_k, 0, 0, 0},     moveresize,     {.v = "0x 15y 0w -30h" } },
@@ -475,9 +477,6 @@ static Command commands[] = {
     // Brightness control
 	{ {0, 0, 0, 0},                       {XF86XK_MonBrightnessUp, 0, 0, 0},    spawn,   SHCMD("bri up") },
 	{ {0, 0, 0, 0},                       {XF86XK_MonBrightnessDown, 0, 0, 0},  spawn,   SHCMD("bri down") },
-
-    // Testing
-	{ {0, 0, 0, 0}, {XK_t, 0, 0, 0},      CONDITIONAL(isfloating, 1, togglefullscr, {0}, togglefloating, {0})},
 };
 
 /* button definitions */

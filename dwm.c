@@ -364,12 +364,12 @@ static void togglenextfloating(const Arg *arg);
 # define CONDITIONAL(name, state, f1, a1, f2, a2) conditionalfunction, {.v = &(ClientConditional){offsetof(Client, name), state, f1, a1, f2, a2}}
 static void conditionalfunction(const Arg *arg);
 typedef struct {
-    size_t offset;
-    int state;
+    const size_t offset;
+    const int state;
 	void (*matchfunc)(const Arg *);
-    Arg matchArg;
+    const Arg matcharg;
 	void (*nomatchfunc)(const Arg *);
-    Arg nomatchArg;
+    const Arg nomatcharg;
 } ClientConditional;
 
 
@@ -686,16 +686,10 @@ conditionalfunction(const Arg *arg) {
     // Fetch the value at the desired offset
     int value = *(int *)((char *)c + cc->offset);
 
-    //x = value;
-    x = value;
-
-    if(value == cc->state) {
-        cc->matchfunc(&(Arg){0});
-        //togglefullscr(&(Arg){0});
-    } else {
-        cc->nomatchfunc(&(Arg){0});
-        //togglefloating(&(Arg){0});
-    }
+    if(value == cc->state) 
+        cc->matchfunc(&cc->matcharg);
+    else 
+        cc->nomatchfunc(&cc->nomatcharg);
 }
 
 void

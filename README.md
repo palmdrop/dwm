@@ -49,12 +49,10 @@ These are tweaks and changes I've done for my own purposes. I haven't made prope
 * next floating - function for spawning the next window in floating mode
 * tagall - tag all visible clients with the specified tag. Also added "tagandviewall" for tagging all visible clients and viewing that tag simultaneously.
 * swaptags - swap the currently visible tags with a selected one. Also added swapandviewtags, to simultaneously swap and view the target tag.
+* conditionalfunction - function for executing one function if the focused client is in a specific state, and another function if the client is in another state. Here, it's used for changing m-/c-facts if the client is in tiled mode and move the client if it's floating. "CONDITIONAL" macro can be used to more easily use this functionality (NOTE: Experimental, probably won't work for Client fields that are not integers).
 
 # Keybinds
 See config.def.h. Although they are quite personal and probably not sensible to other people. 
 
 # Other
 My build depends on a bunch of personal scripts. Those scripts can be found here: https://github.com/palmdrop/dots
-
-But you'd probably want to use your own instead.
-
