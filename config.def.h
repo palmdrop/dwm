@@ -153,7 +153,6 @@ static const Layout layouts[] = {
 	{ MODKEY,                       KEY,      comboview,      {.ui = 1 << TAG} }, \
 	{ MODKEY|ShiftMask,             KEY,      combotag,       {.ui = 1 << TAG} }, \
     { MODKEY|ControlMask,           KEY,      tagandview,     {.ui = 1 << TAG} }
-
 	//{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 	//{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
@@ -410,9 +409,9 @@ static Command commands[] = {
     { {ControlMask, 0, 0, 0},             {XK_k, 0, 0, 0},     CONDITIONAL(isfloating, 1, moveresize, {.v = "0x -25y 0w 0h"}, 
                                                                                           setcfact,   {.f = +0.25}) },
     { {ControlMask, 0, 0, 0},             {XK_l, 0, 0, 0},     CONDITIONAL(isfloating, 1, moveresize, {.v = "25x 0y 0w 0h"}, 
-                                                                                          setmfact, {.f = 0.05}) },
+                                                                                          setmfact,   {.f = 0.05}) },
     { {ControlMask, 0, 0, 0},             {XK_h, 0, 0, 0},     CONDITIONAL(isfloating, 1, moveresize, {.v = "-25x 0y 0w 0h"}, 
-                                                                                          setmfact, {.f = -0.05}) },
+                                                                                          setmfact,   {.f = -0.05}) },
 
 	{ {ControlMask, 0, 0, 0},             {XK_o, 0, 0, 0},     setcfact,       {.f =  0.00} },
 
