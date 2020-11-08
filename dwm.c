@@ -360,15 +360,16 @@ static void tagandviewall(const Arg *arg);
 static void togglenextfloating(const Arg *arg);
 
 // PATCH for executing different functions based on conditions
-// TODO: test if I can just send in variable name and use offsetof in define below
-// TODO: possible extend macro to entire KEY input?
-# define CONDITIONAL(name, state, f1, f2) conditionalfunction, {.v = &(ClientConditional){offsetof(Client, name), state, f1, f2}}
+// NOTE: only works with integer-typed variables for Client!
+# define CONDITIONAL(name, state, f1, a1, f2, a2) conditionalfunction, {.v = &(ClientConditional){offsetof(Client, name), state, f1, a1, f2, a2}}
 static void conditionalfunction(const Arg *arg);
 typedef struct {
     size_t offset;
     int state;
 	void (*matchfunc)(const Arg *);
+    Arg matchArg;
 	void (*nomatchfunc)(const Arg *);
+    Arg nomatchArg;
 } ClientConditional;
 
 

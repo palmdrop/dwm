@@ -477,7 +477,7 @@ static Command commands[] = {
 	{ {0, 0, 0, 0},                       {XF86XK_MonBrightnessDown, 0, 0, 0},  spawn,   SHCMD("bri down") },
 
     // Testing
-	{ {0, 0, 0, 0}, {XK_t, 0, 0, 0},      CONDITIONAL(isfloating, 1, togglefullscr, togglefloating)},
+	{ {0, 0, 0, 0}, {XK_t, 0, 0, 0},      CONDITIONAL(isfloating, 1, togglefullscr, {0}, togglefloating, {0})},
 };
 
 /* button definitions */
