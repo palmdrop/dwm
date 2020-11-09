@@ -370,6 +370,10 @@ static Command commands[] = {
 
     { {0, 0, 0, 0},                       {XK_h, 0, 0, 0},      viewtoleft,        {0} },
     { {0, 0, 0, 0},                       {XK_l, 0, 0, 0},      viewtoright,       {0} },
+    { {0, 0, 0, 0},                       {XK_w, XK_h, 0, 0},   tagtoleft,         {0} },
+    { {0, 0, 0, 0},                       {XK_w, XK_l, 0, 0},   tagtoright,        {0} },
+    { {0, 0, 0, 0},                       {XK_m, XK_h, 0, 0},   tagandviewtoleft,  {0} },
+    { {0, 0, 0, 0},                       {XK_m, XK_l, 0, 0},   tagandviewtoright, {0} },
 
     { {0, 0, 0, 0},                       {XK_BackSpace,0,0,0}, compacttags, {.ui = 7 } }, // Compacting function, but ignore tag 8 and 9
 
