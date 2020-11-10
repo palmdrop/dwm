@@ -17,6 +17,7 @@ static       unsigned int gappov    = outergaps;/* vert outer gap between window
 static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static       int smartborders       = 1;        /* 1 means no borders if only one window is open */
 static       int selonlyborders     = 0;        /* 1 means only borders for focused window */
+static       int focusonnetactive   = 0;        /* 1 means urgent windows will be focused */
 
 static       int showbar            = 1;        /* 0 means no bar */
 static       int topbar             = 0;        /* 0 means bottom bar */
@@ -186,6 +187,7 @@ ResourcePref resources[] = {
         { "y_inset",              INTEGER, &default_inset.y },
         { "nmaster",              INTEGER, &nmaster },
         { "resizehints",          INTEGER, &resizehints },
+        { "focusonnetactive",     INTEGER, &focusonnetactive },
         { "mfact",                FLOAT,   &mfact },
         { "smartborders",         INTEGER, &smartborders },
         { "selonlyborders",       INTEGER, &selonlyborders },
