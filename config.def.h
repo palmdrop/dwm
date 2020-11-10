@@ -155,7 +155,7 @@ static char dmenumon[2] = "0";
 static const char *dmenucmd[]    = { "dmenu_run_notify", NULL };
 static const char *wificmd[]     = { "networkmanager_dmenu", "-m", dmenumon, "-i", "-F", NULL };
 
-static const char *prntscrncmd[] = { "flameshot", "full", "-p", "/home/xan/Pictures/screenshots/", NULL };
+static const char *prntscrncmd[] = { "flameshot", "full", "-p", "/home/xan/usr/pictures/screenshots/", NULL };
 static const char *capturecmd[]  = { "flameshot", "gui", NULL };
 
 static const char *termcmd[]     = { TERM, "-g", TERMSIZE, NULL };
