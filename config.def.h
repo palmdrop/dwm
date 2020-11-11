@@ -137,7 +137,7 @@ static const Layout layouts[] = {
     //{ "---",      horizgrid },
     //{ "",      gaplessgrid },
     //{ ">M>",      centeredfloatingmaster },
-    { "",        NULL },    /* no layout function means floating behavior */
+    { "floating", NULL },    /* no layout function means floating behavior */
 };
 
 /* key definitions */
@@ -221,6 +221,7 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_x,      spawn,              SHCMD("xkill") },
 
     { MODKEY,                       XK_z,      spawn,              SHCMD("flash_window") }, // Flash focus indicator
+    { MODKEY|ShiftMask,             XK_z,      spawn,              SHCMD("dmenu_dwm_layout") },
 
     // Move stack
     { MODKEY|ShiftMask,             XK_j,      movestack,          {.i = +1 } },
