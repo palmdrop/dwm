@@ -220,6 +220,8 @@ static Key keys[] = {
 
     { MODKEY|ShiftMask,             XK_x,      spawn,              SHCMD("xkill") },
 
+    { MODKEY,                       XK_z,      spawn,              SHCMD("flash_window") }, // Flash focus indicator
+
     // Move stack
     { MODKEY|ShiftMask,             XK_j,      movestack,          {.i = +1 } },
     { MODKEY|ShiftMask,             XK_k,      movestack,          {.i = -1 } },
@@ -341,7 +343,7 @@ static Command commands[] = {
     { {0, 0, 0, 0},                       {XK_Tab, 0, 0, 0},    view,           {0} },
 
     // Bar
-    { {ShiftMask, 0, 0, 0},               {XK_b, 0, 0, 0},      spawn,           SHCMD("togglebardwm") },
+    { {ShiftMask, 0, 0, 0},               {XK_b, 0, 0, 0},      spawn,          SHCMD("togglebardwm") },
 
     // Layouts
     { {0, 0, 0, 0},                       {XK_F1, 0, 0, 0},     setlayout,      {.v = &layouts[0]} }, // Tile
@@ -395,8 +397,6 @@ static Command commands[] = {
     { {ShiftMask, 0, 0, 0},               {XK_i, 0, 0, 0},      incnmaster,     {.i = +1 } },
     { {ShiftMask, 0, 0, 0},               {XK_u, 0, 0, 0},      incnmaster,     {.i = -1 } },
 
-    // cfact
-
     // Floating control / layout control
     { {0, 0, 0, 0},                       {XK_space, 0, 0, 0},  togglefloating, {0} },
 
@@ -447,6 +447,7 @@ static Command commands[] = {
     // Other
     { {0, 0, 0, 0},                       {XK_p, XK_p, 0, 0},   spawn,            {.v = termcmd} },
     { {ControlMask, ShiftMask, 0, 0},     {XK_w, XK_o, 0, 0},   onlyclient,       {0} },
+    { {0, ShiftMask, 0, 0},               {XK_d, XK_o, 0, 0},   onlyclient,       {0} },
 
     // System info
     { {0, 0, 0, 0},                       {XK_o, 0, 0, 0},    spawn,              SHCMD("herbe-info") },
