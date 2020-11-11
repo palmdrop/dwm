@@ -124,20 +124,20 @@ static int  attachbelow = 1;    /* 1 means attach after the currently active win
 
 static const Layout layouts[] = {
     /* symbol   arrange function */
-    { "",      tile },    /* first entry is default */
-    { "",      monocle },
-    { "",      dwindle },
-    { "",      grid },
-    { "",      centeredmaster },
-    { "",      spiral },
-    { "",      bstack },
+    { "tile",     tile },    /* first entry is default */
+    { "monocle",  monocle },
+    { "dwindle",  dwindle },
+    { "grid",     grid },
+    { "centered", centeredmaster },
+    { "spiral",   spiral },
+    { "bstack",   bstack },
     //{ "H[]",      deck },
     //{ "",      bstackhoriz },
     //{ "",      nrowgrid },
     //{ "---",      horizgrid },
     //{ "",      gaplessgrid },
     //{ ">M>",      centeredfloatingmaster },
-    { "",      NULL },    /* no layout function means floating behavior */
+    { "",        NULL },    /* no layout function means floating behavior */
 };
 
 /* key definitions */
