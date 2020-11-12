@@ -78,7 +78,6 @@ static char keymodepath[] = "/tmp/dwm.keymode";
 
 static const char *const autostart[] = {
     TERM, "-t", "hidden", "-g", TERMSIZE, "-e", "vit", NULL,
-    "sh", "-c", "dwm-notify", NULL,
     NULL /* terminate */
 };
 
