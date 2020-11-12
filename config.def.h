@@ -78,6 +78,7 @@ static char keymodepath[] = "/tmp/dwm.keymode";
 
 static const char *const autostart[] = {
     TERM, "-t", "hidden", "-g", TERMSIZE, "-e", "vit", NULL,
+    "sh", "-c", "dwm-notify", NULL,
     NULL /* terminate */
 };
 
@@ -198,6 +199,7 @@ ResourcePref resources[] = {
         { "keymodepath",          STRING,  &keymodepath },
 };
 
+#include "focusurgent.c"
 static Key keys[] = {
     /* modifier                     key        function            argument */
     { MODKEY,                       XK_Escape, setkeymode,         {.ui = COMMANDMODE} },
@@ -220,6 +222,7 @@ static Key keys[] = {
 
     { MODKEY|ShiftMask,             XK_x,      spawn,              SHCMD("xkill") },
 
+    { MODKEY,                       XK_u,      focusurgent,        {0} },
     { MODKEY,                       XK_z,      spawn,              SHCMD("flash_window") }, // Flash focus indicator
     { MODKEY|ShiftMask,             XK_z,      spawn,              SHCMD("dmenu_dwm_layout") },
 
@@ -266,7 +269,7 @@ static Key keys[] = {
 
     // Mount control
     { MODKEY,                       XK_m,       spawn,         {.v = mountcmd  } },
-    { MODKEY,                       XK_u,       spawn,         {.v = umountcmd  } },
+    { MODKEY|ShiftMask,             XK_m,       spawn,         {.v = umountcmd  } },
 
     // Program shortcuts
     { MODKEY,                       XK_w,       spawn,         {.v = wificmd    } },

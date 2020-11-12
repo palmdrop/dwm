@@ -4,7 +4,6 @@ Palmdrop's custom build of dwm. Original dwm build by the suckless team found he
 
 # Patches
 Most patches can also be found here: https://dwm.suckless.org/patches/
-
 Some patches are found elsewhere.
 
 * actualfullscreen - fullscreen is not just monocle layout + bar toggle
@@ -20,8 +19,9 @@ Some patches are found elsewhere.
 * combo - you can now multi-view or multi-tag by pressing multiple number keys at the same time
 * cool-autostart - autostart applications using commands placed in autostart array within config.def.h
 * float-border-color - allows for different border colors for floating windows. Source code has been modded slightly a few bugs. However, diff-file is unchaged.
-* focusonnetactive - focuses "urgent" windows
+* focusonnetactive - focuses "urgent" windows (modded to only optionally be applied)
 * focusadjacenttag - view or tags an adjacent tag to the left or right
+* focusurgent - function for focusing the next urgent window 
 * insets - adds optional insets around screen. I've modded code to allow for toggling between two different pre-defined insets. This helped me solve an issue with toggling polybar.
 * IPC - interprocess communication for dwm. Required to make dwm polybar-compatible. Can be found here: https://github.com/mihirlad55/dwm-ipc
 * keymodes - old patch for adding different keymodes to dwm. Makes dwm more vim-like. Had to fetch an antient method (`isprotodel(Client *)`) from an old dwm-version to make this compatible with dwm 6.2.
@@ -51,9 +51,6 @@ These are tweaks and changes I've done for my own purposes. I haven't made prope
 * tagall - tag all visible clients with the specified tag. Also added "tagandviewall" for tagging all visible clients and viewing that tag simultaneously.
 * swaptags - swap the currently visible tags with a selected one. Also added swapandviewtags, to simultaneously swap and view the target tag.
 * conditionalfunction - function for executing one function if the focused client is in a specific state, and another function if the client is in another state. Here, it's used for changing m-/c-facts if the client is in tiled mode and move the client if it's floating. "CONDITIONAL" macro can be used to more easily use this functionality (NOTE: Experimental, probably won't work for Client fields that are not integers).
-
-# Keybinds
-See config.def.h. Although they are quite personal and probably not sensible to other people. 
 
 # Other
 My build depends on a bunch of personal scripts. Those scripts can be found here: https://github.com/palmdrop/dots
