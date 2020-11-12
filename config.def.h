@@ -222,8 +222,8 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_x,      spawn,              SHCMD("xkill") },
 
     { MODKEY,                       XK_u,      focusurgent,        {0} },
-    { MODKEY,                       XK_z,      spawn,              SHCMD("flash_window") }, // Flash focus indicator
-    { MODKEY|ShiftMask,             XK_z,      spawn,              SHCMD("dmenu_dwm_layout") },
+    { MODKEY,                       XK_q,      spawn,              SHCMD("flash_window") }, // Flash focus indicator
+    { MODKEY,                       XK_z,      spawn,              SHCMD("dmenu_dwm_layout") },
 
     // Move stack
     { MODKEY|ShiftMask,             XK_j,      movestack,          {.i = +1 } },
