@@ -123,21 +123,21 @@ static int  attachbelow = 1;    /* 1 means attach after the currently active win
 #include "vanitygaps.c"
 
 static const Layout layouts[] = {
-    /* symbol   arrange function */
-    { "tile",     tile },    /* first entry is default */
-    { "monocle",  monocle },
-    { "dwindle",  dwindle },
-    { "grid",     grid },
-    { "centered", centeredmaster },
-    { "spiral",   spiral },
-    { "bstack",   bstack },
-    //{ "H[]",      deck },
-    //{ "",      bstackhoriz },
-    //{ "",      nrowgrid },
-    //{ "---",      horizgrid },
-    //{ "",      gaplessgrid },
-    //{ ">M>",      centeredfloatingmaster },
-    { "floating", NULL },    /* no layout function means floating behavior */
+    /* symbol              arrange function */
+    { "tile",              tile },    /* first entry is default */
+    { "monocle",           monocle },
+    { "dwindle",           dwindle },
+    { "grid",              grid },
+    { "centered",          centeredmaster },
+    { "spiral",            spiral },
+    { "bstack",            bstack },
+    { "deck",              deck },
+    { "horizontal_bstack", bstackhoriz },
+    { "nrow_grid",         nrowgrid },
+    { "horizontal_grid",   horizgrid },
+    { "gapless_grid",      gaplessgrid },
+    { "floating_master",   centeredfloatingmaster },
+    { "floating",          NULL },    /* no layout function means floating behavior */
 };
 
 /* key definitions */
