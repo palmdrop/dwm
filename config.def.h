@@ -345,6 +345,8 @@ static Command commands[] = {
     { {0, 0, 0, 0},                       {XK_Return, 0, 0, 0}, zoom,           {0} },
     { {0, 0, 0, 0},                       {XK_Tab, 0, 0, 0},    view,           {0} },
 
+    { {0, 0, 0, 0},                       {XK_q, 0, 0, 0},      spawn,          SHCMD("flash_window") },
+
     // Bar
     { {ShiftMask, 0, 0, 0},               {XK_b, 0, 0, 0},      spawn,          SHCMD("togglebardwm") },
 
@@ -511,7 +513,9 @@ static IPCCommand ipccommands[] = {
     IPCCOMMAND(  togglefloating,      1,      {ARG_TYPE_NONE}   ),
     IPCCOMMAND(  setmfact,            1,      {ARG_TYPE_FLOAT}  ),
     IPCCOMMAND(  setlayoutsafe,       1,      {ARG_TYPE_PTR}    ),
-    IPCCOMMAND(  quit,                1,      {ARG_TYPE_NONE}   )
+    IPCCOMMAND(  quit,                1,      {ARG_TYPE_NONE}   ),
+
+    IPCCOMMAND(  focusurgent,         1,      {ARG_TYPE_NONE}   )
 };
 
 /* include(s) depending on the configuration variables */
