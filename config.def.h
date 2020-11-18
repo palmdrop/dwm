@@ -282,6 +282,7 @@ static Key keys[] = {
 
     { MODKEY|ShiftMask,             XK_d,       spawn,         SHCMD("dmenu_dots_edit") },
     { MODKEY|ShiftMask,             XK_e,       spawn,         SHCMD("dmenu_dirs_edit") },
+    { MODKEY|ShiftMask,             XK_c,       spawn,         SHCMD("dmenu_shortcuts") },
 
     // Tags
     TAGKEYS(                        XK_1,                      0),
