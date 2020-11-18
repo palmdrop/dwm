@@ -217,13 +217,7 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_Return, zoom,               {0} },
     { MODKEY,                       XK_Tab,    view,               {0} },
     { MODKEY|ShiftMask,             XK_q,      killclient,         {0} },
-    { MODKEY,                       XK_x,      spawn,              SHCMD("slock") },
-
-    { MODKEY|ShiftMask,             XK_x,      spawn,              SHCMD("xkill") },
-
     { MODKEY,                       XK_u,      focusurgent,        {0} },
-    { MODKEY,                       XK_q,      spawn,              SHCMD("flash_window") }, // Flash focus indicator
-    { MODKEY,                       XK_z,      spawn,              SHCMD("dmenu_dwm_layout") },
 
     // Move stack
     { MODKEY|ShiftMask,             XK_j,      movestack,          {.i = +1 } },
@@ -239,9 +233,6 @@ static Key keys[] = {
     { MODKEY,                       XK_s,      scratchpad_show,    {0} },
     { MODKEY|ShiftMask,             XK_s,      scratchpad_hide,    {0} },
     { MODKEY|ControlMask,           XK_s,      scratchpad_remove,  {0} },
-
-    // Window switcher
-    { MODKEY,                       XK_f,      spawn,              SHCMD("dswitcher") },
 
     // System info shortcuts
     { MODKEY,                       XK_o,      spawn,              SHCMD("herbe-info") },
@@ -273,16 +264,22 @@ static Key keys[] = {
     // Program shortcuts
     { MODKEY,                       XK_w,       spawn,         {.v = wificmd    } },
     { MODKEY,                       XK_e,       spawn,         {.v = rangercmd  } },
-    { MODKEY,                       XK_b,       spawn,         SHCMD(BROWSER) },
-    { MODKEY,                       XK_g,       spawn,         SHCMD("gimp") },
-    { MODKEY,                       XK_c,       spawn,         SHCMD("idea") },
     { MODKEY,                       XK_r,       spawn,         {.v = rsscmd } },
     { MODKEY,                       XK_t,       spawn,         {.v = taskcmd } },
     { MODKEY,                       XK_y,       spawn,         {.v = mpvcmd } },
+    { MODKEY,                       XK_b,       spawn,         SHCMD(BROWSER) },
+    { MODKEY,                       XK_g,       spawn,         SHCMD("gimp") },
+    { MODKEY,                       XK_c,       spawn,         SHCMD("idea") },
+    { MODKEY|ShiftMask,             XK_x,       spawn,         SHCMD("xkill") },
+    { MODKEY,                       XK_x,       spawn,         SHCMD("slock") },
 
     { MODKEY|ShiftMask,             XK_d,       spawn,         SHCMD("dmenu_dots_edit") },
     { MODKEY|ShiftMask,             XK_e,       spawn,         SHCMD("dmenu_dirs_edit") },
     { MODKEY|ShiftMask,             XK_c,       spawn,         SHCMD("dmenu_shortcuts") },
+    { MODKEY,                       XK_z,       spawn,         SHCMD("dmenu_dwm_layout") },
+    { MODKEY,                       XK_f,       spawn,         SHCMD("dswitcher") },
+
+    { MODKEY,                       XK_q,       spawn,         SHCMD("flash_window") }, // Flash focus indicator
 
     // Tags
     TAGKEYS(                        XK_1,                      0),
@@ -305,6 +302,8 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_l,      tagtoright,        {0} },
     { MODKEY|ControlMask,           XK_h,      tagandviewtoleft,  {0} },
     { MODKEY|ControlMask,           XK_l,      tagandviewtoright, {0} },
+
+    { MODKEY,                       XK_BackSpace, compacttags,    {.ui = 7 } }, // Compacting function, but ignore tag 8 and 9
 
     // Quit
     { MODKEY|ShiftMask,             XK_r,      quit,              {0} }, // Reload
