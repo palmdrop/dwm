@@ -394,8 +394,10 @@ static Command commands[] = {
 
     // Vanity gaps
     { {0, 0, 0, 0},                       {XK_minus, 0, 0, 0},  togglegaps,     {0} },
-    { {0, 0, 0, 0},                       {XK_comma,0, 0, 0},   incrgaps,       {.i = -1 } },
-    { {0, 0, 0, 0},                       {XK_period,0, 0, 0},  incrgaps,       {.i = +1 } },
+    { {0, 0, 0, 0},                       {XK_comma, 0, 0, 0},  incrgaps,       {.i = -2 } },
+    { {0, 0, 0, 0},                       {XK_period,0, 0, 0},  incrgaps,       {.i = +2 } },
+    { {ShiftMask, 0, 0, 0},               {XK_comma, 0, 0, 0},  incrogaps,      {.i = -2 } },
+    { {ShiftMask, 0, 0, 0},               {XK_period,0, 0, 0},  incrogaps,      {.i = +2 } },
     { {ShiftMask, 0, 0, 0},               {XK_minus, 0, 0, 0},  defaultgaps,    {0} },
 
     // Layout 
