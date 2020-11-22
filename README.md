@@ -48,7 +48,7 @@ These are tweaks and changes I've done for my own purposes. I haven't made prope
 * compacttags - function for removing gaps between used tags, i.e, if tag 2 and 4 are occupied, after applying this function, 1 and 2 will be occupied instead. A similar patch exists here: https://dwm.suckless.org/patches/reorganizetags
 * moveresizedouble - function for doubling or halving the width or height of a floating window
 * next floating - function for spawning the next window in floating mode
-* tagall - tag all visible clients with the specified tag. Also added "tagandviewall" for tagging all visible clients and viewing that tag simultaneously.
+* tagall - tag all visible clients with the specified tag. Also added "tagandviewall" for tagging all visible clients and viewing that tag simultaneously. Added the same functionality for focusing adjacent tags.
 * swaptags - swap the currently visible tags with a selected one. Also added swapandviewtags, to simultaneously swap and view the target tag.
 * conditionalfunction - function for executing one function if the focused client is in a specific state, and another function if the client is in another state. Here, it's used for changing m-/c-facts if the client is in tiled mode and move the client if it's floating. "CONDITIONAL" macro can be used to more easily use this functionality (NOTE: Experimental, probably won't work for Client fields that are not integers).
 

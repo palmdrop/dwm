@@ -300,7 +300,11 @@ static void spawnbar();
 static void tag(const Arg *arg);
 static void tagmon(const Arg *arg);
 static void tagtoleft(const Arg *arg);
+static void tagtoleftall(const Arg *arg);
 static void tagtoright(const Arg *arg);
+static void tagtorightall(const Arg *arg);
+static void tagandviewtorightall(const Arg *arg);
+static void tagandviewtoleftall(const Arg *arg);
 
 // PATCH for tagging and viewing to left/right 
 static void tagandviewtoleft(const Arg *arg);
@@ -1557,11 +1561,21 @@ isprotodel(Client *c) {
 	return ret;
 }
 
+int cantagleft() {
+	return (selmon->sel != NULL
+            && __builtin_popcount(selmon->tagset[selmon->seltags] & TAGMASK) == 1
+            && selmon->tagset[selmon->seltags] > 1);
+}
+
+int cantagright() {
+	return (selmon->sel != NULL
+            && __builtin_popcount(selmon->tagset[selmon->seltags] & TAGMASK) == 1
+            && selmon->tagset[selmon->seltags] & (TAGMASK >> 1));
+}
+
 void
 tagtoleft(const Arg *arg) {
-	if(selmon->sel != NULL
-	&& __builtin_popcount(selmon->tagset[selmon->seltags] & TAGMASK) == 1
-	&& selmon->tagset[selmon->seltags] > 1) {
+    if(cantagleft()) {
 		selmon->sel->tags >>= 1;
 		focus(NULL);
 		arrange(selmon);
@@ -1570,13 +1584,46 @@ tagtoleft(const Arg *arg) {
 
 void
 tagtoright(const Arg *arg) {
-	if(selmon->sel != NULL
-	&& __builtin_popcount(selmon->tagset[selmon->seltags] & TAGMASK) == 1
-	&& selmon->tagset[selmon->seltags] & (TAGMASK >> 1)) {
+    if(cantagright()) {
 		selmon->sel->tags <<= 1;
 		focus(NULL);
 		arrange(selmon);
 	}
+}
+
+// PATCH for tagging all visible clients to the left or right
+void
+tagtoleftall(const Arg *arg) {
+    if(cantagleft()) {
+        Arg a = {.ui = selmon->sel->tags >> 1 };
+        tagall(&a);
+	}
+}
+
+
+void 
+tagtorightall(const Arg *arg) {
+    if(cantagright()) {
+        Arg a = {.ui = selmon->sel->tags << 1 };
+        tagall(&a);
+    }
+}
+
+void
+tagandviewtoleftall(const Arg *arg) {
+    if(cantagleft()) {
+        Arg a = {.ui = selmon->sel->tags >> 1 };
+        tagandviewall(&a);
+	}
+}
+
+
+void 
+tagandviewtorightall(const Arg *arg) {
+    if(cantagright()) {
+        Arg a = {.ui = selmon->sel->tags << 1 };
+        tagandviewall(&a);
+    }
 }
 
 // PATCH

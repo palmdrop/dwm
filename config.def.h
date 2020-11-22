@@ -372,17 +372,25 @@ static Command commands[] = {
     TAGKEYSCMD(                           XK_8,                 7),
     TAGKEYSCMD(                           XK_9,                 8),
 
-    { {0, 0, 0, 0},                       {XK_a, 0, 0, 0},      nextview,        {0} },
-    { {ShiftMask, 0, 0, 0},               {XK_a, 0, 0, 0},      nexttag,         {0} },
-    { {0, 0, 0, 0},                       {XK_m, XK_a, 0, 0},   nexttagandview,  {0} },
-    { {ControlMask, 0, 0, 0},             {XK_a, 0, 0, 0},      nexttagandview,  {0} },
+    { {0, 0, 0, 0},                       {XK_a, 0, 0, 0},      nextview,         {0} },
+    { {ShiftMask, 0, 0, 0},               {XK_a, 0, 0, 0},      nexttag,          {0} },
+    { {0, 0, 0, 0},                       {XK_m, XK_a, 0, 0},   nexttagandview,   {0} },
+    { {ControlMask, 0, 0, 0},             {XK_a, 0, 0, 0},      nexttagandview,   {0} },
 
-    { {0, 0, 0, 0},                       {XK_h, 0, 0, 0},      viewtoleft,        {0} },
-    { {0, 0, 0, 0},                       {XK_l, 0, 0, 0},      viewtoright,       {0} },
-    { {0, 0, 0, 0},                       {XK_w, XK_h, 0, 0},   tagtoleft,         {0} },
-    { {0, 0, 0, 0},                       {XK_w, XK_l, 0, 0},   tagtoright,        {0} },
-    { {0, 0, 0, 0},                       {XK_m, XK_h, 0, 0},   tagandviewtoleft,  {0} },
-    { {0, 0, 0, 0},                       {XK_m, XK_l, 0, 0},   tagandviewtoright, {0} },
+    { {0, 0, 0, 0},                       {XK_h, 0, 0, 0},      viewtoleft,       {0} },
+    { {0, 0, 0, 0},                       {XK_l, 0, 0, 0},      viewtoright,      {0} },
+
+    { {0, 0, 0, 0},                       {XK_w, XK_h, 0, 0},   tagtoleft,        {0} },
+    { {0, 0, 0, 0},                       {XK_w, XK_l, 0, 0},   tagtoright,       {0} },
+
+    { {0, 0, 0, 0},                       {XK_w, XK_w, XK_h, 0},tagtoleftall,     {0} },
+    { {0, 0, 0, 0},                       {XK_w, XK_w, XK_l, 0},tagtorightall,    {0} },
+
+    { {0, 0, 0, 0},                       {XK_m, XK_h, 0, 0},   tagandviewtoleft, {0} },
+    { {0, 0, 0, 0},                       {XK_m, XK_l, 0, 0},   tagandviewtoright,{0} },
+
+    { {0, 0, 0, 0},                       {XK_m, XK_m, XK_h, 0},tagandviewtoleftall, {0} },
+    { {0, 0, 0, 0},                       {XK_m, XK_m, XK_l, 0},tagandviewtorightall,{0} },
 
     { {0, 0, 0, 0},                       {XK_BackSpace,0,0,0}, compacttags, {.ui = 7 } }, // Compacting function, but ignore tag 8 and 9
 
