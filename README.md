@@ -49,7 +49,7 @@ These are tweaks and changes I've done for my own purposes. I haven't made prope
 * moveresizedouble - function for doubling or halving the width or height of a floating window
 * next floating - function for spawning the next window in floating mode
 * tagall - tag all visible clients with the specified tag. Also added "tagandviewall" for tagging all visible clients and viewing that tag simultaneously. Added the same functionality for focusing adjacent tags.
-* swaptags - swap the currently visible tags with a selected one. Also added swapandviewtags, to simultaneously swap and view the target tag.
+* swaptags - swap the currently visible tags with a selected one. Also added swapandviewtags, to simultaneously swap and view the target tag. Added the same functionality for adjacent tags.
 * conditionalfunction - function for executing one function if the focused client is in a specific state, and another function if the client is in another state. Here, it's used for changing m-/c-facts if the client is in tiled mode and move the client if it's floating. "CONDITIONAL" macro can be used to more easily use this functionality (NOTE: Experimental, probably won't work for Client fields that are not integers).
 
 # Other

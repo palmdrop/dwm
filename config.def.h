@@ -392,6 +392,12 @@ static Command commands[] = {
     { {0, 0, 0, 0},                       {XK_m, XK_m, XK_h, 0},tagandviewtoleftall, {0} },
     { {0, 0, 0, 0},                       {XK_m, XK_m, XK_l, 0},tagandviewtorightall,{0} },
 
+    { {0, 0, 0, 0},                       {XK_s, XK_h, 0, 0},   swaptagstoleft,      {0} },
+    { {0, 0, 0, 0},                       {XK_s, XK_l, 0, 0},   swaptagstoright,     {0} },
+
+    { {0, 0, 0, 0},                       {XK_s, XK_s, XK_h, 0},swapandviewtagstoleft, {0} },
+    { {0, 0, 0, 0},                       {XK_s, XK_s, XK_l, 0},swapandviewtagstoright,{0} },
+
     { {0, 0, 0, 0},                       {XK_BackSpace,0,0,0}, compacttags, {.ui = 7 } }, // Compacting function, but ignore tag 8 and 9
 
     // Clients

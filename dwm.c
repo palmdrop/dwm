@@ -358,6 +358,11 @@ static void nexttagandview(const Arg *arg);
 static void compacttags(const Arg *arg);
 static void swaptags(const Arg *arg);
 static void swapandviewtags(const Arg *arg);
+static void swaptagstoleft(const Arg *arg);
+static void swaptagstoright(const Arg *arg);
+static void swapandviewtagstoleft(const Arg *arg);
+static void swapandviewtagstoright(const Arg *arg);
+
 static void tagall(const Arg *arg);
 static void tagandviewall(const Arg *arg);
 
@@ -624,6 +629,18 @@ compacttags(const Arg *arg) {
 }
 
 // PATCH function for swapping the currently selected tag(s) with a chosen tag
+int cantagleft() {
+	return (selmon->sel != NULL
+            && __builtin_popcount(selmon->tagset[selmon->seltags] & TAGMASK) == 1
+            && selmon->tagset[selmon->seltags] > 1);
+}
+
+int cantagright() {
+	return (selmon->sel != NULL
+            && __builtin_popcount(selmon->tagset[selmon->seltags] & TAGMASK) == 1
+            && selmon->tagset[selmon->seltags] & (TAGMASK >> 1));
+}
+
 void swaptags(const Arg *arg) {
     if(!arg || !arg->ui) return;
 
@@ -650,6 +667,37 @@ void swapandviewtags(const Arg *arg) {
     view(arg);
 }
 
+void
+swaptagstoleft(const Arg *arg) {
+    if(cantagleft()) {
+        Arg a = {.ui = selmon->sel->tags >> 1 };
+        swaptags(&a);
+	}
+}
+
+void 
+swaptagstoright(const Arg *arg) {
+    if(cantagright()) {
+        Arg a = {.ui = selmon->sel->tags << 1 };
+        swaptags(&a);
+    }
+}
+
+void
+swapandviewtagstoleft(const Arg *arg) {
+    if(cantagleft()) {
+        Arg a = {.ui = selmon->sel->tags >> 1 };
+        swapandviewtags(&a);
+	}
+}
+
+void 
+swapandviewtagstoright(const Arg *arg) {
+    if(cantagright()) {
+        Arg a = {.ui = selmon->sel->tags << 1 };
+        swapandviewtags(&a);
+    }
+}
 
 // PATCH function for moving all visible windows to a specified tag
 void 
@@ -1559,18 +1607,6 @@ isprotodel(Client *c) {
 		XFree(protocols);
 	}
 	return ret;
-}
-
-int cantagleft() {
-	return (selmon->sel != NULL
-            && __builtin_popcount(selmon->tagset[selmon->seltags] & TAGMASK) == 1
-            && selmon->tagset[selmon->seltags] > 1);
-}
-
-int cantagright() {
-	return (selmon->sel != NULL
-            && __builtin_popcount(selmon->tagset[selmon->seltags] & TAGMASK) == 1
-            && selmon->tagset[selmon->seltags] & (TAGMASK >> 1));
 }
 
 void
