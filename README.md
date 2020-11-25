@@ -42,6 +42,7 @@ These are tweaks and changes I've done for my own purposes. I haven't made prope
 
 * disable fullscreen on focus loss - mitigates confusion when a new client is opened while another one is in fullscreen
 * different borders for tiled and floating clients - mostly used for having no borders for floating windows.
+* changed floating layout behavior to actually set the "isfloating" variable to 1 when floating layout is enabled. New windows are also spawned in actual floating mode. The window floating state is restored when another layout is enabled. This is done to make sure floating layout is compatible with patches like moveresize.
 * made focusonnetactive patch optional using a variable in config.h
 * tagandview - method for simultaneously tagging a client and switching the view to same tag. Variations of this function has been added for the focusadjacenttag patch (i.e, tagandviewleft() + tagandviewright() has been added).
 * next unoccupied tag - a few functions for viewing and tagging the next unoccupied tag

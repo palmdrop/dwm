@@ -113,6 +113,7 @@ struct Client {
 	int bw, oldbw;
 	unsigned int tags;
     int isfixed, iscentered, isfloating, isurgent, neverfocus, oldstate, isfullscreen, needresize, issticky, isterminal, noswallow;
+    int oldisfloating;
 	pid_t pid;
 	Client *next;
 	Client *snext;
@@ -1810,7 +1811,10 @@ manage(Window w, XWindowAttributes *wa)
 	XSelectInput(dpy, w, EnterWindowMask|FocusChangeMask|PropertyChangeMask|StructureNotifyMask);
 	grabbuttons(c, 0);
 	if (!c->isfloating)
-		c->isfloating = c->oldstate = trans != None || c->isfixed;
+		c->isfloating = c->oldstate = trans != None ||
+                        c->isfixed || 
+                        !selmon->lt[selmon->sellt]->arrange; // Spawn in floating mode if floating layout is enabled
+    c->oldisfloating = c->isfloating;
 	if (c->isfloating) {
 		XRaiseWindow(dpy, c->win);
         XSetWindowBorder(dpy, w, scheme[SchemeNorm][ColFloat].pixel);
@@ -2868,10 +2872,33 @@ setfullscreen(Client *c, int fullscreen)
 void
 setlayout(const Arg *arg)
 {
+    const Layout *previous = selmon->lt[selmon->sellt];
+
 	if (!arg || !arg->v || arg->v != selmon->lt[selmon->sellt])
         selmon->sellt ^= 1;
-	if (arg && arg->v)
+
+	if (arg && arg->v) {
+        // PATCH float all windows when going to floating mode
+        //       and unfloat when returning.
+        Layout *layout = (Layout *)arg->v;
+
+        if(!layout->arrange && previous->arrange) { 
+            Client *c;
+            for(c = selmon->clients; c; c = c->next) {
+                c->oldisfloating = c->isfloating;
+                c->isfloating = 1;
+            }
+        } else if(!previous->arrange) {
+            Client *c;
+            for(c = selmon->clients; c; c = c->next) {
+                c->isfloating = c->oldisfloating;
+            }
+        }
+
         selmon->lt[selmon->sellt] = (Layout *)arg->v;
+    }
+
+
 	strncpy(selmon->ltsymbol, selmon->lt[selmon->sellt]->symbol, sizeof selmon->ltsymbol);
 	if (selmon->sel)
 		arrange(selmon);
@@ -3155,7 +3182,11 @@ togglefloating(const Arg *arg)
 		return;
 	if (selmon->sel->isfullscreen) /* no support for fullscreen windows */
 		return;
-	selmon->sel->isfloating = !selmon->sel->isfloating || selmon->sel->isfixed;
+    // PATCH if floating layout is enabled, disallow toggle floating
+    if (!selmon->lt[selmon->sellt]->arrange)
+        return;
+
+    selmon->sel->isfloating = !selmon->sel->isfloating || selmon->sel->isfixed;
 	if (selmon->sel->isfloating) {
         XSetWindowBorder(dpy, selmon->sel->win, scheme[SchemeSel][ColFloat].pixel);
 		/* restore last known float dimensions */
