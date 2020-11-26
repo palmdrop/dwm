@@ -4,42 +4,40 @@
 #include <X11/XF86keysym.h>
 
 /* appearance */
-static       unsigned int borderpx  = 1;        /* border pixel of regular windows */
-static   unsigned int floatborderpx = 1;        /* border pixel of floating windows */
-static       unsigned int snap      = 32;       /* snap pixel */
-static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
-static const unsigned int gaps      = 25;       /* gaps */
-static const unsigned int outergaps = 40;
-static       unsigned int gappih    = gaps;     /* horiz inner gap between windows */
-static       unsigned int gappiv    = gaps;     /* vert inner gap between windows */
-static       unsigned int gappoh    = outergaps;/* horiz outer gap between windows and screen edge */
-static       unsigned int gappov    = outergaps;/* vert outer gap between windows and screen edge */
-static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
-static       int smartborders       = 1;        /* 1 means no borders if only one window is open */
-static       int selonlyborders     = 0;        /* 1 means only borders for focused window */
-static       int focusonnetactive   = 0;        /* 1 means urgent windows will be focused */
-
-static       int showbar            = 1;        /* 0 means no bar */
-static       int topbar             = 0;        /* 0 means bottom bar */
-static const int usealtbar          = 1;        /* 1 means use non-dwm status bar */
-static const char *altbarclass      = "Polybar"; /* Alternate bar class name */
-static const char *alttrayname      = "tray";    /* Polybar tray instance name */
-static const char *altbarcmd        = "$HOME/.config/dwm-polybar/launch.sh"; /* Alternate bar launch command */
-static const char *fonts[]          = { "Cozette:size=15" };
-static const char dmenufont[]       = "Cozette:size=15";
-static char normbgcolor[]           = "#222222";
-static char normbordercolor[]       = "#444444";
-static char normfgcolor[]           = "#bbbbbb";
-static char selfgcolor[]            = "#eeeeee";
-static char inactivefgcolor[]       = "#777777";
-static char selbordercolor[]        = "#005577";
-static char selbgcolor[]            = "#005577";
-
-static char selfloatbordercolor[]   = "#005577";
-static char normfloatbordercolor[]  = "#005577";
-
-static const unsigned int baralpha = 0xFF;
-static const unsigned int borderalpha = OPAQUE;
+static       unsigned int borderpx               = 1;         /* border pixel of regular windows */
+static   unsigned int     floatborderpx          = 1;         /* border pixel of floating windows */
+static       unsigned int snap                   = 32;        /* snap pixel */
+static const int          swallowfloating        = 0;         /* 1 means swallow floating windows by default */
+static const unsigned int gaps                   = 25;        /* gaps */
+static const unsigned int outergaps              = 40;        /* outer gaps */
+static       unsigned int gappih                 = gaps;      /* horiz inner gap between windows */
+static       unsigned int gappiv                 = gaps;      /* vert inner gap between windows */
+static       unsigned int gappoh                 = outergaps; /* horiz outer gap between windows and screen edge */
+static       unsigned int gappov                 = outergaps; /* vert outer gap between windows and screen edge */
+static       int          smartgaps              = 0;         /* 1 means no outer gap when there is only one window */
+static       int          smartborders           = 1;         /* 1 means no borders if only one window is open */
+static       int          selonlyborders         = 0;         /* 1 means only borders for focused window */
+static       int          focusonnetactive       = 0;         /* 1 means urgent windows will be focused */
+static       int          showbar                = 1;         /* 0 means no bar */
+static       int          topbar                 = 0;         /* 0 means bottom bar */
+static const int          usealtbar              = 1;         /* 1 means use non-dwm status bar */
+static const char*        altbarclass            = "Polybar"; /* Alternate bar class name */
+static const char*        alttrayname            = "tray";    /* Polybar tray instance name */
+static const char*        altbarcmd              = "$HOME/.config/dwm-polybar/launch.sh"; /* Alternate bar launch command */
+static const char*        fonts[]                = { "Cozette:size=15" };
+static const char         dmenufont[]            = "Cozette:size=15";
+static       char         normbgcolor[]          = "#222222";
+static       char         normbordercolor[]      = "#444444";
+static       char         normfgcolor[]          = "#bbbbbb";
+static       char         selfgcolor[]           = "#eeeeee";
+static       char         inactivefgcolor[]      = "#777777";
+static       char         selbordercolor[]       = "#005577";
+static       char         selbgcolor[]           = "#005577";
+static       char         selfloatbordercolor[]  = "#005577";
+static       char         normfloatbordercolor[] = "#005577";
+static const unsigned int baralpha               = 0xFF;
+static const unsigned int borderalpha            = OPAQUE;
+static       char         keymodepath[]          = "/tmp/dwm.keymode"; /* Path to keymode indicator file */
 
 static char *colors[][4] = {
        /*                   fg               bg           border           float border */
@@ -69,7 +67,6 @@ static const Inset alt_inset = {
 };
 
 /* Paths */
-static char keymodepath[] = "/tmp/dwm.keymode";
 
 /* Standard values */
 #define TERM "st"
@@ -98,12 +95,10 @@ static Rule rules[] = {
     { "Spotify",           NULL,          NULL,           1 << 8,          0,          0,          0,          0,        -1 },
     { "jetbrains-idea-ce", NULL,          NULL,           1 << 1,          0,          0,          0,          0,        -1 },
     { NULL,                "libreoffice", NULL,           1 << 2,          0,          0,          0,          0,        -1 },
-
     // Windows with "hidden" title are automatically crated as scratchpads
     { NULL,                NULL,          "hidden",       SCRATCHPAD_MASK, 1,          1,          0,          0,        -1 },
     // Windows with "floating" title are automatically opened in flaoting mode
     { NULL,                NULL,          "floating",     0,               1,          1,          0,          0,        -1 },
-
     // Temporary rules
     { "game.App",          NULL,          NULL,           0,               1,          1,          0,          0,        -1 },
     { "application.App",   NULL,          NULL,           0,               1,          1,          0,          0,        -1 },
@@ -114,30 +109,30 @@ static Rule rules[] = {
 };
 
 /* layout(s) */
-static float mfact      = 0.55; /* factor of master area size [0.05..0.95] */
-static int  nmaster     = 1;    /* number of clients in master area */
-static int  resizehints = 0;    /* 1 means respect size hints in tiled resizals */
-static int  attachbelow = 1;    /* 1 means attach after the currently active window */
+static float mfact       = 0.55; /* factor of master area size [0.05..0.95] */
+static int   nmaster     = 1;    /* number of clients in master area */
+static int   resizehints = 0;    /* 1 means respect size hints in tiled resizals */
+static int   attachbelow = 1;    /* 1 means attach after the currently active window */
 
 #define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
 #include "vanitygaps.c"
 
 static const Layout layouts[] = {
-    /* symbol              arrange function */
-    { "tile",              tile },    /* first entry is default */
-    { "monocle",           monocle },
-    { "dwindle",           dwindle },
-    { "grid",              grid },
-    { "centered",          centeredmaster },
-    { "spiral",            spiral },
-    { "bstack",            bstack },
-    { "deck",              deck },
-    { "horizontal_bstack", bstackhoriz },
-    { "nrow_grid",         nrowgrid },
-    { "horizontal_grid",   horizgrid },
-    { "gapless_grid",      gaplessgrid },
-    { "floating_master",   centeredfloatingmaster },
-    { "floating",          NULL },    /* no layout function means floating behavior */
+    /* symbol      arrange function */
+    { "tile",      tile },    /* first entry is default */
+    { "monocle",   monocle },
+    { "dwindle",   dwindle },
+    { "grid",      grid },
+    { "centered",  centeredmaster },
+    { "spiral",    spiral },
+    { "bstack",    bstack },
+    { "deck",      deck },
+    { "hbstack",   bstackhoriz },
+    { "ngrid",     nrowgrid },
+    { "hgrid",     horizgrid },
+    { "nogapgrid", gaplessgrid },
+    { "fmaster",   centeredfloatingmaster },
+    { "floating",  NULL },    /* no layout function means floating behavior */
 };
 
 /* key definitions */
@@ -530,7 +525,6 @@ static IPCCommand ipccommands[] = {
     IPCCOMMAND(  setmfact,            1,      {ARG_TYPE_FLOAT}  ),
     IPCCOMMAND(  setlayoutsafe,       1,      {ARG_TYPE_PTR}    ),
     IPCCOMMAND(  quit,                1,      {ARG_TYPE_NONE}   ),
-
     IPCCOMMAND(  focusurgent,         1,      {ARG_TYPE_NONE}   )
 };
 
