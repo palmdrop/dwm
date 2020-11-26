@@ -273,6 +273,7 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_c,       spawn,         SHCMD("dmenu_shortcuts") },
     { MODKEY,                       XK_z,       spawn,         SHCMD("dmenu_dwm_layout") },
     { MODKEY,                       XK_f,       spawn,         SHCMD("dswitcher") },
+    { MODKEY|ShiftMask,             XK_p,       spawn,         SHCMD("passmenu") },
 
     { MODKEY,                       XK_q,       spawn,         SHCMD("flash_window") }, // Flash focus indicator
 
