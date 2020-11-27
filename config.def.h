@@ -221,8 +221,9 @@ static Key keys[] = {
     // Fullscreen 
     { MODKEY|ShiftMask,             XK_f,      togglefullscr,      {0} },
 
-    // Next floating
+    // Float control
     { MODKEY,                       XK_space,  togglenextfloating, {0} },
+    { MODKEY|ShiftMask,             XK_space,  unfloatvisible,     {0} },
 
     // Scratchpad
     { MODKEY,                       XK_s,      scratchpad_show,    {0} },
