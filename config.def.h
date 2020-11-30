@@ -267,7 +267,7 @@ static Key keys[] = {
     { MODKEY,                       XK_g,       spawn,         SHCMD("gimp") },
     { MODKEY,                       XK_c,       spawn,         SHCMD("idea") },
     { MODKEY|ShiftMask,             XK_x,       spawn,         SHCMD("xkill") },
-    { MODKEY,                       XK_x,       spawn,         SHCMD("slock") },
+    { MODKEY,                       XK_x,       spawn,         SHCMD("lock") },
 
     { MODKEY|ShiftMask,             XK_d,       spawn,         SHCMD("dmenu_dots_edit") },
     { MODKEY|ShiftMask,             XK_e,       spawn,         SHCMD("dmenu_dirs_edit") },
