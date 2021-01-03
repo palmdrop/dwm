@@ -39,6 +39,8 @@ static const unsigned int baralpha               = 0xFF;
 static const unsigned int borderalpha            = OPAQUE;
 static       char         keymodepath[]          = "/tmp/dwm.keymode"; /* Path to keymode indicator file */
 
+// THIS DOES NOTHING
+
 static char *colors[][4] = {
        /*                   fg               bg           border           float border */
        [SchemeNorm]     = { normfgcolor,     normbgcolor, normbordercolor, normfloatbordercolor  },
