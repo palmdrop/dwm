@@ -55,3 +55,5 @@ These are tweaks and changes I've done for my own purposes. I haven't made prope
 
 # Other
 My build depends on a bunch of personal scripts. Those scripts can be found here: https://github.com/palmdrop/dots
+
+NOTE: I've migrated away from suckless, and hence my scripts are no longer tailored for dwm. Some of them might no longer exist or are no longer compatible. However, here's a link to the most recent branch from my dwm days: https://github.com/palmdrop/dots/tree/proxy-love
